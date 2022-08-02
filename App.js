@@ -1,12 +1,11 @@
 import React from 'react';
-import { StatusBar } from 'react-native'
-import { Login } from './src/screens/Login'
-import {DetailsMovies } from './src/screens/DetailsMovies'
+import { View, Text} from 'react-native';
+import {DetailsMovie} from './src/screens/DetailsMovie';
 
 export const App = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <DetailsMovies/>
+    <DetailsMovie/>
     </View>
   )
 }
