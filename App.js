@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native'
-import { Login } from './src/screens/Login'
+import { Home } from './src/screens/Home';
 
 export const App = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Login />
+      <Home />
     </View>
   )
 }
