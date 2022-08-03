@@ -4,9 +4,8 @@ import {DetailsMovie} from './src/screens/DetailsMovie';
 
 export const App = () => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
     <DetailsMovie/>
-    </View>
   )
 }
 
