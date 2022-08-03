@@ -7,5 +7,7 @@ export const Login = () => {
 
     const { setIsSignedIn } = useContext(LoginContext);
 
-    return null
+    return (
+        <TouchableOpacity onPress={() => setIsSignedIn(true)}><Text>Entrar</Text></TouchableOpacity>
+    )
 }
