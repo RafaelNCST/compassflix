@@ -1,12 +1,13 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { View } from 'react-native'
-import { Login } from './src/screens/Login'
+import { LoginContextProvider } from './src/contexts/loginContext'
+import { RootStacks } from './src/routes/rootRoutes'
 
 export const App = () => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Login />
-    </View>
+    <LoginContextProvider>
+      <RootStacks />
+    </LoginContextProvider>
   )
 }
 

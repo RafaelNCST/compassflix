@@ -1,12 +1,11 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-
+import React, { useContext } from 'react';
+import { LoginContext } from '../../contexts/loginContext'
+import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './style'
 
 export const Login = () => {
-    return (
-        <View style={styles.bodyScreen}>
-            <Text> LOGIN </Text>
-        </View>
-    )
+
+    const { setIsSignedIn } = useContext(LoginContext);
+
+    return null
 }
