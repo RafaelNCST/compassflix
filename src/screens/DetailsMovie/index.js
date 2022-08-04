@@ -41,6 +41,9 @@ export const DetailsMovie = () => {
                     <Text style={styles.textCast}>Elenco</Text>
                 </View>
             </View>
+            <View style={styles.cast}>
+            <Cast/>
+            </View>
         </View >
 
     )
