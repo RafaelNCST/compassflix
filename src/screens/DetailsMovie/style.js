@@ -71,8 +71,10 @@ export const styles = StyleSheet.create({
         color:'white',
     },
     castArea:{
+        height:40,
         width:'90%',
-        marginTop:50
+        marginTop:50,
+        
     },
     castTitle:{
         height:25,
@@ -85,6 +87,8 @@ export const styles = StyleSheet.create({
     },
     textCast:{
         color:'white',
-        
+    },
+    cast:{
+        width:'90%'
     }
 })
