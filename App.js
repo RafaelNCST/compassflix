@@ -1,9 +1,13 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { Login } from './src/screens/Login'
+import { LoginContextProvider } from './src/contexts/loginContext'
+import { RootStacks } from './src/routes/rootRoutes'
 
 export const App = () => {
   return (
-    <Login/>
+    <LoginContextProvider>
+      <RootStacks />
+    </LoginContextProvider>
   )
 }
 
