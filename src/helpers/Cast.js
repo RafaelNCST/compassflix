@@ -1,38 +1,65 @@
-import robert from "../assets/robert_pattinson.jpg";
-import colin from "../assets/Colin.jpg";
-import Paul from "../assets/Paul.jpg";
-import zoe from "../assets/zoe.jpg";
-import jefrey from "../assets/jefrey.jpg";
+import { View, Text, Image, FlatList, SafeAreaView } from 'react-native';
+import React from 'react';
+import { styles } from './styles';
 
-export const Cast = [
+
+const DATA = [
     {
         id: 1,
-        Image: robert,
-        nome: "Robert Pattinson",
-        personagem: "Bruce Wayne / The Batman",
+        image: require('../assets/DetailMovies/Robert.png'),
+        name: "Robert Pattinson",
+        character: "Bruce Wayne / The Batman",
     },
     {
         id: 2,
-        Image: zoe,
-        nome: "Zoë Kravitz",
-        personagem: "Selina Kyle / Catwoman",
+        image: require('../assets/DetailMovies/Zoe.png'),
+        name: "Zoë Kravitz",
+        character: "Selina Kyle / Catwoman",
     },
     {
         id: 3,
-        Image: Paul,
-        nome: "Paul Dano",
-        personagem: "Edward Nashton / The Riddler",
+        image: require('../assets/DetailMovies/Paul.png'),
+        name: "Paul Dano",
+        character: "Edward Nashton / The Riddler",
     },
     {
         id: 4,
-        Image: colin,
-        nome: "Colin Farrell",
-        personagem: "Oswald 'Oz' Cobblepot / The Penguin",
+        image: require('../assets/DetailMovies/Jefrey.png'),
+        name: "Colin Farrell",
+        character: "Oswald 'Oz' Cobblepot / The Penguin",
     },
     {
         id: 5,
-        Image: jefrey,
-        nome: "Jeffrey Wright",
-        personagem: "Lt. James Gordon",
+        image: require('../assets/DetailMovies/Colin.png'),
+        name: "Jeffrey Wright",
+        character: "Lt. James Gordon",
     }
 ]
+const Item = ({ image, name, character }) => (
+    <View style={styles.areaItens}>
+        <View style={styles.imageActors}>
+        <Image source={image} />
+        </View>
+        <View style={styles.actor}>
+            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.character}>{character}</Text>
+        </View>
+    </View>
+)
+
+export const Cast = () => {
+    const renderItem = ({ item }) => (
+        <Item image={item?.image} name={item?.name} character={item?.character} />)
+
+    return (
+        <SafeAreaView>
+
+            <FlatList
+                data={DATA}
+                keyExtractor={item => item.id}
+                renderItem={renderItem}
+            />
+        </SafeAreaView>
+    )
+
+}
