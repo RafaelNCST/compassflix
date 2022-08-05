@@ -4,10 +4,21 @@ export const LoginContext = createContext();
 
 export const LoginContextProvider = ({ children }) => {
 
+    const [isLoading, setIsLoading] = useState(true);
     const [isSignedIn, setIsSignedIn] = useState(false);
+    const [requestKey, setRequestKey] = useState(null)
+
+    const endLoadingRequest = (reqKey) => {
+        setIsLoading(false)
+        setRequestKey(reqKey)
+    }
+
+    const setSignedIn = () => {
+        setIsSignedIn(true)
+    }
 
     return (
-        <LoginContext.Provider value={{ isSignedIn, setIsSignedIn }}>
+        <LoginContext.Provider value={{ isSignedIn, setSignedIn, isLoading, endLoadingRequest }}>
             {children}
         </LoginContext.Provider>
     )

@@ -8,12 +8,12 @@ import { StackOptions } from './options/stackOptions';
 
 export const StackFilmsRoutes = () => {
 
-    const Stack = createStackNavigator();
+    const StackFilm = createStackNavigator();
 
     return (
-        <Stack.Navigator screenOptions={StackOptions}>
-            <Stack.Screen name='Home' component={Home} />
-            <Stack.Screen name='DetailScreen' component={DetailsMovie} />
-        </Stack.Navigator>
+        <StackFilm.Navigator screenOptions={StackOptions}>
+            <StackFilm.Screen name='Home' component={Home} />
+            <StackFilm.Screen name='DetailScreen' component={DetailsMovie} />
+        </StackFilm.Navigator>
     )
 }
