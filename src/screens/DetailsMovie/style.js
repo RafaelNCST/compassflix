@@ -15,6 +15,10 @@ export const styles = StyleSheet.create({
     imagePoster:{
         flex:1
     },
+    bottoBack:{
+        flex: 1,
+        backgroundColor:'white'
+    },
     perfilArea:{
     width:"90%",
     height:150,
@@ -62,6 +66,13 @@ export const styles = StyleSheet.create({
     textNote:{
         color:'#E9A6A6',
         fontSize:30
+    },
+    bottomLike:{
+        flexDirection:'column',
+        alignItems:'center'
+    },
+    likesQtd:{
+        color:'white',
     },
     areaDescription:{
         width:"90%",
