@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { LoginContext } from '../contexts/loginContext'
+import { LoginContext } from '../contexts/loginContext';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { Login } from '../screens/Login'
-import { BottomTabs } from './bottomTabs'
+import { Login } from '../screens/Login';
+import { BottomTabs } from './bottomTabs';
 
-import { StackOptions } from './options/stackOptions'
+import { StackOptions } from './options/stackOptions';
 
 export const RootStacks = () => {
 
@@ -18,9 +18,9 @@ export const RootStacks = () => {
             <RootStack.Navigator screenOptions={StackOptions}>
                 {
                     isSignedIn ? (
-                        <RootStack.Screen name="BottomTabs" component={BottomTabs} />
+                        <RootStack.Screen name='BottomTabs' component={BottomTabs} />
                     ) : (
-                        <RootStack.Screen name="Login" component={Login} />
+                        <RootStack.Screen name='Login' component={Login} />
                     )
                 }
             </RootStack.Navigator>
