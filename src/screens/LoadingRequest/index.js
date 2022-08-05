@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Lottie from 'lottie-react-native';
 
 import { LoginContext } from '../../contexts/loginContext';
