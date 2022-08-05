@@ -6,7 +6,7 @@ import { styles } from './style'
 
 export const Login = () => {
 
-    const { setIsSignedIn } = useContext(LoginContext);
+    const { setSignedIn } = useContext(LoginContext);
 
     return (
         <View style={styles.BodyScreen}>
@@ -27,7 +27,7 @@ export const Login = () => {
                     </Text>
                 </View>
                 <LoginInputs />
-                <TouchableOpacity onPress={() => setIsSignedIn(true)} style={styles.Button}>
+                <TouchableOpacity onPress={setSignedIn} style={styles.Button}>
                     <Text style={styles.Enter}>Entrar</Text>
                 </TouchableOpacity>
             </View>
