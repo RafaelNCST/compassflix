@@ -5,10 +5,11 @@ export const screenOptions = {
     headerShown: false,
     tabBarShowLabel: false,
     tabBarStyle: {
-        height: 60,
+        height: 55,
         width: '100%',
         backgroundColor: '#454545',
         alignItems: 'center',
+        borderTopWidth: 0,
     }
 }
 
@@ -18,8 +19,8 @@ export const homeOptions = {
     ),
     tabBarItemStyle: {
         backgroundColor: '#E9A6A6',
-        maxWidth: 45,
-        height: 45,
+        maxWidth: 40,
+        height: 40,
         borderRadius: 52,
         alignItems: 'center',
         alignSelf: 'center'

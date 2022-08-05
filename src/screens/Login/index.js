@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { LoginContext } from '../../contexts/loginContext'
 import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import { LoginInputs } from './components/LoginInputs';
 import { styles } from './style'
 
-export const Login = () => {  
+export const Login = () => {
+
+    const { setIsSignedIn } = useContext(LoginContext);
 
     return (
         <View style={styles.BodyScreen}>
@@ -24,7 +27,7 @@ export const Login = () => {
                     </Text>
                 </View>
                 <LoginInputs />
-                <TouchableOpacity style={styles.Button}>
+                <TouchableOpacity onPress={() => setIsSignedIn(true)} style={styles.Button}>
                     <Text style={styles.Enter}>Entrar</Text>
                 </TouchableOpacity>
             </View>
