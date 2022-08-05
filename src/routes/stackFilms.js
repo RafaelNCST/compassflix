@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { Home } from '../screens/Home'
-import { DetailsScreen } from '../screens/DetailsMovie'
+import { DetailsMovie } from '../screens/DetailsMovie'
 
 import { StackOptions } from './options/stackOptions';
 
@@ -13,7 +13,7 @@ export const StackFilmsRoutes = () => {
     return (
         <Stack.Navigator screenOptions={StackOptions}>
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="DetailScreen" component={DetailsScreen} />
+            <Stack.Screen name="DetailScreen" component={DetailsMovie} />
         </Stack.Navigator>
     )
 }
