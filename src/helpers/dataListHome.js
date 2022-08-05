@@ -1,0 +1,18 @@
+export const DataHome = [
+    { id: 1, image: require("../assets/imageHome/01.png"), note: "8.3/10" },
+    { id: 2, image: require("../assets/imageHome/02.png"), note: "8.5/10" },
+    { id: 3, image: require("../assets/imageHome/03.png"), note: "6.5/10" },
+    { id: 4, image: require("../assets/imageHome/04.png"), note: "7.8/10" },
+    { id: 5, image: require("../assets/imageHome/05.png"), note: "8.0/10" },
+    { id: 6, image: require("../assets/imageHome/06.png"), note: "8.2/10s" },
+    { id: 7, image: require("../assets/imageHome/07.png"), note: "9.5/10" },
+    { id: 8, image: require("../assets/imageHome/08.png"), note: "5.8/10" },
+    { id: 9, image: require("../assets/imageHome/09.png"), note: "7.3/10" },
+    { id: 10, image: require("../assets/imageHome/10.png"), note: "6.6/10" },
+    { id: 11, image: require("../assets/imageHome/11.png"), note: "8.5/10" },
+    { id: 12, image: require("../assets/imageHome/12.png"), note: "7.3/10" },
+    { id: 13, image: require("../assets/imageHome/13.png"), note: "8.8/10" },
+    { id: 14, image: require("../assets/imageHome/14.png"), note: "7.8/10" },
+    { id: 15, image: require("../assets/imageHome/15.png"), note: "7.5/10" },
+    { id: 16, image: require("../assets/imageHome/16.png"), note: "8.2/10" },
+]
