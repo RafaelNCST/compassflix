@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { styles } from './style';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { PosterMovie } from '../../helpers/PosterMovie';
-import { Cast } from '../../helpers/Cast';
+import { DATA } from '../../helpers/Cast';
+import { Item } from './components';
+import { FlatList } from 'react-native-gesture-handler';
 
 
 export const DetailsMovie = () => {
@@ -15,11 +17,11 @@ export const DetailsMovie = () => {
                 <ImageBackground resizeMode='contain' style={styles.imagePoster} source={PosterMovie.imagePoster} />
             </View>
             <View style={styles.bottoBack}>
-            <TouchableOpacity   >
-                <Icon name='arrow-back' size={30} color={'red'} />
-            </TouchableOpacity>
+                <TouchableOpacity   >
+                    <Icon name='arrow-back' size={30} color={'red'} />
+                </TouchableOpacity>
             </View>
-            
+
             <View style={styles.perfilArea}>
                 <Image source={PosterMovie.imagePerfil} />
                 <View style={styles.infoArea}>
@@ -53,7 +55,20 @@ export const DetailsMovie = () => {
                 </View>
             </View>
             <View style={styles.cast}>
-                <Cast />
+                <FlatList
+                    data={DATA}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => {
+                        return (
+                            <Item
+                                image={item?.image}
+                                name={item?.name}
+                                character={item?.character}
+                            />
+                        )
+                    }
+                    }
+                />
             </View>
         </View >
 

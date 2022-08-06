@@ -1,9 +1,5 @@
-import { View, Text, Image, FlatList, SafeAreaView } from 'react-native';
-import React from 'react';
-import { styles } from './styles';
 
-
-const DATA = [
+export const DATA = [
     {
         id: 1,
         image: require('../assets/DetailMovies/Robert.png'),
@@ -35,31 +31,3 @@ const DATA = [
         character: "Lt. James Gordon",
     }
 ]
-const Item = ({ image, name, character }) => (
-    <View style={styles.areaItens}>
-        <View style={styles.imageActors}>
-        <Image source={image} />
-        </View>
-        <View style={styles.actor}>
-            <Text style={styles.name}>{name}</Text>
-            <Text style={styles.character}>{character}</Text>
-        </View>
-    </View>
-)
-
-export const Cast = () => {
-    const renderItem = ({ item }) => (
-        <Item image={item?.image} name={item?.name} character={item?.character} />)
-
-    return (
-        <SafeAreaView>
-
-            <FlatList
-                data={DATA}
-                keyExtractor={item => item.id}
-                renderItem={renderItem}
-            />
-        </SafeAreaView>
-    )
-
-}
