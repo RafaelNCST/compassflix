@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { DataHome } from '../../helpers/dataListHome';
 import { styles } from './style'
 import { ItensList } from './components/itemList';
+import { instance, apiKey } from '../../services/api'
 
 export const Home = () => {
     const name = 'Jhon'
+    const [filmeList, setFilmeList] = useState([]);
+    const getRequestKey = async () => {
+        await instance.get(`/movie/popular?api_key=${apiKey}&language=pt-BR&page=1`)
+            .then(resp => {
+                setFilmeList(resp.data.results)
+            })
+            .catch(error => console.log(error))
+    }
+
+    useEffect(() => {
+        getRequestKey()
+    }, [])
 
     return (
         <View style={styles.bodyScreen}>
@@ -20,7 +33,7 @@ export const Home = () => {
             </Text>
 
             <FlatList
-                data={DataHome}
+                data={filmeList}
                 contentContainerStyle={styles.containerPopularMovies}
                 numColumns={4}
                 key={'_'}
@@ -28,8 +41,8 @@ export const Home = () => {
                 renderItem={({ item }) => {
                     return (
                         <ItensList
-                            listaDeFilmes={item.image}
-                            notaDosFilmes={item.note}
+                            listaDeFilmes={item.poster_path}
+                            notaDosFilmes={item.vote_average}
                         />
                     )
                 }}

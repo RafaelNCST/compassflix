@@ -9,18 +9,21 @@ export const ItensList = ({ listaDeFilmes, notaDosFilmes }) => {
 
     return (
         <TouchableOpacity onPress={() => Navigation.navigate('DetailScreen')} style={styles.imagePopularMovies}>
-            <Image
-                source={listaDeFilmes}
-            />
+            <View style={styles.imageContainer}>
+                <Image
+                    style={{ height: 95, width: 76, resizeMode: 'contain', borderRadius: 10 }}
+                    source={{ uri: `https://image.tmdb.org/t/p/w500${listaDeFilmes}` }}
+                />
+            </View>
             <View style={styles.subContainerPopularMovies}>
                 <Icon
                     style={styles.iconPopularMovies}
                     name="star"
-                    size={20}
+                    size={15}
                 />
                 <Text
                     style={styles.textPopularMovies}>
-                    {notaDosFilmes}
+                    {notaDosFilmes}/10
                 </Text>
             </View>
         </TouchableOpacity>

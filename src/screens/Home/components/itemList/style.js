@@ -5,6 +5,11 @@ export const styles = StyleSheet.create({
         marginHorizontal: 8,
         paddingTop: 25
     },
+    imageContainer: {
+        width: 76,
+        height: 95,
+        borderRadius: 10
+    },
     subContainerPopularMovies: {
         flexDirection: 'row',
         marginTop: 4
