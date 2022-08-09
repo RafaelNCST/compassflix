@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
     perfilArea:{
     width:"90%",
     height:150,
-    marginTop:-30,
     flexDirection:'row',
     alignItems: 'center',
 
@@ -76,15 +75,14 @@ export const styles = StyleSheet.create({
     },
     areaDescription:{
         width:"90%",
-        marginTop:30
+        height:200
     },
     textDescription:{
         color:'white',
     },
     castArea:{
-        height:40,
+        
         width:'90%',
-        marginTop:50,
         
     },
     castTitle:{
@@ -100,6 +98,7 @@ export const styles = StyleSheet.create({
         color:'white',
     },
     cast:{
+        
         width:'90%'
     }
 })
