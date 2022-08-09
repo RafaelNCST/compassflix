@@ -23,7 +23,7 @@ export const Home = () => {
     return (
         <View style={styles.bodyScreen}>
             <Text style={styles.bodyScreenName}>
-                {`Olá, ${name}!`}
+                Olá, <Text style={{ color: '#e9a6a6' }}> {name}</Text>!
             </Text>
             <Text style={styles.bodyScreenSubtitle}>
                 Reveja ou acompanhe os filmes que você assistiu...
@@ -48,6 +48,6 @@ export const Home = () => {
                     )
                 }}
             />
-        </View>
+        </View >
     )
 }
