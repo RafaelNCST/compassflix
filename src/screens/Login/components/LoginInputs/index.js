@@ -18,6 +18,10 @@ export const LoginInputs = () => {
 
   const [password, setPassword] = useState('');
 
+  const [error, setError] = useState(false);
+
+  const [message, setMessage] = useState('');
+
   const requestApiInputs = async () => {
     await instance.post(`authentication/token/validate_with_login?api_key=${apiKey}`, {
       'username': username,
@@ -48,16 +52,17 @@ export const LoginInputs = () => {
       })
       .catch(error => console.log(error))
   }
-
-  function ValidateEmail() {
-    if (/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(username)) {
-      return true
+  const changeCharSpecial = (Text) => {
+    if (/\W|_/.test(Text)) {
+      setUsername(username.replace(Text, ''))
     }
-    alert("Você inseriu um usuário inválido!")
-    return false
+    else {
+      setUsername(Text)
+    }
   }
+
   function validInput() {
-    if (ValidateEmail()) {
+    if (username !== '' && password !== '') {
       requestApiInputs()
     }
     else {
@@ -75,7 +80,7 @@ export const LoginInputs = () => {
             placeholder='Username'
             placeholderTextColor='rgba(255, 255, 255, 0.5)'
             style={styles.TextStyle}
-            onChangeText={(Text) => setUsername(Text)}
+            onChangeText={(Text) => changeCharSpecial(Text)}
             value={username}
           />
         </View>
@@ -97,6 +102,7 @@ export const LoginInputs = () => {
           </TouchableOpacity>
         </View>
       </View>
+
       {loading ? (
         <View style={styles.loading}>
           <Text style={{ color: 'white' }}> spinner :D </Text>
