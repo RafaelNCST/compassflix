@@ -33,16 +33,6 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: '700'
     },
-    Button: {
-        marginTop: 50,
-        pading: 10,
-        width: 100,
-        height: 39,
-        borderRadius: 20,
-        backgroundColor: '#e9a6a6',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
     Image: {
         width: 415,
         height: 420,
@@ -51,5 +41,5 @@ export const styles = StyleSheet.create({
     LogoImage: {
         width: 250,
         height: 200,
-    }
+    },
 })
