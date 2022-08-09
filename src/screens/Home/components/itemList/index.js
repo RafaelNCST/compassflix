@@ -19,7 +19,7 @@ export const ItensList = ({ listaDeFilmes, notaDosFilmes, idFilmes }) => {
                 <Icon
                     style={styles.iconPopularMovies}
                     name="star"
-                    size={15}
+                    size={13.5}
                 />
                 <Text
                     style={styles.textPopularMovies}>
