@@ -23,7 +23,7 @@ export const SplashScreen = () => {
 
     const signedUser = async () => {
         if (await AsyncStorage.getItem('@session_token') !== null) {
-            endLoadingRequest(null, true)
+            endLoadingRequest(await AsyncStorage.getItem('@session_token'), true)
         } else {
             getRequestKey()
         }

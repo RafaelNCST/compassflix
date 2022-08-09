@@ -15,13 +15,13 @@ export const LoginContextProvider = ({ children }) => {
         setLoading(false)
     }
 
-    const changeSessionId = async (id) => {
+    const sessionID = async (id) => {
         setSignedIn(true)
         AsyncStorage.setItem('@session_token', id)
     }
 
     return (
-        <LoginContext.Provider value={{ loading, signedIn, requestKey, endLoadingRequest, changeSessionId }}>
+        <LoginContext.Provider value={{ loading, signedIn, requestKey, endLoadingRequest, sessionID }}>
             {children}
         </LoginContext.Provider>
     )

@@ -12,7 +12,7 @@ export const LoginInputs = () => {
 
   const [username, setUsername] = useState('');
 
-  const { requestKey, changeSessionId } = useContext(LoginContext);
+  const { requestKey, sessionID } = useContext(LoginContext);
 
   const [loading, setLoading] = useState(false);
 
@@ -44,7 +44,7 @@ export const LoginInputs = () => {
       "request_token": requestToken
     })
       .then(resp => {
-        changeSessionId(resp?.data?.session_id)
+        sessionID(resp?.data?.session_id)
       })
       .catch(error => console.log(error))
   }
