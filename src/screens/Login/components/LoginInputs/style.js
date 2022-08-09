@@ -19,9 +19,28 @@ export const styles = StyleSheet.create({
         fontSize: 11,
         marginLeft: 10,
         flex: 1,
+        color: '#fff'
     },
     eye: {
          right:10
+    },
+    Button: {
+        marginTop: 50,
+        pading: 10,
+        width: 100,
+        height: 39,
+        borderRadius: 20,
+        backgroundColor: '#e9a6a6',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    loading: {
+        marginTop: 50,
+        pading: 10,
+        width: 100,
+        height: 39,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 
 })
