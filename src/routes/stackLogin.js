@@ -11,11 +11,11 @@ export const LoginStacks = () => {
 
     const LoginStack = createStackNavigator();
 
-    const { isSignedIn } = useContext(LoginContext);
+    const { signedIn } = useContext(LoginContext);
 
     return (
         <LoginStack.Navigator screenOptions={StackOptions}>
-            {isSignedIn ? (
+            {signedIn ? (
                 <LoginStack.Screen name='BottomTabs' component={BottomTabs} />
             ) : (
                 <LoginStack.Screen name='Login' component={Login} />

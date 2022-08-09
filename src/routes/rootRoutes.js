@@ -12,12 +12,12 @@ export const RootStacks = () => {
 
     const RootStack = createStackNavigator();
 
-    const { isLoading } = useContext(LoginContext);
+    const { loading } = useContext(LoginContext);
 
     return (
         <NavigationContainer>
             <RootStack.Navigator screenOptions={StackOptions}>
-                {isLoading ? (
+                {loading ? (
                     <RootStack.Screen name='Loading' component={SplashScreen} />
                 ) : (
                     <RootStack.Screen name='stackLogin' component={LoginStacks} />
