@@ -12,7 +12,7 @@ export const LoginInputs = () => {
 
   const [username, setUsername] = useState('');
 
-  const { setSignedIn, requestKey } = useContext(LoginContext);
+  const { requestKey, changeSessionId } = useContext(LoginContext);
 
   const [loading, setLoading] = useState(false);
 
@@ -20,24 +20,33 @@ export const LoginInputs = () => {
 
   const requestApiInputs = async () => {
     await instance.post(`authentication/token/validate_with_login?api_key=${apiKey}`, {
-      "username": username,
-      "password": password,
-      "request_token": requestKey,
+      'username': username,
+      'password': password,
+      'request_token': requestKey,
     })
       .then(resp => {
-        setSignedIn(resp)
-        setLoading(false)
+        createSession(resp?.data?.request_token)
       })
       .catch(error => {
         setLoading(false)
-        if (error?.response?.status === 422 || error.response?.status === 400) {
+        if (error?.response?.status === 422 || error?.response?.status === 400) {
           console.log('Usuário ou senha inválidos!')
-        } else if (error.response?.status === 401) {
+        } else if (error?.response?.status === 401) {
           console.log('Autorização negada!')
         } else {
           console.log('Falha no Login, tente mais tarde')
         }
       })
+  }
+
+  const createSession = async (requestToken) => {
+    await instance.post(`authentication/session/new?api_key=${apiKey}`, {
+      "request_token": requestToken
+    })
+      .then(resp => {
+        changeSessionId(resp?.data?.session_id)
+      })
+      .catch(error => console.log(error))
   }
 
   function ValidateEmail() {
