@@ -9,7 +9,7 @@ export const Home = () => {
     const name = 'Jhon'
     const [filmeList, setFilmeList] = useState([]);
     const getRequestKey = async () => {
-        await instance.get(`/movie/popular?api_key=${apiKey}&language=pt-BR&page=1`)
+        await instance.get(`/movie/popular?api_key=${apiKey}&language=pt-BR&page=1`) //${apiKey}
             .then(resp => {
                 setFilmeList(resp.data.results)
             })
@@ -43,6 +43,7 @@ export const Home = () => {
                         <ItensList
                             listaDeFilmes={item.poster_path}
                             notaDosFilmes={item.vote_average}
+                            idFilmes={item.id}
                         />
                     )
                 }}

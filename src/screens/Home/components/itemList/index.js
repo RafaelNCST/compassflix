@@ -3,12 +3,12 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style'
 import { useNavigation } from "@react-navigation/native";
-export const ItensList = ({ listaDeFilmes, notaDosFilmes }) => {
+export const ItensList = ({ listaDeFilmes, notaDosFilmes, idFilmes }) => {
 
     const Navigation = useNavigation();
 
     return (
-        <TouchableOpacity onPress={() => Navigation.navigate('DetailScreen')} style={styles.imagePopularMovies}>
+        <TouchableOpacity onPress={() => Navigation.navigate('DetailScreen', { idFilmes })} style={styles.imagePopularMovies}>
             <View style={styles.imageContainer}>
                 <Image
                     style={{ height: 95, width: 76, resizeMode: 'contain', borderRadius: 10 }}
