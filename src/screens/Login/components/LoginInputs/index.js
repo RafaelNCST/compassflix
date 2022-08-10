@@ -19,9 +19,11 @@ export const LoginInputs = () => {
 
   const [password, setPassword] = useState('');
 
-  const [error, setError] = useState(false);
+  const [errorUser, setErrorUser] = useState(false);
 
   const [message, setMessage] = useState('');
+
+  const [errorPass, setErrorPass] = useState(false);
 
   const requestApiInputs = async () => {
     await instance.post(`authentication/token/validate_with_login?api_key=${apiKey}`, {
@@ -34,7 +36,8 @@ export const LoginInputs = () => {
       })
       .catch(error => {
         setLoading(false)
-        setError(true)
+        setErrorUser(true)
+        setErrorPass(true)
         if (error?.response?.status === 422 || error?.response?.status === 400) {
           console.log('Usuário ou senha inválidos!')
           setMessage('Usuário ou senha inválidos!')
@@ -57,6 +60,7 @@ export const LoginInputs = () => {
       .catch(error => console.log(error))
   }
   const changeCharSpecial = (Text) => {
+    setErrorUser(false)
     if (/\W|_/.test(Text)) {
       setUsername(username.replace(Text, ''))
     }
@@ -66,49 +70,69 @@ export const LoginInputs = () => {
   }
   function validInput() {
     setLoading(true)
-    if (username !== '' && password !== '') {
-      requestApiInputs()
+    if (username === '' && password === '') {
+      setErrorUser(true)
+      setErrorPass(true)
+      setMessage('Preencha todos os campos')
+      setLoading(false)
+    }
+    else if (username === '') {
+      setErrorUser(true)
+      setMessage('Preencha seu Usuário')
+      setLoading(false)
+    }
+    else if (password === '') {
+      setErrorPass(true)
+      setMessage('Preencha sua senha')
+      setLoading(false)
     }
     else {
-      console.log('aconteceu um erro')
+      requestApiInputs()
     }
   }
   return (
     <>
       <View style={styles.LoginInput}>
-        <Animatable.View animation={error ? 'shake' : null} >
-          <View style={[styles.input, { borderWidth: error ? 1 : 0 }]}>
-            <Icon name='account-circle'
-              size={20}
-              color={'rgba(255, 255, 255, 0.5)'} />
-            <TextInput
-              placeholder='Username'
-              placeholderTextColor='rgba(255, 255, 255, 0.5)'
-              style={styles.TextStyle}
-              onChangeText={(Text) => changeCharSpecial(Text)}
-              value={username}
-            />
-          </View>
-          <View style={[styles.input, { borderWidth: error ? 1 : 0 }]}>
-            <Icon name='lock'
-              size={18}
-              color={'rgba(255, 255, 255, 0.5)'} />
-            <TextInput
-              placeholder='senha'
-              placeholderTextColor='rgba(255, 255, 255, 0.5)'
-              style={styles.TextStyle}
-              onChangeText={(Text) => setPassword(Text)}
-              secureTextEntry={hidePass}
-            />
-            <TouchableOpacity style={styles.eye}
-              onPress={() => setHidePass(!hidePass)}
-            >
-              <Icon name={hidePass ? "visibility" : 'visibility-off'} color='rgba(255, 255, 255, 0.5)' size={20} />
-            </TouchableOpacity>
-          </View></Animatable.View>
+        <Animatable.View
+          style={[styles.input, { borderWidth: errorUser ? 1 : 0 }]}
+          animation={ errorUser ? 'shake' : null}>
+          <Icon name='account-circle'
+            size={20}
+            color={'rgba(255, 255, 255, 0.5)'} />
+          <TextInput
+            placeholder='Username'
+            placeholderTextColor='rgba(255, 255, 255, 0.5)'
+            style={styles.TextStyle}
+            onChangeText={(Text) => changeCharSpecial(Text)}
+            value={username}
+          />
+        </Animatable.View>
+        <Animatable.View
+          style={[styles.input, { borderWidth: errorPass ? 1 : 0 }]}
+          animation={ errorPass ? 'shake' : null}
+        >
+          <Icon name='lock'
+            size={18}
+            color={'rgba(255, 255, 255, 0.5)'} />
+          <TextInput
+            placeholder='senha'
+            placeholderTextColor='rgba(255, 255, 255, 0.5)'
+            style={styles.TextStyle}
+            onChangeText={(Text) => {
+              setPassword(Text)
+              setErrorPass(false)
+            }}
+            secureTextEntry={hidePass}
+          />
+          <TouchableOpacity style={styles.eye}
+            onPress={() => setHidePass(!hidePass)}
+          >
+            <Icon name={hidePass ? "visibility" : 'visibility-off'} color='rgba(255, 255, 255, 0.5)' size={20} />
+          </TouchableOpacity>
+        </Animatable.View>
       </View>
       <View style={{ width: '100%', height: 40, alignItems: 'center', justifyContent: 'center' }}>
-        {error &&
+        {errorUser || errorPass &&
           <Text style={{ color: '#ef5350' }}>
             {message}
           </Text>
