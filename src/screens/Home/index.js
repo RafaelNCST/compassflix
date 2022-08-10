@@ -6,6 +6,7 @@ import { ItensList } from './components/itemList';
 import { instance, apiKey } from '../../services/api'
 import { LoginContext } from '../../contexts/loginContext';
 
+
 export const Home = () => {
 
     const [filmeList, setFilmeList] = useState([]);
@@ -13,6 +14,8 @@ export const Home = () => {
     const { requestKey } = useContext(LoginContext);
     const [loading, setLoading] = useState(false);
     const [userName, setUserName] = useState('');
+    const [lastPage, setLastPage] = useState(1);
+
 
     const getRequestName = async () => {
         await instance.get(`/account?api_key=${apiKey}&session_id=${requestKey}`)
@@ -23,23 +26,29 @@ export const Home = () => {
             })
             .catch(error => console.log(error))
     }
+    async function loadingApi() {
+        if (loading) return
+        setLoading(true)
 
-    const getRequestKey = async () => {
-        await instance.get(`/movie/popular?api_key=${apiKey}&language=pt-BR&page=1`) //${apiKey}
-            .then(resp => {
-                setFilmeList(resp.data.results)
-                setLoading(true)
-            })
-            .catch(error => console.log(error))
-    }
-    const getRequestApi = () => {
-        getRequestName()
-        getRequestKey()
+        const getRequestKey = async () => {
+            await instance.get(`/movie/popular?api_key=${apiKey}&language=pt-BR&page=${lastPage}`) //${apiKey}
+                .then(resp => {
+                    setFilmeList(resp.data)
+                    setLoading(true);
+                })
+                .catch(error => console.log(error))
+        }
+
+        setFilmeList([...filmeList, ...getRequestKey.data]);
+        setLastPage(page + 1);
+        setLoading(false);
+
     }
 
     useEffect(() => {
-        getRequestApi()
-    }, [loading])
+        getRequestName()
+        loadingApi()
+    }, [])
 
     return (
         <View style={styles.bodyScreen}>
@@ -56,9 +65,11 @@ export const Home = () => {
                     </Text>
 
                     <FlatList
-                        data={filmeList}
+                        data={filmeList.results}
                         contentContainerStyle={styles.containerPopularMovies}
                         numColumns={4}
+                        onEndReached={loadingApi}
+                        onEndReachedThreshold={1}
                         key={'_'}
                         keyExtractor={item => "_" + item.id}
                         renderItem={({ item }) => {
@@ -67,12 +78,21 @@ export const Home = () => {
                                     listaDeFilmes={item.poster_path}
                                     notaDosFilmes={item.vote_average}
                                     idFilmes={item.id}
+
                                 />
                             )
                         }}
+                    //onEndReached={() => {
+                    //   var lastFilm = filmeList.pop();
+                    //   setLastPage(lastFilm.data.page)
+                    //setLastPage(lastPage => lastPage + 1) //criar um botão no onpress chamar o setLastPage(lastPage => lastPage + 1) e setLastPage(lastPage => lastPage - 1)
+
+                    //}}
                     />
+
                 </>
             }
+
         </View >
     )
 }
