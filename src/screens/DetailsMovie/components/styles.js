@@ -16,5 +16,13 @@ export const styles = StyleSheet.create({
     imageActors:{
         width:52,
         height:54
+    },
+    imagePerfilActors:{
+        width: 48,
+        height:48, 
+        borderRadius:30
+    },
+    actor:{
+        justifyContent:'center',
     }
 })
