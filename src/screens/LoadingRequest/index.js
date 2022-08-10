@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Lottie from 'lottie-react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { LoginContext } from '../../contexts/loginContext';
 import { View, Image } from 'react-native';
@@ -12,7 +11,6 @@ export const SplashScreen = () => {
 
     const { endLoadingRequest } = useContext(LoginContext)
 
-
     const getRequestKey = async () => {
         await instance.get(`authentication/token/new?api_key=${apiKey}`)
             .then(resp => {
@@ -21,17 +19,9 @@ export const SplashScreen = () => {
             .catch(error => console.log(error))
     }
 
-    const signedUser = async () => {
-        if (await AsyncStorage.getItem('@session_token') !== null) {
-            endLoadingRequest(await AsyncStorage.getItem('@session_token'), true)
-        } else {
-            getRequestKey()
-        }
-    }
-
     useEffect(() => {
-        signedUser()
-    })
+        getRequestKey()
+    }, [])
 
     return (
         <View style={styles.bodyScreen}>
