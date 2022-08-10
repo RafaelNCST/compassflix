@@ -18,7 +18,6 @@ export const DetailsMovie = () => {
                 setDetail(resp.data);
                 console.log("deu certo");
                 setLoading(true);
-
             })
             .catch(error => console.log(error));
     }
@@ -36,12 +35,8 @@ export const DetailsMovie = () => {
     useEffect(() => {
         requestApis();
     }, [loading])
-
-
     return (
-
         <View style={styles.bodyScreen}>
-
             {loading &&
                 <>
                     <View style={styles.posterArea} >
@@ -60,10 +55,8 @@ export const DetailsMovie = () => {
                                 <Text style={styles.textTitle}>{detail?.original_title}</Text>
                                 <Text style={styles.textAno}>{detail?.release_date}</Text>
                                 <Text style={styles.textDuration}>{detail?.runtime}min</Text>
-                                    <Text style={styles.textDirector}>Direção por {detail?.production_companies[1].name}</Text>
-                                
+                                <Text style={styles.textDirector}>Direção por {detail?.production_companies[1].name}</Text>
                             </View>
-
                             <View style={styles.notesArea}>
                                 <Text style={styles.textNote}>{detail?.vote_average}/10</Text>
                                 <View style={styles.bottomLike}>
@@ -87,10 +80,9 @@ export const DetailsMovie = () => {
                     <View style={styles.castArea}>
                         <View style={styles.castTitle}>
                             <Text style={styles.textCast}>Elenco</Text>
-
                         </View>
-                        <View style={styles.spaceCast} />
 
+                        <View style={styles.spaceCast} />
 
                     </View>
                     <View style={styles.cast}>
@@ -108,12 +100,9 @@ export const DetailsMovie = () => {
                             }
                             }
                         />
-
                     </View>
                 </>
             }
         </View >
-
-
     )
 }
