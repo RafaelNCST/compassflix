@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 18,
         marginLeft: 14,
-        marginTop: 60
+        marginTop: 57
     },
     bodyScreenSubtitle: {
         color: '#FFFFFF',
