@@ -13,7 +13,9 @@ export const styles = StyleSheet.create({
         backgroundColor: '#C4C4C459',
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 15
+        paddingLeft: 15,
+        borderStyle:'solid',
+        borderColor:'#ef5350'
     },
     TextStyle: {
         fontSize: 11,
@@ -25,7 +27,7 @@ export const styles = StyleSheet.create({
          right:10
     },
     Button: {
-        marginTop: 50,
+        marginTop: 20,
         pading: 10,
         width: 100,
         height: 39,
@@ -35,7 +37,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     loading: {
-        marginTop: 50,
+        marginTop: 20,
         pading: 10,
         width: 100,
         height: 39,
