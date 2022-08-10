@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const LoginContext = createContext();
 
@@ -17,7 +16,7 @@ export const LoginContextProvider = ({ children }) => {
 
     const sessionID = async (id) => {
         setSignedIn(true)
-        AsyncStorage.setItem('@session_token', id)
+        setRequestKey(id)
     }
 
     return (
