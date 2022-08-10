@@ -10,14 +10,23 @@ export const styles = StyleSheet.create({
     posterArea:{
         width:'100%',
         height:150,
+
         
     },
     imagePoster:{
         flex:1
     },
-    bottoBack:{
-        flex: 1,
-        backgroundColor:'white'
+    buttomBack:{
+        marginTop:-135,
+        width:40,
+        height:40,
+        borderRadius:30,
+        backgroundColor:'white',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    areBottom:{
+        width:"90%",
     },
     perfilArea:{
     width:"90%",
@@ -26,22 +35,27 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
 
     },
+    imagePerfil:{
+        width: 116,
+        height: 182, 
+        marginTop: -50, 
+        borderRadius: 10 
+    },
     titleArea:{
-        width:"82%",
-        backgroundColor:'black',
+        width:"85%",
         flexDirection:'row',
-        justifyContent:'space-around',
+        justifyContent:'space-evenly',
         alignItems: 'baseline',
-        flexWrap:'wrap',
+        flexWrap:'wrap'
 
     },
     areaDirector:{
-        width:'85%',
-        alignSelf:'flex-start'
+        width:'90%',
+
     },
     textTitle:{
         color:'white',
-        fontSize:20
+        fontSize:18
     },
     textAno:{
         color:'white',
@@ -54,9 +68,10 @@ export const styles = StyleSheet.create({
     textDirector:{
         color:'white',
         fontSize:8,
+        alignItems:'flex-start'
     },
     notesArea:{
-        width:'60%',
+        width:'50%',
         flexDirection:'row',
         justifyContent:'space-around',
         alignItems:'baseline'
@@ -75,13 +90,18 @@ export const styles = StyleSheet.create({
     },
     areaDescription:{
         width:"90%",
-        height:200
+        height:100,
+
+    },
+    scrollDescription:{
+        flex:1
     },
     textDescription:{
         color:'white',
+        fontSize:12
     },
     castArea:{
-        
+        marginVertical:30,
         width:'90%',
         
     },
@@ -96,6 +116,14 @@ export const styles = StyleSheet.create({
     },
     textCast:{
         color:'white',
+    },
+    spaceCast:{
+        marginHorizontal:10,
+        marginTop:7,
+        backgroundColor:'#9C4A8B',
+        width:40,
+        height:1
+        
     },
     cast:{
         
