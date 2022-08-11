@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     imagePopularMovies: {
         marginHorizontal: 8,
-        paddingTop: 25,
+        paddingVertical: 15,
         alignItems: 'center'
     },
     imageContainer: {

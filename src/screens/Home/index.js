@@ -1,52 +1,75 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { DataHome } from '../../helpers/dataListHome';
 import { styles } from './style'
 import { ItensList } from './components/itemList';
 import { instance, apiKey } from '../../services/api'
 import { LoginContext } from '../../contexts/loginContext';
 
+import { LoadingScreensApis } from '../../components/LoadingScreensApis'
+
+import { FooterComponentLoading } from './components/FooterComponentLoading';
+
 export const Home = () => {
 
     const [filmeList, setFilmeList] = useState([]);
     const [name, setName] = useState('');
-    const { requestKey } = useContext(LoginContext);
     const [loading, setLoading] = useState(false);
-    const [userName, setUserName] = useState('');
+    const [loadingScroll, setLoadingScroll] = useState(false);
+    const [username, setUserName] = useState('');
+    const [lastPage, setLastPage] = useState(1);
+
+    const { sessionId } = useContext(LoginContext);
 
     const getRequestName = async () => {
-        await instance.get(`/account?api_key=${apiKey}&session_id=${requestKey}`)
+        await instance.get(`account?api_key=${apiKey}&session_id=${sessionId}`)
             .then(resp => {
+                console.log('renderizou nome')
                 setName(resp?.data?.name)
                 setUserName(resp?.data?.username)
-
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+            });
     }
 
-    const getRequestKey = async () => {
-        await instance.get(`/movie/popular?api_key=${apiKey}&language=pt-BR&page=1`) //${apiKey}
+
+    const loadInfiniteScroll = () => {
+        if (loadingScroll) return;
+        setLoadingScroll(true)
+        console.log('começou o scroll')
+        setLastPage(lastPage + 1);
+        setTimeout(() => requestMovieListFilms(), 3000);
+    }
+
+    const requestMovieListFilms = async () => {
+        await instance.get(`movie/popular?api_key=${apiKey}&language=pt-BR&page=${lastPage}`)
             .then(resp => {
-                setFilmeList(resp.data.results)
+                console.log('renderizou lista')
+                setFilmeList([...filmeList, ...resp.data.results]);
                 setLoading(true)
+            }).catch(error => {
+                setLoadingScroll(false);
+                console.log(error)
+            }).finally(() => {
+                console.log('acabou')
+                setLoadingScroll(false)
             })
-            .catch(error => console.log(error))
-    }
-    const getRequestApi = () => {
-        getRequestName()
-        getRequestKey()
+
     }
 
     useEffect(() => {
-        getRequestApi()
-    }, [loading])
+        if (sessionId) {
+            requestMovieListFilms();
+            getRequestName();
+        }
+    }, [sessionId])
 
     return (
         <View style={styles.bodyScreen}>
-            {loading &&
+            {loading ? (
                 <>
                     <Text style={styles.bodyScreenName}>
-                        Olá, <Text style={{ color: '#e9a6a6' }}> {name || userName}</Text>!
+                        Olá, <Text style={{ color: '#e9a6a6' }}> {name || username}</Text>!
                     </Text>
                     <Text style={styles.bodyScreenSubtitle}>
                         Reveja ou acompanhe os filmes que você assistiu...
@@ -59,8 +82,11 @@ export const Home = () => {
                         data={filmeList}
                         contentContainerStyle={styles.containerPopularMovies}
                         numColumns={4}
-                        key={'_'}
-                        keyExtractor={item => "_" + item.id}
+                        removeClippedSubviews={true}
+                        onEndReached={loadInfiniteScroll}
+                        onEndReachedThreshold={0.3}
+                        initialNumToRender={20}
+                        keyExtractor={(item, index) => index}
                         renderItem={({ item }) => {
                             return (
                                 <ItensList
@@ -70,9 +96,24 @@ export const Home = () => {
                                 />
                             )
                         }}
+                        ListFooterComponent={() => {
+                            return (
+                                <FooterComponentLoading loadingScroll={loadingScroll} />
+                            )
+                        }}
+                    //onEndReached={() => {
+                    //   var lastFilm = filmeList.pop();
+                    //   setLastPage(lastFilm.data.page)
+                    //setLastPage(lastPage => lastPage + 1) //criar um botão no onpress chamar o setLastPage(lastPage => lastPage + 1) e setLastPage(lastPage => lastPage - 1)
+
+                    //}}
                     />
                 </>
+            ) : (
+                <LoadingScreensApis />
+            )
             }
+
         </View >
     )
 }

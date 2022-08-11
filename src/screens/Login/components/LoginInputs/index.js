@@ -3,9 +3,7 @@ import { LoginContext } from '../../../../contexts/loginContext';
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import { styles } from "./style";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import * as Animatable from 'react-native-animatable';
 import { instance, apiKey } from '../../../../services/api';
-import Lottie from 'lottie-react-native';
 
 export const LoginInputs = () => {
 
@@ -17,7 +15,7 @@ export const LoginInputs = () => {
   const [erroruser, setErrorUser] = useState(false);
   const [errorpass, setErrorPass] = useState(false);
 
-  const { requestKey, sessionID } = useContext(LoginContext);
+  const { requestKey, changeSessionID } = useContext(LoginContext);
 
   const requestApiInputs = async () => {
     await instance.post(`authentication/token/validate_with_login?api_key=${apiKey}`, {
@@ -49,7 +47,7 @@ export const LoginInputs = () => {
       "request_token": requestToken
     })
       .then(resp => {
-        sessionID(resp?.data?.session_id)
+        changeSessionID(resp?.data?.session_id)
       })
       .catch(error => {
         setPassword('')
