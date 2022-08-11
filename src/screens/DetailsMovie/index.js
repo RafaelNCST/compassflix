@@ -17,7 +17,7 @@ export const DetailsMovie = () => {
     const Navigation = useNavigation()
 
     const getDetail = async () => {
-        await instance.get(`movie/438148?api_key=${apiKey}&language=pt-BR`)
+        await instance.get(`movie/616037?api_key=${apiKey}&language=pt-BR`)
             .then(resp => {
                 setDetail(resp.data);
                 setLoadingFilm(true)
@@ -26,7 +26,7 @@ export const DetailsMovie = () => {
     }
 
     const getCast = async () => {
-        await instance.get(`movie/438148/credits?api_key=${apiKey}&language=pt-BR`)
+        await instance.get(`movie/616037/credits?api_key=${apiKey}&language=pt-BR`)
             .then(resp => {
                 setCast(resp.data.cast);
                 setLoadingCredits(true);
