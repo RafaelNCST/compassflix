@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView, Modal, FlatList} from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView, Modal, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style'
+
+import { genresColors } from '../../../../helpers/genresObj';
 
 export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible }) => {
 
@@ -26,26 +28,19 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible 
                     <View style={styles.modalArea}>
                         <View style={styles.iconeArea}>
                             <TouchableOpacity style={styles.iconeButton} onPress={() => setVisible(false)}>
-                                <View style={styles.icone}>
-                                    <Icon name='clear' size={20} color={'black'} />
-                                </View>
+                                <Icon name='clear' size={20} color={'black'} />
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.infoModol}>
-                            <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.belongs_to_collection.poster_path}` }} />
+                        <View style={styles.infoModal}>
+                            <Image style={styles.imageModal} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.belongs_to_collection.poster_path}` }} />
                             <Text style={styles.titleModal}>{detail?.original_title}</Text>
-                            <View >
-                                <FlatList
-                                    data={detail?.genres}
-                                    keyExtractor={item => item.id}
-                                    renderItem={({ item }) => {
-                                        return (
-                                            <View style={[styles.genresArea, { backgroundColor: genres[item?.name]}]}>
-                                                <Text style={styles.genresText}>{item?.name}</Text> 
-                                            </View>
-                                        )
-                                    }}
-                                />
+                            <View style={styles.genresContainer}>
+                                {detail?.genres.map((item, index) => (
+                                    <View key={index} style={[styles.genresArea, { backgroundColor: genresColors[item?.name] }]}>
+                                        <Text style={styles.genresText}>{item?.name}</Text>
+                                    </View>
+                                )
+                                )}
                             </View>
                         </View>
                     </View>
@@ -88,10 +83,4 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible 
             </View>
         </>
     )
-}
-const genres = {
-    Ação: "#D11A08", Animação: "#0B9AEB", Aventura: "#6AEB0B", Comédia: "#E4EB0B", Documentário: "#0B38C4",
-    Fantasia: "#B40ED8", Faroeste: "#D8920E", Guerra: "#AE2323", Erótico: "#131313",
-    Romance: "#E355C5", Suspense: "#80A11A", Terror: "#6D6D6D", Drama: "#9E2F0E", História: "#08DF08",
-    Música: "#CA579C", Thriller: "#5A97B8", Mistério: "#5DAD40", Crime: "#163FB3", Família: "#E69507"
 }

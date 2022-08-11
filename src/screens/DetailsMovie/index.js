@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { styles } from './style';
 import { CreditsComponent } from './components/Credits';
-import { DetailsMovieComponent } from './components/DetailMovie'
+import { DetailsMovieComponent } from './/components/DetailMovie'
 import { instance, apiKey } from '../../services/api'
 
 export const DetailsMovie = () => {

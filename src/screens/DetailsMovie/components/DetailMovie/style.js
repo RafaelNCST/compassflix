@@ -120,50 +120,62 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    modalArea:{ 
-        width: '80%', 
-        height: 400, 
-        backgroundColor: '#1C2227', 
-        borderRadius: 10 
+    modalArea: {
+        width: '80%',
+        height: 400,
+        backgroundColor: '#1C2227',
+        borderRadius: 10
     },
-    iconeArea:{ 
-        width: '100%', 
-        height: 30, 
-        alignItems: 'flex-end', 
-        justifyContent: 'center' 
+    iconeArea: {
+        width: '100%',
+        height: 50,
+        alignItems: 'flex-end',
+        justifyContent: 'center'
     },
-    iconeButton:{ 
-        marginRight: 10 
-    },
-    icone:{
-        width:30, 
-        height:30, 
-        backgroundColor:'white', 
-        alignItems:'center', 
-        justifyContent:'center', 
-        borderRadius:30
-    },
-    infoModol:{ 
-        flex: 1, 
-        alignItems: 'center' 
-    },
-    titleModal:{ 
-        fontSize: 20, 
-        color: 'white' 
-    },
-    genresArea:{ 
-        flexDirection: 'row', 
+    iconeButton: {
+        marginRight: 10,
+        width: 30,
+        height: 30,
+        backgroundColor: 'white',
+        alignItems: 'center',
         justifyContent: 'center',
-        width: 80, 
-        margin:3, 
-        height:25, 
-        borderRadius:15
+        borderRadius: 30
     },
-    genresText:{ 
+    infoModal: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    imageModal: {
+        width: 116,
+        height: 180,
+        borderRadius: 8,
+    },
+    titleModal: {
+        fontSize: 20,
         color: 'white',
-        alignItems:'center',
-        justifyContent:'center'
-        
+        marginVertical: 15
+    },
+    genresContainer: {
+        width: '100%',
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center'
+    },
+    genresArea: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 80,
+        margin: 3,
+        height: 25,
+        borderRadius: 15,
+    },
+    genresText: {
+        color: 'white',
+        alignItems: 'center',
+        justifyContent: 'center'
+
     }
 
 })
