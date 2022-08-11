@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Lottie from 'lottie-react-native';
 
 import { LoginContext } from '../../contexts/loginContext';
@@ -12,7 +12,7 @@ export const SplashScreen = () => {
     const { endLoadingRequest } = useContext(LoginContext)
 
     const getRequestKey = async () => {
-        await instance.get(`authentication/token/new?api_key=${apiKey}`)
+        await instance.get(`authentication/token/new?`)
             .then(resp => {
                 endLoadingRequest(resp.data.request_token, false)
             })

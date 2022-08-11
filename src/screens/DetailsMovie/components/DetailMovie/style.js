@@ -46,11 +46,12 @@ export const styles = StyleSheet.create({
     textTitle: {
         color: 'white',
         fontSize: 20,
-        width: 150,
+        maxWidth: 150,
     },
     textAno: {
         color: 'white',
-        fontSize: 12
+        fontSize: 12,
+        marginLeft: 10
     },
     containerNameAndYear: {
         height: 27,

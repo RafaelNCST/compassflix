@@ -20,7 +20,7 @@ export const LoginInputs = () => {
   const { requestKey, changeSessionID } = useContext(LoginContext);
 
   const requestApiInputs = async () => {
-    await instance.post(`authentication/token/validate_with_login?api_key=${apiKey}`, {
+    await instance.post('authentication/token/validate_with_login?', {
       'username': username,
       'password': password,
       'request_token': requestKey,
@@ -45,7 +45,7 @@ export const LoginInputs = () => {
   }
 
   const createSession = async (requestToken) => {
-    await instance.post(`authentication/session/new?api_key=${apiKey}`, {
+    await instance.post(`authentication/session/new?`, {
       "request_token": requestToken
     })
       .then(resp => {

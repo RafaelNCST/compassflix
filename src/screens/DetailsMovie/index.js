@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { View } from 'react-native';
 import { styles } from './style';
 import { CreditsComponent } from './components/Credits';
 import { DetailsMovieComponent } from './/components/DetailMovie'
-import { instance, apiKey } from '../../services/api'
+import { instance } from '../../services/api'
+
+import { LoadingScreensApis } from '../../components/LoadingScreensApis'
 
 export const DetailsMovie = () => {
 
-    const [loadingFilm, setLoadingFilm] = useState(false)
-    const [loadingCredits, setLoadingCredits] = useState(false)
     const [detail, setDetail] = useState({});
     const [cast, setCast] = useState([])
     const [visible, setVisible] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const Navigation = useNavigation()
+    const { idFilmes } = useRoute().params;
 
     const getDetail = async () => {
-        await instance.get(`movie/616037?api_key=${apiKey}&language=pt-BR`)
+        await instance.get(`movie/${idFilmes}?&language=pt-BR`)
             .then(resp => {
                 setDetail(resp.data);
-                setLoadingFilm(true)
             })
             .catch(error => console.log(error));
     }
 
     const getCast = async () => {
-        await instance.get(`movie/616037/credits?api_key=${apiKey}&language=pt-BR`)
+        await instance.get(`movie/${idFilmes}/credits?&language=pt-BR`)
             .then(resp => {
                 setCast(resp.data.cast);
-                setLoadingCredits(true);
             })
             .catch(error => console.log(error))
     }
@@ -37,12 +37,15 @@ export const DetailsMovie = () => {
     useEffect(() => {
         getDetail();
         getCast();
+        setTimeout(() => {
+            setLoading(true);
+        }, 2000)
     }, [])
 
 
     return (
         <View style={styles.bodyScreen}>
-            {loadingFilm && loadingCredits &&
+            {loading ? (
                 <>
                     <DetailsMovieComponent
                         Navigation={Navigation}
@@ -54,6 +57,9 @@ export const DetailsMovie = () => {
                         cast={cast}
                     />
                 </>
+            ) : (
+                <LoadingScreensApis />
+            )
             }
         </View>
     )

@@ -12,7 +12,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible 
     return (
         <>
             <View style={styles.posterArea} >
-                <ImageBackground resizeMode='cover' style={styles.imagePoster} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.belongs_to_collection.backdrop_path}` }} />
+                <ImageBackground resizeMode='cover' style={styles.imagePoster} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.backdrop_path}` }} />
             </View>
 
             <TouchableOpacity style={styles.buttomBack} onPress={() => Navigation.goBack()} >
@@ -32,7 +32,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible 
                             </TouchableOpacity>
                         </View>
                         <View style={styles.infoModal}>
-                            <Image style={styles.imageModal} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.belongs_to_collection.poster_path}` }} />
+                            <Image style={styles.imageModal} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
                             <Text style={styles.titleModal}>{detail?.original_title}</Text>
                             <View style={styles.genresContainer}>
                                 {detail?.genres.map((item, index) => (
@@ -50,7 +50,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible 
 
             <View style={styles.perfilArea}>
                 <TouchableOpacity onPress={() => setVisible(true)}>
-                    <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.belongs_to_collection.poster_path}` }} />
+                    <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
                 </TouchableOpacity>
                 <View style={styles.infoArea}>
                     <View style={styles.titleArea}>
@@ -60,7 +60,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible 
                         </View>
                         <Text style={styles.textDuration}>{detail?.runtime}min</Text>
                     </View>
-                    <Text style={styles.textDirector}>Direção por <Text style={styles.stroke}>{detail?.production_companies[1].name}</Text></Text>
+                    <Text style={styles.textDirector}>Direção por <Text style={styles.stroke}>{detail?.production_companies[0].name}</Text></Text>
                     <View style={styles.notesArea}>
                         <Text style={styles.textNote}>{(detail?.vote_average).toFixed(1)}/10</Text>
                         <View style={styles.bottomLike}>

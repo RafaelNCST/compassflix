@@ -21,9 +21,8 @@ export const Home = () => {
     const { sessionId } = useContext(LoginContext);
 
     const getRequestName = async () => {
-        await instance.get(`account?api_key=${apiKey}&session_id=${sessionId}`)
+        await instance.get(`account?&session_id=${sessionId}`)
             .then(resp => {
-                console.log('renderizou nome')
                 setName(resp?.data?.name)
                 setUserName(resp?.data?.username)
             })
@@ -36,22 +35,19 @@ export const Home = () => {
     const loadInfiniteScroll = () => {
         if (loadingScroll) return;
         setLoadingScroll(true)
-        console.log('começou o scroll')
         setLastPage(lastPage + 1);
         setTimeout(() => requestMovieListFilms(), 3000);
     }
 
     const requestMovieListFilms = async () => {
-        await instance.get(`movie/popular?api_key=${apiKey}&language=pt-BR&page=${lastPage}`)
+        await instance.get(`movie/popular?&language=pt-BR&page=${lastPage}`)
             .then(resp => {
-                console.log('renderizou lista')
                 setFilmeList([...filmeList, ...resp.data.results]);
                 setLoading(true)
             }).catch(error => {
                 setLoadingScroll(false);
                 console.log(error)
             }).finally(() => {
-                console.log('acabou')
                 setLoadingScroll(false)
             })
 
