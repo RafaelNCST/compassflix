@@ -1,4 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const height = Dimensions.get('screen').height;
+const width = Dimensions.get('screen').width;
 
 export const styles = StyleSheet.create({
     bodyScreen: {
@@ -7,8 +10,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     imageContainer: {
-        height: '50%',
-        width: '100%',
+        height: height / 2,
+        width: width,
     },
     image: {
         width: '100%',
@@ -20,9 +23,9 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         width: '90%',
         height: 400,
-        top: 250,
+        top: 260,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-between',
     },
     LogoImage: {
         width: 250,
@@ -31,12 +34,13 @@ export const styles = StyleSheet.create({
     BottomView: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 20,
+        marginBottom: 28,
+        marginTop: 15
     },
     TextLogin: {
         color: '#fff',
         fontSize: 28,
-        fontWeight: '700'
+        fontWeight: '700',
     },
     ContinueText: {
         color: '#fff',

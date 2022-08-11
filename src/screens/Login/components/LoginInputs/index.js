@@ -142,7 +142,7 @@ export const LoginInputs = () => {
 
       <View style={styles.errorContainer}>
         {(erroruser || errorpass) &&
-          <Text style={{ color: '#ef5350' }}>
+          <Text style={{ color: '#ef5350', alignSelf: 'center', }}>
             {message}
           </Text>
         }

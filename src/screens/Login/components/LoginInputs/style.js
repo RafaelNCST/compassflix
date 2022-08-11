@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         backgroundColor: '#e9a6a6',
+        alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -41,16 +42,15 @@ export const styles = StyleSheet.create({
         fontWeight: '700'
     },
     errorContainer: {
-        width: '100%',
         height: 40,
+        alignSelf: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     loading: {
-        marginTop: 20,
-        pading: 10,
         width: 100,
         height: 39,
+        alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center'
     }

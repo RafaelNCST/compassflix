@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, KeyboardAvoidingView } from 'react-native';
 import { LoginInputs } from './components/LoginInputs';
 import { styles } from './style'
 
@@ -13,7 +13,9 @@ export const Login = () => {
                     style={styles.image}
                 />
             </View>
-            <View style={styles.ViewAll}>
+            <KeyboardAvoidingView
+                behavior={'position'}
+                style={styles.ViewAll}>
                 <Image
                     source={require('../../assets/Images/logo.png')}
                     style={styles.LogoImage}
@@ -27,7 +29,7 @@ export const Login = () => {
                     </Text>
                 </View>
                 <LoginInputs />
-            </View>
+            </KeyboardAvoidingView>
         </View>
     )
 }
