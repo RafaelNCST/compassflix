@@ -3,38 +3,41 @@ import { LoginContext } from '../../../../contexts/loginContext';
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import { styles } from "./style";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { instance, apiKey } from '../../../../services/api'
+import { instance, apiKey } from '../../../../services/api';
 
 export const LoginInputs = () => {
 
   const [hidePass, setHidePass] = useState(true);
-
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [erroruser, setErrorUser] = useState(false);
+  const [errorpass, setErrorPass] = useState(false);
 
   const { requestKey, changeSessionID } = useContext(LoginContext);
 
-  const [loading, setLoading] = useState(false);
-
-  const [password, setPassword] = useState('');
-
   const requestApiInputs = async () => {
-    console.log(requestKey)
     await instance.post(`authentication/token/validate_with_login?api_key=${apiKey}`, {
       'username': username,
       'password': password,
       'request_token': requestKey,
     })
       .then(resp => {
+        setLoading(false)
         createSession(resp?.data?.request_token)
       })
       .catch(error => {
         setLoading(false)
-        if (error?.response?.status === 422 || error?.response?.status === 400) {
+        setErrorUser(true)
+        setErrorPass(true)
+        setPassword('')
+        if (error?.response?.status === 401) {
           console.log('Usuário ou senha inválidos!')
-        } else if (error?.response?.status === 401) {
-          console.log('Autorização negada!')
+          setMessage('Usuário ou senha inválidos!')
         } else {
           console.log('Falha no Login, tente mais tarde')
+          setMessage('Falha no Login, tente mais tarde')
         }
       })
   }
@@ -46,28 +49,57 @@ export const LoginInputs = () => {
       .then(resp => {
         changeSessionID(resp?.data?.session_id)
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        setPassword('')
+        setErrorUser(true)
+        setErrorPass(true)
+        console.log(error)
+      })
   }
 
-  function ValidateEmail() {
-    if (/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(username)) {
-      return true
-    }
-    alert("Você inseriu um usuário inválido!")
-    return false
-  }
-  function validInput() {
-    if (ValidateEmail()) {
-      requestApiInputs()
+  const changeCharSpecial = (Text) => {
+    setErrorUser(false)
+    if (/\W|_/.test(Text)) {
+      setUsername(username.replace(Text, ''))
     }
     else {
-      console.log('aconteceu um erro')
+      setUsername(Text)
     }
   }
+
+  const validInput = () => {
+    setErrorUser(false)
+    setErrorPass(false)
+    setLoading(true)
+    if (username === '' && password === '') {
+      setErrorUser(true)
+      setErrorPass(true)
+      setMessage('Preencha todos os campos')
+      setLoading(false)
+    }
+    else if (username === '') {
+      setErrorUser(true)
+      setPassword('')
+      setMessage('Preencha seu Usuário')
+      setLoading(false)
+    }
+    else if (password === '') {
+      setErrorPass(true)
+      setMessage('Preencha sua senha')
+      setLoading(false)
+    }
+    else {
+      requestApiInputs()
+    }
+  }
+
   return (
     <>
       <View style={styles.LoginInput}>
-        <View style={styles.input}>
+
+        <Animatable.View
+          style={[styles.input, { borderWidth: erroruser ? 1 : 0 }]}
+          animation={erroruser ? 'shake' : null}>
           <Icon name='account-circle'
             size={20}
             color={'rgba(255, 255, 255, 0.5)'} />
@@ -75,11 +107,14 @@ export const LoginInputs = () => {
             placeholder='Username'
             placeholderTextColor='rgba(255, 255, 255, 0.5)'
             style={styles.TextStyle}
-            onChangeText={(Text) => setUsername(Text)}
+            onChangeText={(Text) => changeCharSpecial(Text)}
             value={username}
           />
-        </View>
-        <View style={styles.input}>
+        </Animatable.View>
+
+        <Animatable.View
+          style={[styles.input, { borderWidth: errorpass ? 1 : 0 }]}
+          animation={errorpass ? 'shake' : null}>
           <Icon name='lock'
             size={18}
             color={'rgba(255, 255, 255, 0.5)'} />
@@ -87,7 +122,11 @@ export const LoginInputs = () => {
             placeholder='senha'
             placeholderTextColor='rgba(255, 255, 255, 0.5)'
             style={styles.TextStyle}
-            onChangeText={(Text) => setPassword(Text)}
+            value={password}
+            onChangeText={(Text) => {
+              setPassword(Text)
+              setErrorPass(false)
+            }}
             secureTextEntry={hidePass}
           />
           <TouchableOpacity style={styles.eye}
@@ -95,20 +134,32 @@ export const LoginInputs = () => {
           >
             <Icon name={hidePass ? "visibility" : 'visibility-off'} color='rgba(255, 255, 255, 0.5)' size={20} />
           </TouchableOpacity>
-        </View>
+        </Animatable.View>
+
       </View>
+
+      <View style={styles.errorContainer}>
+        {(erroruser || errorpass) &&
+          <Text style={{ color: '#ef5350', alignSelf: 'center', }}>
+            {message}
+          </Text>
+        }
+      </View>
+
       {loading ? (
         <View style={styles.loading}>
-          <Text style={{ color: 'white' }}> spinner :D </Text>
+          <Lottie
+            source={require('../../../../assets/lottie/red-spinner.json')}
+            resizeMode='contain'
+            loop={true}
+            autoPlay
+          />
         </View>
-
       ) : (
-        <TouchableOpacity onPress={requestApiInputs} style={styles.Button}>
+        <TouchableOpacity onPress={validInput} style={styles.Button}>
           <Text style={styles.Enter}>Entrar</Text>
-
         </TouchableOpacity>
-      )
-      }
+      )}
     </>
   )
 }
