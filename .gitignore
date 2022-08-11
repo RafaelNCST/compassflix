@@ -64,3 +64,8 @@ buck-out/
 
 .prettierrc.js
 .ruby-version
+
+Gemfile
+.flowconfig
+.eslintrc.js
+.buckconfig
