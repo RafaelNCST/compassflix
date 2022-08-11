@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 18,
         marginLeft: 14,
-        marginTop: 60
+        marginTop: 40
     },
     bodyScreenSubtitle: {
         color: '#FFFFFF',
@@ -22,11 +22,11 @@ export const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 12,
         marginTop: 21,
-        marginLeft: 14
+        marginLeft: 14,
+        marginBottom: 30
     },
     containerPopularMovies: {
         width: '100%',
         alignItems: 'center',
-        paddingTop: 15
-    }
+    },
 })

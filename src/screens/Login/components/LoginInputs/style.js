@@ -3,25 +3,56 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     LoginInput: {
         width: '100%',
-        alignItems: 'center'
+        height: 95,
+        alignItems: 'center',
+        justifyContent: 'space-between'
     },
     input: {
-        marginTop: 15,
         width: '70%',
         height: 40,
         borderRadius: 20,
         backgroundColor: '#C4C4C459',
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 15
+        paddingLeft: 15,
+        borderStyle: 'solid',
+        borderColor: '#ef5350'
     },
     TextStyle: {
         fontSize: 11,
         marginLeft: 10,
         flex: 1,
+        color: '#fff'
     },
     eye: {
-         right:10
+        marginRight: 10
+    },
+    Button: {
+        width: 100,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#e9a6a6',
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    Enter: {
+        color: '#000',
+        fontSize: 15,
+        fontWeight: '700'
+    },
+    errorContainer: {
+        height: 40,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    loading: {
+        width: 100,
+        height: 39,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 
 })

@@ -1,5 +1,5 @@
 import React from 'react';
-import FontAwesome5 from 'react-native-vector-icons/MaterialIcons'
+import FontAwesome5 from 'react-native-vector-icons/MaterialIcons';
 
 export const screenOptions = {
     headerShown: false,

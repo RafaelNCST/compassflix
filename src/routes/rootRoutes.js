@@ -1,27 +1,27 @@
 import React, { useContext } from 'react';
-import { LoginContext } from '../contexts/loginContext'
+import { LoginContext } from '../contexts/loginContext';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { Login } from '../screens/Login'
-import { BottomTabs } from './bottomTabs'
+import { SplashScreen } from '../screens/LoadingRequest';
+import { LoginStacks } from './stackLogin'
 
-import { StackOptions } from './options/stackOptions'
+import { StackOptions } from './options/stackOptions';
 
 export const RootStacks = () => {
 
     const RootStack = createStackNavigator();
-    const { isSignedIn } = useContext(LoginContext);
+
+    const { loading } = useContext(LoginContext);
 
     return (
         <NavigationContainer>
             <RootStack.Navigator screenOptions={StackOptions}>
-                {
-                    isSignedIn ? (
-                        <RootStack.Screen name="BottomTabs" component={BottomTabs} />
-                    ) : (
-                        <RootStack.Screen name="Login" component={Login} />
-                    )
+                {loading ? (
+                    <RootStack.Screen name='Loading' component={SplashScreen} />
+                ) : (
+                    <RootStack.Screen name='stackLogin' component={LoginStacks} />
+                )
                 }
             </RootStack.Navigator>
         </NavigationContainer>
