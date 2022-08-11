@@ -7,6 +7,7 @@ export const LoginContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [requestKey, setRequestKey] = useState(null)
     const [signedIn, setSignedIn] = useState(false)
+    const [sessionId, setSessionId] = useState(false)
 
     const endLoadingRequest = (reqKey, stateBoolean) => {
         setRequestKey(reqKey)
@@ -14,13 +15,13 @@ export const LoginContextProvider = ({ children }) => {
         setLoading(false)
     }
 
-    const sessionID = async (id) => {
+    const changeSessionID = async (id) => {
         setSignedIn(true)
-        setRequestKey(id)
+        setSessionId(id)
     }
 
     return (
-        <LoginContext.Provider value={{ loading, signedIn, requestKey, endLoadingRequest, sessionID }}>
+        <LoginContext.Provider value={{ loading, signedIn, requestKey, endLoadingRequest, changeSessionID, sessionId }}>
             {children}
         </LoginContext.Provider>
     )
