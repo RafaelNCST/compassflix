@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: 'black',
         marginVertical: 5,
-        marginBottom:20
+        paddingBottom:10
     },
     name: {
         color: 'white',
