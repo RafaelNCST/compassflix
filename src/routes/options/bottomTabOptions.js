@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image } from 'react-native-animatable';
-import FontAwesome5 from 'react-native-vector-icons/MaterialIcons';
 
 export const screenOptions = {
     headerShown: false,
