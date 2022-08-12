@@ -56,7 +56,7 @@ export const Home = () => {
 
 
     useEffect(() => {
-        if (loadingScroll) setTimeout(() => requestMovieListFilms(), 3000);
+        if (loadingScroll) setTimeout(() => requestMovieListFilms(), 2000);
     }, [lastPage])
 
     return (
@@ -78,7 +78,7 @@ export const Home = () => {
                         contentContainerStyle={styles.containerPopularMovies}
                         numColumns={4}
                         onEndReached={loadInfiniteScroll}
-                        onEndReachedThreshold={0.2}
+                        onEndReachedThreshold={0.3}
                         keyExtractor={(item, index) => index}
                         renderItem={({ item }) => {
                             return (

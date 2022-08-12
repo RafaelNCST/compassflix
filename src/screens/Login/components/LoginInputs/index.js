@@ -106,7 +106,7 @@ export const LoginInputs = () => {
             size={20}
             color={'rgba(255, 255, 255, 0.5)'} />
           <TextInput
-            placeholder='Username'
+            placeholder='Usuário'
             placeholderTextColor='rgba(255, 255, 255, 0.5)'
             style={styles.TextStyle}
             onChangeText={(Text) => changeCharSpecial(Text)}

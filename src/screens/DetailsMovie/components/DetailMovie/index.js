@@ -33,7 +33,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible,
                         </View>
                         <View style={styles.infoModal}>
                             <Image style={styles.imageModal} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
-                            <Text style={styles.titleModal}>{detail?.title}</Text>
+                            <Text style={styles.titleModal}>{detail?.original_title}</Text>
                             <View style={styles.genresContainer}>
                                 {detail?.genres.map((item, index) => (
                                     <View key={index} style={[styles.genresArea, { backgroundColor: genresColors[item?.name], borderRadius: 15 }]}>
@@ -55,7 +55,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible,
                 <View style={styles.infoArea}>
                     <View style={styles.titleArea}>
                         <View style={styles.containerNameAndYear}>
-                            <Text style={styles.textTitle}>{(detail?.title).length > 10 ? (detail?.title).substring(0, 10) + '...' : detail?.title}</Text>
+                            <Text style={styles.textTitle}>{(detail?.original_title).length > 10 ? (detail?.original_title).substring(0, 10) + '...' : detail?.original_title}</Text>
                             <Text style={styles.textAno}>{date.getFullYear()}</Text>
                         </View>
                         <Text style={styles.textDuration}>{detail?.runtime}min</Text>
