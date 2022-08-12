@@ -15,6 +15,7 @@ export const Login = () => {
             </View>
             <KeyboardAvoidingView
                 behavior={'position'}
+                keyboardVerticalOffset={40}
                 style={styles.ViewAll}>
                 <Image
                     source={require('../../assets/Images/logo.png')}

@@ -33,32 +33,32 @@ export const Home = () => {
 
 
     const loadInfiniteScroll = () => {
-        if (loadingScroll) return;
-        setLoadingScroll(true)
+        if (loadingScroll) return null;
+        setLoadingScroll(true);
         setLastPage(lastPage + 1);
-        setTimeout(() => requestMovieListFilms(), 3000);
     }
 
     const requestMovieListFilms = async () => {
         await instance.get(`movie/popular?&language=pt-BR&page=${lastPage}`)
             .then(resp => {
+                console.log('pagina: ', lastPage)
                 setFilmeList([...filmeList, ...resp.data.results]);
-                setLoading(true)
-            }).catch(error => {
-                setLoadingScroll(false);
-                console.log(error)
-            }).finally(() => {
-                setLoadingScroll(false)
             })
-
+            .finally(() => setLoadingScroll(false))
     }
 
     useEffect(() => {
         if (sessionId) {
+            getRequestName()
             requestMovieListFilms();
-            getRequestName();
+            setTimeout(() => setLoading(true), 2000);
         }
     }, [sessionId])
+
+
+    useEffect(() => {
+        if (loadingScroll) setTimeout(() => requestMovieListFilms(), 3000);
+    }, [lastPage])
 
     return (
         <View style={styles.bodyScreen}>
@@ -80,7 +80,7 @@ export const Home = () => {
                         numColumns={4}
                         removeClippedSubviews={true}
                         onEndReached={loadInfiniteScroll}
-                        onEndReachedThreshold={0.3}
+                        onEndReachedThreshold={0.2}
                         initialNumToRender={20}
                         keyExtractor={(item, index) => index}
                         renderItem={({ item }) => {
@@ -97,12 +97,6 @@ export const Home = () => {
                                 <FooterComponentLoading loadingScroll={loadingScroll} />
                             )
                         }}
-                    //onEndReached={() => {
-                    //   var lastFilm = filmeList.pop();
-                    //   setLastPage(lastFilm.data.page)
-                    //setLastPage(lastPage => lastPage + 1) //criar um botão no onpress chamar o setLastPage(lastPage => lastPage + 1) e setLastPage(lastPage => lastPage - 1)
-
-                    //}}
                     />
                 </>
             ) : (

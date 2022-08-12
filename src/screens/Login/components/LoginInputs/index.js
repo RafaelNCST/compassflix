@@ -61,7 +61,7 @@ export const LoginInputs = () => {
 
   const changeCharSpecial = (Text) => {
     setErrorUser(false)
-    if (/\W|_/.test(Text)) {
+    if (/\W/.test(Text)) {
       setUsername(username.replace(Text, ''))
     }
     else {

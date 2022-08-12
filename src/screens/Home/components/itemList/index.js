@@ -3,9 +3,14 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style'
 import { useNavigation } from "@react-navigation/native";
+
+let num = 0;
+
 export const ItensList = ({ listaDeFilmes, notaDosFilmes, idFilmes }) => {
 
     const Navigation = useNavigation();
+
+    console.log(num++)
 
     return (
         <TouchableOpacity onPress={() => Navigation.navigate('DetailScreen', { idFilmes })} style={styles.imagePopularMovies}>
