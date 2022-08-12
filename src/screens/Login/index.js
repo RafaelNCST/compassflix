@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, KeyboardAvoidingView } from 'react-native';
 import { LoginInputs } from './components/LoginInputs';
-import { styles } from './style'
+import { styles } from './style';
 
 export const Login = () => {
 
@@ -16,16 +16,16 @@ export const Login = () => {
             <KeyboardAvoidingView
                 behavior={'position'}
                 keyboardVerticalOffset={40}
-                style={styles.ViewAll}>
+                style={styles.viewAll}>
                 <Image
                     source={require('../../assets/Images/logo.png')}
-                    style={styles.LogoImage}
+                    style={styles.logoImage}
                 />
-                <View style={styles.BottomView}>
-                    <Text style={styles.TextLogin}>
+                <View style={styles.bottomView}>
+                    <Text style={styles.textLogin}>
                         Login
                     </Text>
-                    <Text style={styles.ContinueText}>
+                    <Text style={styles.continueText}>
                         Entre na sua conta para continuar.
                     </Text>
                 </View>
