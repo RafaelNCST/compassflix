@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { styles } from './style'
 import { ItensList } from './components/itemList';
-import { instance, apiKey } from '../../services/api'
+import { instance } from '../../services/api'
 import { LoginContext } from '../../contexts/loginContext';
 
 import { LoadingScreensApis } from '../../components/LoadingScreensApis'
@@ -41,7 +41,6 @@ export const Home = () => {
     const requestMovieListFilms = async () => {
         await instance.get(`movie/popular?&language=pt-BR&page=${lastPage}`)
             .then(resp => {
-                console.log('pagina: ', lastPage)
                 setFilmeList([...filmeList, ...resp.data.results]);
             })
             .finally(() => setLoadingScroll(false))
@@ -78,10 +77,8 @@ export const Home = () => {
                         data={filmeList}
                         contentContainerStyle={styles.containerPopularMovies}
                         numColumns={4}
-                        removeClippedSubviews={true}
                         onEndReached={loadInfiniteScroll}
                         onEndReachedThreshold={0.2}
-                        initialNumToRender={20}
                         keyExtractor={(item, index) => index}
                         renderItem={({ item }) => {
                             return (
