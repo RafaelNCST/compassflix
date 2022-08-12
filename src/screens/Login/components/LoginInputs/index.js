@@ -4,7 +4,7 @@ import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import { styles } from "./style";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Animatable from 'react-native-animatable'
-import Lottie from 'lottie-react-native';
+import { Lottie } from 'lottie-react-native';
 import { instance, apiKey } from '../../../../services/api';
 
 export const LoginInputs = () => {
