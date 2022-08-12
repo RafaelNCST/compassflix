@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     posterArea: {
         width: '100%',
-        height: 130,
+        height: 135,
     },
     imagePoster: {
         flex: 1
@@ -20,60 +20,67 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoArea: {
+        flex: 1,
         paddingTop: 10,
         paddingLeft: 10,
     },
     perfilArea: {
-        width: "90%",
+        width: "100%",
         height: 170,
+        alignSelf: 'flex-end',
         flexDirection: 'row',
     },
     imagePerfil: {
         width: 116,
         height: 180,
-        marginTop: -30,
-        borderRadius: 8
+        marginTop: -35,
+        borderRadius: 8,
+        marginLeft: 20
     },
     titleArea: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'baseline',
         justifyContent: 'space-between',
-    },
-    areaDirector: {
-        width: '90%',
     },
     textTitle: {
         color: 'white',
         fontSize: 20,
-        width: 150,
+        maxWidth: 150,
+        fontFamily: 'OpenSans-Bold'
     },
     textAno: {
         color: 'white',
-        fontSize: 12
+        fontSize: 12,
+        marginLeft: 10,
+        fontFamily: 'OpenSans-Regular'
     },
     containerNameAndYear: {
-        height: 27,
+        height: 30,
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'baseline',
         justifyContent: 'space-between'
     },
     textDuration: {
         color: 'white',
         fontSize: 10,
-        marginLeft: 25,
+        paddingRight: 20,
+        fontFamily: 'OpenSans-Regular'
     },
     textDirector: {
         color: 'white',
         fontSize: 10,
-        alignItems: 'flex-start'
+        marginTop: -10,
+        alignItems: 'flex-start',
+        fontFamily: 'OpenSans-Regular'
     },
     stroke: {
-        fontWeight: 'bold'
+        fontFamily: 'OpenSans-Bold',
+        fontSize: 11
     },
     notesArea: {
         flex: 3,
-        width: 200,
+        width: 180,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -103,6 +110,7 @@ export const styles = StyleSheet.create({
         lineHeight: 16,
         textAlign: 'justify',
         fontSize: 14,
+        fontFamily: 'OpenSans-Regular'
     },
     textDescription: {
         color: 'white',
@@ -110,7 +118,8 @@ export const styles = StyleSheet.create({
         lineHeight: 20,
         textAlign: 'justify',
         fontSize: 14,
-        marginTop: 14
+        marginTop: 14,
+        fontFamily: 'OpenSans-Regular'
     },
 
     //MODAL STYLES
@@ -154,7 +163,8 @@ export const styles = StyleSheet.create({
     titleModal: {
         fontSize: 20,
         color: 'white',
-        marginVertical: 15
+        marginVertical: 15,
+        fontFamily: 'OpenSans-Bold'
     },
     genresContainer: {
         width: '100%',
@@ -174,7 +184,8 @@ export const styles = StyleSheet.create({
     genresText: {
         color: 'white',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontFamily: 'OpenSans-SemiBold'
 
     }
 

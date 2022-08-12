@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     textPopularMovies: {
         color: '#FFFFFF',
         marginLeft: 4.5,
-        fontSize: 9
+        fontSize: 9,
+        fontFamily: 'OpenSans-SemiBold'
     }
 })

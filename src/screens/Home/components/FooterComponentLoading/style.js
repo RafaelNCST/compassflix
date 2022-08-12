@@ -2,6 +2,6 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     spinnerContainer: {
-        marginVertical: 20
+        marginVertical: 10
     },
 })

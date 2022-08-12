@@ -1,18 +1,18 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView, Modal, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style'
 
 import { genresColors } from '../../../../helpers/genresObj';
 
-export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible }) => {
+export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible, directorArray }) => {
 
     const date = new Date(detail?.release_date)
 
     return (
         <>
             <View style={styles.posterArea} >
-                <ImageBackground resizeMode='cover' style={styles.imagePoster} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.belongs_to_collection.backdrop_path}` }} />
+                <ImageBackground resizeMode='cover' style={styles.imagePoster} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.backdrop_path}` }} />
             </View>
 
             <TouchableOpacity style={styles.buttomBack} onPress={() => Navigation.goBack()} >
@@ -32,12 +32,12 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible 
                             </TouchableOpacity>
                         </View>
                         <View style={styles.infoModal}>
-                            <Image style={styles.imageModal} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.belongs_to_collection.poster_path}` }} />
-                            <Text style={styles.titleModal}>{detail?.original_title}</Text>
+                            <Image style={styles.imageModal} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
+                            <Text style={styles.titleModal}>{detail?.title}</Text>
                             <View style={styles.genresContainer}>
                                 {detail?.genres.map((item, index) => (
-                                    <View key={index} style={[styles.genresArea, { backgroundColor: genresColors[item?.name] }]}>
-                                        <Text style={styles.genresText}>{item?.name}</Text>
+                                    <View key={index} style={[styles.genresArea, { backgroundColor: genresColors[item?.name], borderRadius: 15 }]}>
+                                        <Text style={styles.genresText}>{(item?.name).length > 8 ? (item?.name).substring(0, 8) + '.' : (item?.name)}</Text>
                                     </View>
                                 )
                                 )}
@@ -50,24 +50,24 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible 
 
             <View style={styles.perfilArea}>
                 <TouchableOpacity onPress={() => setVisible(true)}>
-                    <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.belongs_to_collection.poster_path}` }} />
+                    <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
                 </TouchableOpacity>
                 <View style={styles.infoArea}>
                     <View style={styles.titleArea}>
                         <View style={styles.containerNameAndYear}>
-                            <Text numberOfLines={1} style={styles.textTitle}>{detail?.original_title}</Text>
+                            <Text style={styles.textTitle}>{(detail?.title).length > 10 ? (detail?.title).substring(0, 10) + '...' : detail?.title}</Text>
                             <Text style={styles.textAno}>{date.getFullYear()}</Text>
                         </View>
                         <Text style={styles.textDuration}>{detail?.runtime}min</Text>
                     </View>
-                    <Text style={styles.textDirector}>Direção por <Text style={styles.stroke}>{detail?.production_companies[1].name}</Text></Text>
+                    <Text style={styles.textDirector}>Direção por <Text style={styles.stroke}>{directorArray.find(item => item.job === 'Director').name}</Text></Text>
                     <View style={styles.notesArea}>
                         <Text style={styles.textNote}>{(detail?.vote_average).toFixed(1)}/10</Text>
                         <View style={styles.bottomLike}>
                             <TouchableOpacity>
-                                <Icon name="favorite" size={30} color={"red"} />
+                                <Icon name="favorite" size={25} color={"red"} />
                             </TouchableOpacity>
-                            <Text style={styles.likesQtd}>{detail?.vote_count}K</Text>
+                            <Text style={styles.likesQtd}>{detail?.popularity > 1000 ? Math.floor(detail?.popularity / 1000) + 'K' : (detail?.popularity).toFixed(0)}</Text>
                         </View>
                     </View>
                 </View>
@@ -77,7 +77,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible 
                 <ScrollView style={styles.scrollDescription}>
                     <Text style={styles.tagline}>{(detail?.tagline).toUpperCase() || detail?.title}</Text>
                     <Text style={styles.textDescription}>
-                        {detail?.overview}
+                        {(detail?.overview).toString() || "Descrição indisponível"}
                     </Text>
                 </ScrollView>
             </View>

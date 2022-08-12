@@ -20,7 +20,7 @@ export const LoginInputs = () => {
   const { requestKey, changeSessionID } = useContext(LoginContext);
 
   const requestApiInputs = async () => {
-    await instance.post(`authentication/token/validate_with_login?api_key=${apiKey}`, {
+    await instance.post('authentication/token/validate_with_login?', {
       'username': username,
       'password': password,
       'request_token': requestKey,
@@ -45,7 +45,7 @@ export const LoginInputs = () => {
   }
 
   const createSession = async (requestToken) => {
-    await instance.post(`authentication/session/new?api_key=${apiKey}`, {
+    await instance.post(`authentication/session/new?`, {
       "request_token": requestToken
     })
       .then(resp => {
@@ -61,7 +61,7 @@ export const LoginInputs = () => {
 
   const changeCharSpecial = (Text) => {
     setErrorUser(false)
-    if (/\W|_/.test(Text)) {
+    if (/\W/.test(Text)) {
       setUsername(username.replace(Text, ''))
     }
     else {
@@ -142,7 +142,7 @@ export const LoginInputs = () => {
 
       <View style={styles.errorContainer}>
         {(erroruser || errorpass) &&
-          <Text style={{ color: '#ef5350', alignSelf: 'center', }}>
+          <Text style={styles.errorText}>
             {message}
           </Text>
         }

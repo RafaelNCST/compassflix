@@ -21,29 +21,31 @@ export const styles = StyleSheet.create({
     },
     ViewAll: {
         position: 'absolute',
-        width: '90%',
+        width: '100%',
         height: 400,
         top: 260,
-        alignItems: 'center',
         justifyContent: 'space-between',
     },
     LogoImage: {
         width: 250,
         height: 100,
+        alignSelf: 'center'
     },
     BottomView: {
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 28,
-        marginTop: 15
+        marginTop: 15,
+        alignSelf: 'center'
     },
     TextLogin: {
         color: '#fff',
         fontSize: 28,
-        fontWeight: '700',
+        fontFamily: 'OpenSans-Bold'
     },
     ContinueText: {
         color: '#fff',
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: 'OpenSans-Regular'
     },
 })

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         width: '70%',
         height: 40,
         borderRadius: 20,
-        backgroundColor: '#C4C4C459',
+        backgroundColor: 'rgba(86, 86, 86, 0.8)',
         flexDirection: 'row',
         alignItems: 'center',
         paddingLeft: 15,
@@ -19,10 +19,11 @@ export const styles = StyleSheet.create({
         borderColor: '#ef5350'
     },
     TextStyle: {
-        fontSize: 11,
+        fontSize: 14,
         marginLeft: 10,
         flex: 1,
-        color: '#fff'
+        color: '#fff',
+        fontFamily: 'OpenSans-Regular'
     },
     eye: {
         marginRight: 10
@@ -39,13 +40,18 @@ export const styles = StyleSheet.create({
     Enter: {
         color: '#000',
         fontSize: 15,
-        fontWeight: '700'
+        fontFamily: 'OpenSans-Bold'
     },
     errorContainer: {
         height: 40,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    errorText: {
+        color: '#ef5350',
+        alignSelf: 'center',
+        fontFamily: 'OpenSans-SemiBold'
     },
     loading: {
         width: 100,

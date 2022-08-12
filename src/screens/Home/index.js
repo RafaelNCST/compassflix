@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { styles } from './style'
 import { ItensList } from './components/itemList';
-import { instance, apiKey } from '../../services/api'
+import { instance } from '../../services/api'
 import { LoginContext } from '../../contexts/loginContext';
 
 import { LoadingScreensApis } from '../../components/LoadingScreensApis'
@@ -21,9 +21,8 @@ export const Home = () => {
     const { sessionId } = useContext(LoginContext);
 
     const getRequestName = async () => {
-        await instance.get(`account?api_key=${apiKey}&session_id=${sessionId}`)
+        await instance.get(`account?&session_id=${sessionId}`)
             .then(resp => {
-                console.log('renderizou nome')
                 setName(resp?.data?.name)
                 setUserName(resp?.data?.username)
             })
@@ -34,35 +33,31 @@ export const Home = () => {
 
 
     const loadInfiniteScroll = () => {
-        if (loadingScroll) return;
-        setLoadingScroll(true)
-        console.log('começou o scroll')
+        if (loadingScroll) return null;
+        setLoadingScroll(true);
         setLastPage(lastPage + 1);
-        setTimeout(() => requestMovieListFilms(), 3000);
     }
 
     const requestMovieListFilms = async () => {
-        await instance.get(`movie/popular?api_key=${apiKey}&language=pt-BR&page=${lastPage}`)
+        await instance.get(`movie/popular?&language=pt-BR&page=${lastPage}`)
             .then(resp => {
-                console.log('renderizou lista')
                 setFilmeList([...filmeList, ...resp.data.results]);
-                setLoading(true)
-            }).catch(error => {
-                setLoadingScroll(false);
-                console.log(error)
-            }).finally(() => {
-                console.log('acabou')
-                setLoadingScroll(false)
             })
-
+            .finally(() => setLoadingScroll(false))
     }
 
     useEffect(() => {
         if (sessionId) {
+            getRequestName()
             requestMovieListFilms();
-            getRequestName();
+            setTimeout(() => setLoading(true), 2000);
         }
     }, [sessionId])
+
+
+    useEffect(() => {
+        if (loadingScroll) setTimeout(() => requestMovieListFilms(), 3000);
+    }, [lastPage])
 
     return (
         <View style={styles.bodyScreen}>
@@ -82,10 +77,8 @@ export const Home = () => {
                         data={filmeList}
                         contentContainerStyle={styles.containerPopularMovies}
                         numColumns={4}
-                        removeClippedSubviews={true}
                         onEndReached={loadInfiniteScroll}
-                        onEndReachedThreshold={0.3}
-                        initialNumToRender={20}
+                        onEndReachedThreshold={0.2}
                         keyExtractor={(item, index) => index}
                         renderItem={({ item }) => {
                             return (
@@ -101,12 +94,6 @@ export const Home = () => {
                                 <FooterComponentLoading loadingScroll={loadingScroll} />
                             )
                         }}
-                    //onEndReached={() => {
-                    //   var lastFilm = filmeList.pop();
-                    //   setLastPage(lastFilm.data.page)
-                    //setLastPage(lastPage => lastPage + 1) //criar um botão no onpress chamar o setLastPage(lastPage => lastPage + 1) e setLastPage(lastPage => lastPage - 1)
-
-                    //}}
                     />
                 </>
             ) : (

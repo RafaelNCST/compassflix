@@ -1,9 +1,10 @@
-import React from "react"
+import React, { memo } from "react"
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style'
 import { useNavigation } from "@react-navigation/native";
-export const ItensList = ({ listaDeFilmes, notaDosFilmes, idFilmes }) => {
+
+export const ItensList = memo(({ listaDeFilmes, notaDosFilmes, idFilmes }) => {
 
     const Navigation = useNavigation();
 
@@ -28,4 +29,4 @@ export const ItensList = ({ listaDeFilmes, notaDosFilmes, idFilmes }) => {
             </View>
         </TouchableOpacity>
     )
-}
+})

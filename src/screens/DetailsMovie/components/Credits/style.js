@@ -23,9 +23,10 @@ export const styles = StyleSheet.create({
     spaceCast: {
         marginHorizontal: 10,
         marginTop: 7,
-        backgroundColor: '#9C4A8B',
-        width: 30,
-        height: 1,
+        width: 32,
+        borderStyle: 'solid',
+        borderColor: '#9C4A8B',
+        borderTopWidth: 1,
         alignSelf: 'center'
     },
     cast: {
@@ -40,11 +41,13 @@ export const styles = StyleSheet.create({
     },
     name: {
         color: 'white',
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: 'OpenSans-Bold'
     },
     character: {
         color: 'white',
-        fontSize: 12
+        fontSize: 11,
+        fontFamily: 'OpenSans-SemiBold'
     },
     imageActors: {
         width: 52,
