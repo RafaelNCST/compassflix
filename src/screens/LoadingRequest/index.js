@@ -3,9 +3,8 @@ import Lottie from 'lottie-react-native';
 
 import { LoginContext } from '../../contexts/loginContext';
 import { View, Image } from 'react-native';
-import { instance, apiKey } from '../../services/api'
-
-import { styles } from './style'
+import { instance } from '../../services/api';
+import { styles } from './style';
 
 export const SplashScreen = () => {
 
