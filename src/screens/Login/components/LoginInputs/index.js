@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react';
 import { LoginContext } from '../../../../contexts/loginContext';
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
-import { styles } from "./style";
+import { styles } from './style';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Animatable from 'react-native-animatable'
 import Lottie from 'lottie-react-native';
-import { instance, apiKey } from '../../../../services/api';
+import { instance } from '../../../../services/api';
 
 export const LoginInputs = () => {
 
@@ -94,21 +94,22 @@ export const LoginInputs = () => {
       requestApiInputs()
     }
   }
-
+  
   return (
     <>
-      <View style={styles.LoginInput}>
+      <View style={styles.loginInput}>
 
         <Animatable.View
           style={[styles.input, { borderWidth: erroruser ? 1 : 0 }]}
-          animation={erroruser ? 'shake' : null}>
+          animation={erroruser ? 'shake' : null} 
+          useNativeDriver>
           <Icon name='account-circle'
             size={20}
             color={'rgba(255, 255, 255, 0.5)'} />
           <TextInput
             placeholder='Usuário'
             placeholderTextColor='rgba(255, 255, 255, 0.5)'
-            style={styles.TextStyle}
+            style={styles.textStyle}
             onChangeText={(Text) => changeCharSpecial(Text)}
             value={username}
           />
@@ -116,14 +117,15 @@ export const LoginInputs = () => {
 
         <Animatable.View
           style={[styles.input, { borderWidth: errorpass ? 1 : 0 }]}
-          animation={errorpass ? 'shake' : null}>
+          animation={errorpass ? 'shake' : null} 
+          useNativeDriver>
           <Icon name='lock'
             size={18}
             color={'rgba(255, 255, 255, 0.5)'} />
           <TextInput
             placeholder='senha'
             placeholderTextColor='rgba(255, 255, 255, 0.5)'
-            style={styles.TextStyle}
+            style={styles.textStyle}
             value={password}
             onChangeText={(Text) => {
               setPassword(Text)
@@ -134,7 +136,7 @@ export const LoginInputs = () => {
           <TouchableOpacity style={styles.eye}
             onPress={() => setHidePass(!hidePass)}
           >
-            <Icon name={hidePass ? "visibility" : 'visibility-off'} color='rgba(255, 255, 255, 0.5)' size={20} />
+            <Icon name={hidePass ? 'visibility' : 'visibility-off'} color='rgba(255, 255, 255, 0.5)' size={20} />
           </TouchableOpacity>
         </Animatable.View>
 
@@ -158,8 +160,8 @@ export const LoginInputs = () => {
           />
         </View>
       ) : (
-        <TouchableOpacity onPress={validInput} style={styles.Button}>
-          <Text style={styles.Enter}>Entrar</Text>
+        <TouchableOpacity onPress={validInput} style={styles.button}>
+          <Text style={styles.enter}>Entrar</Text>
         </TouchableOpacity>
       )}
     </>
