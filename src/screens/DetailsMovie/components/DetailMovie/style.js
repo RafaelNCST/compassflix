@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     posterArea: {
         width: '100%',
-        height: 130,
+        height: 135,
     },
     imagePoster: {
         flex: 1
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     imagePerfil: {
         width: 116,
         height: 180,
-        marginTop: -30,
+        marginTop: -35,
         borderRadius: 8,
         marginLeft: 20
     },
@@ -43,21 +43,20 @@ export const styles = StyleSheet.create({
         alignItems: 'baseline',
         justifyContent: 'space-between',
     },
-    areaDirector: {
-        width: '90%',
-    },
     textTitle: {
         color: 'white',
         fontSize: 20,
         maxWidth: 150,
+        fontFamily: 'OpenSans-Bold'
     },
     textAno: {
         color: 'white',
-        fontSize: 10,
-        marginLeft: 10
+        fontSize: 12,
+        marginLeft: 10,
+        fontFamily: 'OpenSans-Regular'
     },
     containerNameAndYear: {
-        height: 27,
+        height: 30,
         flexDirection: 'row',
         alignItems: 'baseline',
         justifyContent: 'space-between'
@@ -65,15 +64,19 @@ export const styles = StyleSheet.create({
     textDuration: {
         color: 'white',
         fontSize: 10,
-        paddingRight: 20
+        paddingRight: 20,
+        fontFamily: 'OpenSans-Regular'
     },
     textDirector: {
         color: 'white',
         fontSize: 10,
-        alignItems: 'flex-start'
+        marginTop: -10,
+        alignItems: 'flex-start',
+        fontFamily: 'OpenSans-Regular'
     },
     stroke: {
-        fontWeight: 'bold'
+        fontFamily: 'OpenSans-Bold',
+        fontSize: 11
     },
     notesArea: {
         flex: 3,
@@ -107,6 +110,7 @@ export const styles = StyleSheet.create({
         lineHeight: 16,
         textAlign: 'justify',
         fontSize: 14,
+        fontFamily: 'OpenSans-Regular'
     },
     textDescription: {
         color: 'white',
@@ -114,7 +118,8 @@ export const styles = StyleSheet.create({
         lineHeight: 20,
         textAlign: 'justify',
         fontSize: 14,
-        marginTop: 14
+        marginTop: 14,
+        fontFamily: 'OpenSans-Regular'
     },
 
     //MODAL STYLES
@@ -158,7 +163,8 @@ export const styles = StyleSheet.create({
     titleModal: {
         fontSize: 20,
         color: 'white',
-        marginVertical: 15
+        marginVertical: 15,
+        fontFamily: 'OpenSans-Bold'
     },
     genresContainer: {
         width: '100%',
@@ -178,7 +184,8 @@ export const styles = StyleSheet.create({
     genresText: {
         color: 'white',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontFamily: 'OpenSans-SemiBold'
 
     }
 

@@ -41,10 +41,11 @@ export const styles = StyleSheet.create({
     TextLogin: {
         color: '#fff',
         fontSize: 28,
-        fontWeight: '700',
+        fontFamily: 'OpenSans-Bold'
     },
     ContinueText: {
         color: '#fff',
-        fontSize: 14
+        fontSize: 14,
+        fontFamily: 'OpenSans-Regular'
     },
 })
