@@ -23,9 +23,10 @@ export const styles = StyleSheet.create({
     spaceCast: {
         marginHorizontal: 10,
         marginTop: 7,
-        backgroundColor: '#9C4A8B',
         width: 30,
-        height: 1,
+        borderStyle: 'solid',
+        borderColor: '#9C4A8B',
+        borderWidth: 1,
         alignSelf: 'center'
     },
     cast: {

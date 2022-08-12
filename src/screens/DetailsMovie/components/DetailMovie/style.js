@@ -20,24 +20,27 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoArea: {
+        flex: 1,
         paddingTop: 10,
         paddingLeft: 10,
     },
     perfilArea: {
-        width: "90%",
+        width: "100%",
         height: 170,
+        alignSelf: 'flex-end',
         flexDirection: 'row',
     },
     imagePerfil: {
         width: 116,
         height: 180,
         marginTop: -30,
-        borderRadius: 8
+        borderRadius: 8,
+        marginLeft: 20
     },
     titleArea: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'baseline',
         justifyContent: 'space-between',
     },
     areaDirector: {
@@ -50,19 +53,19 @@ export const styles = StyleSheet.create({
     },
     textAno: {
         color: 'white',
-        fontSize: 12,
+        fontSize: 10,
         marginLeft: 10
     },
     containerNameAndYear: {
         height: 27,
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'baseline',
         justifyContent: 'space-between'
     },
     textDuration: {
         color: 'white',
         fontSize: 10,
-        marginLeft: 25,
+        paddingRight: 20
     },
     textDirector: {
         color: 'white',
@@ -74,7 +77,7 @@ export const styles = StyleSheet.create({
     },
     notesArea: {
         flex: 3,
-        width: 200,
+        width: 180,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

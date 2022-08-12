@@ -12,6 +12,7 @@ export const DetailsMovie = () => {
 
     const [detail, setDetail] = useState({});
     const [cast, setCast] = useState([])
+    const [crew, setCrew] = useState([])
     const [visible, setVisible] = useState(false)
     const [loading, setLoading] = useState(false)
 
@@ -30,6 +31,7 @@ export const DetailsMovie = () => {
         await instance.get(`movie/${idFilmes}/credits?&language=pt-BR`)
             .then(resp => {
                 setCast(resp.data.cast);
+                setCrew(resp.data.crew)
             })
             .catch(error => console.log(error))
     }
@@ -52,6 +54,7 @@ export const DetailsMovie = () => {
                         detail={detail}
                         visible={visible}
                         setVisible={setVisible}
+                        directorArray={crew}
                     />
                     < CreditsComponent
                         cast={cast}
