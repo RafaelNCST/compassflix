@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { SplashScreen } from '../screens/LoadingRequest';
-import { LoginStacks } from './stackLogin'
+import { LoginStacks } from './stackLogin';
 
 import { StackOptions } from './options/stackOptions';
 
