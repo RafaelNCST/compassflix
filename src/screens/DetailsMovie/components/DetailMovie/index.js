@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { styles } from './style'
-import { Detail } from '../Detail'
+import { styles } from './style';
+import { Detail } from '../Detail';
 
 
 
