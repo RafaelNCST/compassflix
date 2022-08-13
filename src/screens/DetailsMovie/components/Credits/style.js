@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: 'black',
         marginVertical: 5,
-        marginBottom:7
+    
     },
     name: {
         color: 'white',
@@ -62,5 +62,9 @@ export const styles = StyleSheet.create({
     },
     actor: {
         justifyContent: 'center',
+
+    },
+    listCredits: {
+        paddingVertical:3
     }
 })
