@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from '@react-navigation/stack';
 
 import { Home } from '../screens/Home';
 import { DetailsMovie } from '../screens/DetailsMovie';
@@ -7,7 +7,6 @@ import { DetailsMovie } from '../screens/DetailsMovie';
 import { StackOptions } from './options/stackOptions';
 
 export const StackFilmsRoutes = () => {
-
     const StackFilm = createStackNavigator();
 
     return (
@@ -15,5 +14,5 @@ export const StackFilmsRoutes = () => {
             <StackFilm.Screen name='Home' component={Home} />
             <StackFilm.Screen name='DetailScreen' component={DetailsMovie} />
         </StackFilm.Navigator>
-    )
-}
+    );
+};
