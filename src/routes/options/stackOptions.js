@@ -1,3 +1,3 @@
 export const StackOptions = {
-    headerShown: false
-}
+    headerShown: false,
+};

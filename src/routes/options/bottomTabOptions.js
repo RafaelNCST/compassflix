@@ -10,8 +10,8 @@ export const screenOptions = {
         backgroundColor: '#454545',
         alignItems: 'center',
         borderTopWidth: 0,
-    }
-}
+    },
+};
 
 export const homeOptions = {
     tabBarIcon: () => (
@@ -23,6 +23,6 @@ export const homeOptions = {
         height: 40,
         borderRadius: 52,
         alignItems: 'center',
-        alignSelf: 'center'
-    }
-}
+        alignSelf: 'center',
+    },
+};
