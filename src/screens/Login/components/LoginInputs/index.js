@@ -4,8 +4,10 @@ import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { styles } from './style';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Animatable from 'react-native-animatable';
-import Lottie from 'lottie-react-native';
+
 import { instance } from '../../../../services/api';
+
+import { SpinnerRed } from '../../../../components/SpinnerRed';
 
 export const LoginInputs = () => {
     const [hidePass, setHidePass] = useState(true);
@@ -163,14 +165,7 @@ export const LoginInputs = () => {
             </View>
 
             {loading ? (
-                <View style={styles.loading}>
-                    <Lottie
-                        source={require('../../../../assets/lottie/spinner-red.json')}
-                        resizeMode='contain'
-                        loop={true}
-                        autoPlay
-                    />
-                </View>
+                <SpinnerRed height={40} width={'100%'} />
             ) : (
                 <TouchableOpacity onPress={validInput} style={styles.button}>
                     <Text style={styles.enter}>Entrar</Text>

@@ -4,7 +4,7 @@ import { LoginInputs } from './components/LoginInputs';
 import { styles } from './style';
 
 import { instance } from '../../services/api';
-import Lottie from 'lottie-react-native';
+import { SpinnerRed } from '../../components/SpinnerRed';
 
 import { LoginContext } from '../../contexts/loginContext';
 
@@ -29,14 +29,7 @@ export const Login = () => {
                 />
             </View>
             {isLoading ? (
-                <View style={styles.animation}>
-                    <Lottie
-                        source={require('../../assets/lottie/spinner-red.json')}
-                        resizeMode='contain'
-                        loop={true}
-                        autoPlay
-                    />
-                </View>
+                <SpinnerRed height={100} width={100} />
             ) : (
                 <KeyboardAvoidingView
                     behavior={'position'}

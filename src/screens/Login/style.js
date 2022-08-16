@@ -48,8 +48,4 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: 'OpenSans-Regular',
     },
-    animation: {
-        height: 100,
-        width: 100,
-    },
 });

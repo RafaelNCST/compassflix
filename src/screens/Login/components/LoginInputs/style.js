@@ -53,11 +53,4 @@ export const styles = StyleSheet.create({
         lineHeight: 12,
         fontSize: 12,
     },
-    loading: {
-        width: 100,
-        height: 39,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
 });
