@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 export const LoginContext = createContext();
 
 export const LoginContextProvider = ({ children }) => {
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [requestKey, setRequestKey] = useState(null);
     const [signedIn, setSignedIn] = useState(false);
     const [sessionId, setSessionId] = useState(false);
@@ -11,7 +11,7 @@ export const LoginContextProvider = ({ children }) => {
     const endLoadingRequest = (reqKey, stateBoolean) => {
         setRequestKey(reqKey);
         setSignedIn(stateBoolean);
-        setLoading(false);
+        setIsLoading(false);
     };
 
     const changeSessionID = async id => {
@@ -22,7 +22,7 @@ export const LoginContextProvider = ({ children }) => {
     return (
         <LoginContext.Provider
             value={{
-                loading,
+                isLoading,
                 signedIn,
                 requestKey,
                 endLoadingRequest,

@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { View, Text, Image, KeyboardAvoidingView } from 'react-native';
 import { LoginInputs } from './components/LoginInputs';
 import { styles } from './style';
 
+import { instance } from '../../services/api';
+import Lottie from 'lottie-react-native';
+
+import { LoginContext } from '../../contexts/loginContext';
+
 export const Login = () => {
+    const { endLoadingRequest, isLoading } = useContext(LoginContext);
+
+    useEffect(() => {
+        instance
+            .get('authentication/token/new?')
+            .then(resp => {
+                endLoadingRequest(resp.data.request_token, false);
+            })
+            .catch(error => console.log(error));
+    }, []);
 
     return (
         <View style={styles.bodyScreen}>
@@ -13,24 +28,34 @@ export const Login = () => {
                     style={styles.image}
                 />
             </View>
-            <KeyboardAvoidingView
-                behavior={'position'}
-                keyboardVerticalOffset={40}
-                style={styles.viewAll}>
-                <Image
-                    source={require('../../assets/Images/logo.png')}
-                    style={styles.logoImage}
-                />
-                <View style={styles.bottomView}>
-                    <Text style={styles.textLogin}>
-                        Login
-                    </Text>
-                    <Text style={styles.continueText}>
-                        Entre na sua conta para continuar.
-                    </Text>
+            {isLoading ? (
+                <View style={styles.animation}>
+                    <Lottie
+                        source={require('../../assets/lottie/spinner-red.json')}
+                        resizeMode='contain'
+                        loop={true}
+                        autoPlay
+                    />
                 </View>
-                <LoginInputs />
-            </KeyboardAvoidingView>
+            ) : (
+                <KeyboardAvoidingView
+                    behavior={'position'}
+                    keyboardVerticalOffset={40}
+                    style={styles.viewAll}
+                >
+                    <Image
+                        source={require('../../assets/Images/logo.png')}
+                        style={styles.logoImage}
+                    />
+                    <View style={styles.bottomView}>
+                        <Text style={styles.textLogin}>Login</Text>
+                        <Text style={styles.continueText}>
+                            Entre na sua conta para continuar.
+                        </Text>
+                    </View>
+                    <LoginInputs />
+                </KeyboardAvoidingView>
+            )}
         </View>
-    )
-}
+    );
+};

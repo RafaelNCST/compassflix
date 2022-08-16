@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions } from 'react-native';
 
 const height = Dimensions.get('screen').height;
 const width = Dimensions.get('screen').width;
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         marginTop: -80,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
     },
     viewAll: {
         position: 'absolute',
@@ -29,23 +29,27 @@ export const styles = StyleSheet.create({
     logoImage: {
         width: 250,
         height: 100,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     bottomView: {
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 28,
         marginTop: 15,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     textLogin: {
         color: '#fff',
         fontSize: 28,
-        fontFamily: 'OpenSans-Bold'
+        fontFamily: 'OpenSans-Bold',
     },
     continueText: {
         color: '#fff',
         fontSize: 14,
-        fontFamily: 'OpenSans-Regular'
+        fontFamily: 'OpenSans-Regular',
     },
-})
+    animation: {
+        height: 100,
+        width: 100,
+    },
+});

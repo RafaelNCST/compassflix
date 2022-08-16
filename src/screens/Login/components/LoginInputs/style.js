@@ -1,11 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     loginInput: {
         width: '100%',
         height: 95,
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     input: {
         width: '70%',
@@ -15,18 +15,16 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingLeft: 15,
-        borderStyle: 'solid',
-        borderColor: '#ef5350'
     },
     textStyle: {
         fontSize: 14,
         marginLeft: 10,
         flex: 1,
         color: '#fff',
-        fontFamily: 'OpenSans-Regular'
+        fontFamily: 'OpenSans-Regular',
     },
     eye: {
-        marginRight: 10
+        marginRight: 10,
     },
     button: {
         width: 100,
@@ -35,12 +33,12 @@ export const styles = StyleSheet.create({
         backgroundColor: '#e9a6a6',
         alignSelf: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     enter: {
         color: '#000',
         fontSize: 15,
-        fontFamily: 'OpenSans-Bold'
+        fontFamily: 'OpenSans-Bold',
     },
     errorContainer: {
         height: 40,
@@ -49,16 +47,17 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     errorText: {
-        color: '#ef5350',
+        color: '#EC2626',
         alignSelf: 'center',
-        fontFamily: 'OpenSans-SemiBold'
+        fontFamily: 'OpenSans-SemiBold',
+        lineHeight: 12,
+        fontSize: 12,
     },
     loading: {
         width: 100,
         height: 39,
         alignSelf: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
-    }
-
-})
+        justifyContent: 'center',
+    },
+});
