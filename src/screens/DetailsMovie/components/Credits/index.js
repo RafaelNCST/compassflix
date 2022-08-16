@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Text, Image, FlatList } from 'react-native';
-import anonimo from '../../../../assets/DetailMovies/imagemAnonima.jpg'
+import anonimo from '../../../../assets/Images/imagemAnonima.jpg';
 
-import { styles } from './style'
+import { styles } from './style';
 
 export const CreditsComponent = ({ cast }) => {
-
     return (
         <>
             <View style={styles.castArea}>
@@ -25,19 +24,30 @@ export const CreditsComponent = ({ cast }) => {
                         return (
                             <View style={styles.areaItens}>
                                 <View style={styles.imageActors}>
-                                    <Image style={styles.imagePerfilActors} source={item?.profile_path ? { uri: `https://image.tmdb.org/t/p/original${item?.profile_path}` } : anonimo} />
+                                    <Image
+                                        style={styles.imagePerfilActors}
+                                        source={
+                                            item?.profile_path
+                                                ? {
+                                                      uri: `https://image.tmdb.org/t/p/original${item?.profile_path}`,
+                                                  }
+                                                : anonimo
+                                        }
+                                    />
                                 </View>
                                 <View style={styles.actor}>
-                                    <Text style={styles.name}>{item?.name}</Text>
-                                    <Text style={styles.character}>{item?.character}</Text>
+                                    <Text style={styles.name}>
+                                        {item?.name}
+                                    </Text>
+                                    <Text style={styles.character}>
+                                        {item?.character}
+                                    </Text>
                                 </View>
                             </View>
-                        )
+                        );
                     }}
                 />
             </View>
         </>
-    )
-
-
-}
+    );
+};

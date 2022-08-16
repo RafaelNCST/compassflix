@@ -1,21 +1,21 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     imagePopularMovies: {
         marginHorizontal: 8,
         paddingVertical: 15,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     imageContainer: {
         width: 76,
         height: 95,
-        borderRadius: 10
+        borderRadius: 10,
     },
     subContainerPopularMovies: {
         flexDirection: 'row',
         marginTop: 1,
         justifyContent: 'flex-start',
-        width: '100%'
+        width: '100%',
     },
     iconPopularMovies: {
         color: '#EC2626',
@@ -24,6 +24,6 @@ export const styles = StyleSheet.create({
         color: '#FFFFFF',
         marginLeft: 4.5,
         fontSize: 9,
-        fontFamily: 'OpenSans-SemiBold'
-    }
-})
+        fontFamily: 'OpenSans-SemiBold',
+    },
+});
