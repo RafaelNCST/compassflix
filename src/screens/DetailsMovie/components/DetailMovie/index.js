@@ -3,10 +3,11 @@ import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView, Modal
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style'
 import { Detail } from '../Detail'
+import { Evaluation } from '../Evaluation';
 
 
 
-export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible, directorArray }) => {
+export const DetailsMovieComponent = ({ Navigation, note, setNote, detail, visible, setVisible, directorArray }) => {
 
     const date = new Date(detail?.release_date)
 
@@ -29,10 +30,26 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible,
                     setVisible={setVisible}
                 />
             </Modal>
+
+            <Modal animationType='fade' visible={note} transparent={true} 
+            setNote={setNote}>
+                <Evaluation 
+                setNote={setNote}
+                />
+            </Modal>
+
             <View style={styles.perfilArea}>
+                <View style={{ width:132}}>
                 <TouchableOpacity onPress={() => setVisible(true)}>
                     <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
                 </TouchableOpacity>
+                
+                    <TouchableOpacity onPress={() => setNote(true)}  style={{ backgroundColor: '#E9A6A6', width: 116, height: 22, marginLeft:20, alignItems:'center',  borderBottomLeftRadius:5,  borderBottomRightRadius:5}}>
+                        <Text style={{ color: 'black', fontSize:10, alignItems:'center', justifyContent:'center' }}> AVALIE AGORA </Text>
+                    </TouchableOpacity>
+            
+                </View>
+
                 <View style={styles.infoArea}>
                     <View style={styles.titleArea}>
                         <View style={styles.containerNameAndYear}>
@@ -62,7 +79,6 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible,
                     </View>
                 </View>
             </View>
-
             <View style={styles.areaDescription}>
                 <ScrollView style={styles.scrollDescription}>
                     <Text style={styles.tagline}>{(detail?.tagline).toUpperCase() || detail?.title}</Text>

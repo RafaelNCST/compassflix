@@ -11,10 +11,11 @@ import { LoadingScreensApis } from '../../components/LoadingScreensApis'
 export const DetailsMovie = () => {
 
     const [detail, setDetail] = useState({});
-    const [cast, setCast] = useState([])
-    const [crew, setCrew] = useState([])
-    const [visible, setVisible] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [cast, setCast] = useState([]);
+    const [crew, setCrew] = useState([]);
+    const [visible, setVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [note, setNote] = useState(false);
 
     const Navigation = useNavigation()
     const { idFilmes } = useRoute().params;
@@ -55,6 +56,8 @@ export const DetailsMovie = () => {
                         visible={visible}
                         setVisible={setVisible}
                         directorArray={crew}
+                        note={note}
+                        setNote={setNote}
                     />
                     < CreditsComponent
                         cast={cast}

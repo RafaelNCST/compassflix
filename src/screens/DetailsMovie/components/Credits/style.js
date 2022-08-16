@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         width: 60,
         alignSelf: 'flex-start',
-        marginLeft: 15
+        marginLeft: 15,
+        
     },
     castTitle: {
         height: 25,

@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
         height: 180,
         marginTop: -35,
         borderRadius: 8,
-        marginLeft: 20
+        marginLeft: 20,
     },
     titleArea: {
         flex: 1,
