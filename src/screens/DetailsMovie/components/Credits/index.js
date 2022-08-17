@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, FlatList } from 'react-native';
-import anonimo from '../../../../assets/DetailMovies/imagemAnonima.jpg'
+import anonimo from '../../../../assets/Images/imagemAnonima.jpg'
 
 import { styles } from './style'
 

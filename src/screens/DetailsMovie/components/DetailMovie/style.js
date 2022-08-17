@@ -19,6 +19,17 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    favoriteButtom:{
+        position:'absolute',
+        backgroundColor:'white',
+        width: 40,
+        height: 40,
+        alignItems:'center',
+        justifyContent:'center',
+        top:15,
+        right:20,
+        borderRadius:30
+    },
     infoArea: {
         flex: 1,
         paddingTop: 10,

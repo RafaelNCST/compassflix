@@ -21,6 +21,10 @@ export const DetailsMovieComponent = ({ Navigation, note, setNote, detail, visib
                 <Icon name='arrow-back' size={30} color={'black'} />
             </TouchableOpacity>
 
+            <TouchableOpacity style={styles.favoriteButtom}>
+                <Icon name='grade' size={30} color={'black'} />
+            </TouchableOpacity>
+
             <Modal animationType='fade' visible={visible} transparent={true}
                 setVisible={setVisible} >
                 <Detail
