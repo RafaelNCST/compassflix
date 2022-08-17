@@ -19,31 +19,31 @@ export const styles = StyleSheet.create({
         marginTop: -80,
         resizeMode: 'contain'
     },
-    ViewAll: {
+    viewAll: {
         position: 'absolute',
         width: '100%',
         height: 400,
         top: 260,
         justifyContent: 'space-between',
     },
-    LogoImage: {
+    logoImage: {
         width: 250,
         height: 100,
         alignSelf: 'center'
     },
-    BottomView: {
+    bottomView: {
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 28,
         marginTop: 15,
         alignSelf: 'center'
     },
-    TextLogin: {
+    textLogin: {
         color: '#fff',
         fontSize: 28,
         fontFamily: 'OpenSans-Bold'
     },
-    ContinueText: {
+    continueText: {
         color: '#fff',
         fontSize: 14,
         fontFamily: 'OpenSans-Regular'

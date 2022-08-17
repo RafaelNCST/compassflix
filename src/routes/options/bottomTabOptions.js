@@ -1,5 +1,5 @@
 import React from 'react';
-import FontAwesome5 from 'react-native-vector-icons/MaterialIcons';
+import { Image } from 'react-native';
 
 export const screenOptions = {
     headerShown: false,
@@ -15,7 +15,7 @@ export const screenOptions = {
 
 export const homeOptions = {
     tabBarIcon: () => (
-        <FontAwesome5 name='slideshow' size={30} color='#FFFFFF' />
+        <Image source={require('../../assets/Images/homeImage.png')} />
     ),
     tabBarItemStyle: {
         backgroundColor: '#E9A6A6',

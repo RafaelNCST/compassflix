@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     castArea: {
         marginTop: 27,
-        marginBottom: 15,
+        marginBottom: 10,
         width: 60,
         alignSelf: 'flex-start',
         marginLeft: 15,
@@ -34,12 +34,14 @@ export const styles = StyleSheet.create({
         width: '90%',
         flex: 1
     },
+    listCredits: {
+        paddingVertical: 5
+    },
     areaItens: {
         flex: 1,
         flexDirection: 'row',
         backgroundColor: 'black',
         marginVertical: 5,
-    
     },
     name: {
         color: 'white',

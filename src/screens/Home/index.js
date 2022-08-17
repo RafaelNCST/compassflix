@@ -4,20 +4,16 @@ import { styles } from './style'
 import { ItensList } from './components/itemList';
 import { instance } from '../../services/api'
 import { LoginContext } from '../../contexts/loginContext';
-
 import { LoadingScreensApis } from '../../components/LoadingScreensApis'
-
 import { FooterComponentLoading } from './components/FooterComponentLoading';
 
 export const Home = () => {
-
     const [filmeList, setFilmeList] = useState([]);
     const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
     const [loadingScroll, setLoadingScroll] = useState(false);
     const [username, setUserName] = useState('');
     const [lastPage, setLastPage] = useState(1);
-
     const { sessionId } = useContext(LoginContext);
 
     const getRequestName = async () => {
@@ -30,7 +26,6 @@ export const Home = () => {
                 console.log(error)
             });
     }
-
 
     const loadInfiniteScroll = () => {
         if (loadingScroll) return null;
@@ -54,7 +49,6 @@ export const Home = () => {
         }
     }, [sessionId])
 
-
     useEffect(() => {
         if (loadingScroll) setTimeout(() => requestMovieListFilms(), 2000);
     }, [lastPage])
@@ -72,7 +66,6 @@ export const Home = () => {
                     <Text style={styles.bodyScreenPopularMovies}>
                         Filmes populares este mês
                     </Text>
-
                     <FlatList
                         data={filmeList}
                         contentContainerStyle={styles.containerPopularMovies}
@@ -85,8 +78,7 @@ export const Home = () => {
                                 <ItensList
                                     listaDeFilmes={item.poster_path}
                                     notaDosFilmes={item.vote_average}
-                                    idFilmes={item.id}
-                                />
+                                    idFilmes={item.id} />
                             )
                         }}
                         ListFooterComponent={() => {
