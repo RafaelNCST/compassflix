@@ -1,9 +1,9 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React from 'react';
+import { View } from 'react-native';
 
-import { styles } from './style'
+import { styles } from './style';
 
-import Lottie from 'lottie-react-native'
+import Lottie from 'lottie-react-native';
 
 export const LoadingScreensApis = () => {
     return (
@@ -17,5 +17,5 @@ export const LoadingScreensApis = () => {
                 />
             </View>
         </View>
-    )
-}
+    );
+};

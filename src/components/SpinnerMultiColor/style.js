@@ -1,13 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    loadingApis: {
+    spinnerContainer: {
+        marginBottom: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        flex: 1,
-    },
-    containerAnimationLoading: {
-        width: 300,
-        height: 150,
     },
 });
