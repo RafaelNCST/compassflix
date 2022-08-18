@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
 
 import anonimo from '../../../../assets/Images/imagemAnonima.jpg';
@@ -11,3 +11,4 @@ export const ImageUser = ({ ImageUser }) => {
         </TouchableOpacity>
     );
 };
+*/

@@ -11,6 +11,12 @@ export const styles = StyleSheet.create({
         height: 95,
         borderRadius: 10,
     },
+    imagePoster: {
+        height: 95,
+        width: 76,
+        resizeMode: 'contain',
+        borderRadius: 10,
+    },
     subContainerPopularMovies: {
         flexDirection: 'row',
         marginTop: 1,

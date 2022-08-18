@@ -4,24 +4,19 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style';
 import { useNavigation } from '@react-navigation/native';
 
-export const ItensList = memo(({ listaDeFilmes, notaDosFilmes, idFilmes }) => {
+export const ItensList = memo(({ listItens, noteItens, idItens }) => {
     const Navigation = useNavigation();
 
     return (
         <TouchableOpacity
-            onPress={() => Navigation.navigate('DetailScreen', { idFilmes })}
+            onPress={() => Navigation.navigate('DetailScreen', { idItens })}
             style={styles.imagePopularMovies}
         >
             <View style={styles.imageContainer}>
                 <Image
-                    style={{
-                        height: 95,
-                        width: 76,
-                        resizeMode: 'contain',
-                        borderRadius: 10,
-                    }}
+                    style={styles.imagePoster}
                     source={{
-                        uri: `https://image.tmdb.org/t/p/w500${listaDeFilmes}`,
+                        uri: `https://image.tmdb.org/t/p/w500${listItens}`,
                     }}
                 />
             </View>
@@ -31,7 +26,7 @@ export const ItensList = memo(({ listaDeFilmes, notaDosFilmes, idFilmes }) => {
                     name='star'
                     size={13.5}
                 />
-                <Text style={styles.textPopularMovies}>{notaDosFilmes}/10</Text>
+                <Text style={styles.textPopularMovies}>{noteItens}/10</Text>
             </View>
         </TouchableOpacity>
     );

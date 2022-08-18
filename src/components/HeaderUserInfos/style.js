@@ -1,10 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    bodyScreen: {
-        flex: 1,
-        backgroundColor: '#000000',
-        width: '100%',
+    containerImageUser: {
+        position: 'absolute',
+        top: 16,
+        right: 20,
+    },
+    imageUser: {
+        height: 44,
+        width: 44,
+        borderRadius: 50,
     },
     bodyScreenName: {
         color: '#FFFFFF',
@@ -27,9 +32,5 @@ export const styles = StyleSheet.create({
         marginLeft: 14,
         marginBottom: 30,
         fontFamily: 'OpenSans-SemiBold',
-    },
-    containerPopularMovies: {
-        width: '100%',
-        alignItems: 'center',
     },
 });
