@@ -15,7 +15,10 @@ export const BottomTabs = () => {
     const BottomTab = createBottomTabNavigator();
 
     return (
-        <BottomTab.Navigator screenOptions={screenOptions}>
+        <BottomTab.Navigator
+            initialRouteName='StackHome'
+            screenOptions={screenOptions}
+        >
             <BottomTab.Screen
                 name='StackSeries'
                 component={StackSeriesRoutes}

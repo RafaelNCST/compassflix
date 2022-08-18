@@ -1,6 +1,14 @@
 import React from 'react';
 import { Image } from 'react-native';
 
+import FilmsGray from '../../assets/Images/moviesGray.png';
+import SeriesGray from '../../assets/Images/seriesGray.png';
+import PerfilGray from '../../assets/Images/perfilGray.png';
+
+import FilmsWhite from '../../assets/Images/moviesWhite.png';
+import SeriesWhite from '../../assets/Images/seriesWhite.png';
+import PerfilWhite from '../../assets/Images/perfilWhite.png';
+
 export const screenOptions = {
     headerShown: false,
     tabBarShowLabel: false,
@@ -24,19 +32,19 @@ export const screenOptions = {
 };
 
 export const seriesOptions = {
-    tabBarIcon: () => (
-        <Image source={require('../../assets/Images/series.png')} />
+    tabBarIcon: ({ focused }) => (
+        <Image source={focused ? SeriesWhite : SeriesGray} />
     ),
 };
 
 export const homeOptions = {
-    tabBarIcon: () => (
-        <Image source={require('../../assets/Images/movies.png')} />
+    tabBarIcon: ({ focused }) => (
+        <Image source={focused ? FilmsWhite : FilmsGray} />
     ),
 };
 
 export const UserOptions = {
-    tabBarIcon: () => (
-        <Image source={require('../../assets/Images/perfil.png')} />
+    tabBarIcon: ({ focused }) => (
+        <Image source={focused ? PerfilWhite : PerfilGray} />
     ),
 };
