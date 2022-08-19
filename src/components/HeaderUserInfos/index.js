@@ -6,9 +6,13 @@ import { LoginContext } from '../../contexts/loginContext';
 
 import anonimo from '../../assets/Images/imagemAnonima.jpg';
 import { styles } from './style';
+import { useNavigation } from '@react-navigation/native';
 
 export const HeaderUserInfos = () => {
     const { sessionId } = useContext(LoginContext);
+
+    const Navigation = useNavigation();
+
     // prettier-ignore
     const { getRequestInfosUser, userInfos, strTitle } = useContext(ListHomeContext);
 
@@ -20,10 +24,17 @@ export const HeaderUserInfos = () => {
 
     return (
         <>
-            <TouchableOpacity style={styles.containerImageUser}>
+            <TouchableOpacity
+                onPress={() => Navigation.navigate('UserPerfil')}
+                style={styles.containerImageUser}
+            >
                 <Image
                     style={styles.imageUser}
-                    source={userInfos?.avatar?.tmdb?.avatar_path || anonimo}
+                    source={
+                        {
+                            uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
+                        } || anonimo
+                    }
                 />
             </TouchableOpacity>
             <Text style={styles.bodyScreenName}>
