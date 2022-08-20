@@ -6,7 +6,6 @@ export const ListHomeContext = createContext();
 export const ListHomeContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [loadingScroll, setLoadingScroll] = useState(false);
-    const [strTitle, setStrTitle] = useState('');
     const [lastPage, setLastPage] = useState(1);
     const [userInfos, setUserInfos] = useState({});
 
@@ -27,10 +26,6 @@ export const ListHomeContextProvider = ({ children }) => {
         setLastPage(prev => prev + 1);
     };
 
-    const changeTitleName = text => {
-        setStrTitle(text);
-    };
-
     const changeInfiniteScrollLoading = state => {
         setLoadingScroll(state);
     };
@@ -44,13 +39,11 @@ export const ListHomeContextProvider = ({ children }) => {
             value={{
                 getRequestInfosUser,
                 loadInfiniteScroll,
-                changeTitleName,
                 changeInfiniteScrollLoading,
                 loadingScroll,
                 lastPage,
                 changeLoadingPage,
                 loading,
-                strTitle,
                 userInfos,
             }}
         >
