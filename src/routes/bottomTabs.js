@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StackFilmsRoutes } from './stackFilms';
 import { StackSeriesRoutes } from './stackSeries';
-import { UserPerfil } from '../screens/UserPerfil';
+import { StackUserRoutes } from './stackUser';
 import { ListHomeContextProvider } from '../contexts/listHomeContext';
 
 import {
@@ -18,7 +18,7 @@ export const BottomTabs = () => {
     return (
         <ListHomeContextProvider>
             <BottomTab.Navigator
-                initialRouteName='StackHome'
+                initialRouteName='StackFilms'
                 screenOptions={screenOptions}
             >
                 <BottomTab.Screen
@@ -27,13 +27,13 @@ export const BottomTabs = () => {
                     options={seriesOptions}
                 />
                 <BottomTab.Screen
-                    name='StackHome'
+                    name='StackFilms'
                     component={StackFilmsRoutes}
                     options={homeOptions}
                 />
                 <BottomTab.Screen
-                    name='UserPerfil'
-                    component={UserPerfil}
+                    name='StackUser'
+                    component={StackUserRoutes}
                     options={UserOptions}
                 />
             </BottomTab.Navigator>

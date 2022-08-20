@@ -11,7 +11,11 @@ export const StackFilmsRoutes = () => {
 
     return (
         <StackFilm.Navigator screenOptions={StackOptions}>
-            <StackFilm.Screen name='Home' component={HomeMovies} />
+            <StackFilm.Screen
+                name='Home'
+                component={HomeMovies}
+                initialParams={{ strTitle: 'os Filmes' }}
+            />
             <StackFilm.Screen name='DetailScreen' component={DetailsMovie} />
         </StackFilm.Navigator>
     );

@@ -11,7 +11,11 @@ export const StackSeriesRoutes = () => {
 
     return (
         <StackSeries.Navigator screenOptions={StackOptions}>
-            <StackSeries.Screen name='Home' component={HomeSeries} />
+            <StackSeries.Screen
+                name='Home'
+                component={HomeSeries}
+                initialParams={{ strTitle: 'as Séries' }}
+            />
             <StackSeries.Screen name='DetailScreen' component={DetailsSerie} />
         </StackSeries.Navigator>
     );
