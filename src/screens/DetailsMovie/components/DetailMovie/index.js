@@ -7,7 +7,7 @@ import { Evaluation } from '../Evaluation';
 
 
 
-export const DetailsMovieComponent = ({ Navigation, note, setNote, detail, visible, setVisible, directorArray }) => {
+export const DetailsMovieComponent = ({ setAvaliation, avaliation, Navigation, note, setNote, detail, visible, setVisible, directorArray }) => {
 
     const date = new Date(detail?.release_date)
 
@@ -25,8 +25,7 @@ export const DetailsMovieComponent = ({ Navigation, note, setNote, detail, visib
                 <Icon name='grade' size={30} color={'black'} />
             </TouchableOpacity>
 
-            <Modal animationType='fade' visible={visible} transparent={true}
-                setVisible={setVisible} >
+            <Modal animationType='fade' visible={visible} transparent={true}>
                 <Detail
                     imageMovie={detail?.poster_path}
                     titleMovie={detail?.title}
@@ -35,23 +34,32 @@ export const DetailsMovieComponent = ({ Navigation, note, setNote, detail, visib
                 />
             </Modal>
 
-            <Modal animationType='fade' visible={note} transparent={true} 
-            setNote={setNote}>
-                <Evaluation 
-                setNote={setNote}
+            <Modal animationType='fade' visible={note} transparent={true} >
+                <Evaluation
+                    setNote={setNote}
+                    setAvaliation={setAvaliation}
+                    avaliation={avaliation}
                 />
             </Modal>
 
             <View style={styles.perfilArea}>
-                <View style={{ width:132}}>
-                <TouchableOpacity onPress={() => setVisible(true)}>
-                    <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
-                </TouchableOpacity>
-                
-                    <TouchableOpacity onPress={() => setNote(true)}  style={{ backgroundColor: '#E9A6A6', width: 116, height: 22, marginLeft:20, alignItems:'center',  borderBottomLeftRadius:5,  borderBottomRightRadius:5}}>
-                        <Text style={{ color: 'black', fontSize:10, alignItems:'center', justifyContent:'center' }}> AVALIE AGORA </Text>
+                <View style={{ width: 132 }}>
+                    <TouchableOpacity onPress={() => setVisible(true)}>
+                        <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
                     </TouchableOpacity>
-            
+
+                    
+                    
+
+                    <TouchableOpacity onPress={() => setNote(true)} style={styles.buttonAvalution}>
+                    <View style={styles.buttonEdit}>
+                        <Icon name='edit' size={10} color={'#000000'} />
+                    </View>
+                        <Text style={styles.textAvaliation}> AVALIE AGORA </Text>
+                    </TouchableOpacity>
+                    
+
+
                 </View>
 
                 <View style={styles.infoArea}>
