@@ -5,6 +5,7 @@ import { ListHomeContext } from '../../contexts/listHomeContext';
 
 import { ListHome } from '../../components/FlatListHome';
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
+import { useRoute } from '@react-navigation/native';
 
 import { styles } from './style';
 
@@ -15,8 +16,9 @@ export const HomeMovies = () => {
         loadingScroll,
         changeLoadingPage,
         lastPage,
-        changeTitleName,
     } = useContext(ListHomeContext);
+
+    const route = useRoute();
 
     const requestMovieListFilms = async () => {
         await instance
@@ -30,7 +32,6 @@ export const HomeMovies = () => {
 
     useEffect(() => {
         requestMovieListFilms();
-        changeTitleName('os Filmes');
     }, []);
 
     useEffect(() => {
@@ -39,7 +40,7 @@ export const HomeMovies = () => {
 
     return (
         <View style={styles.bodyScreen}>
-            <HeaderUserInfos />
+            <HeaderUserInfos strTitle={route?.params?.strTitle} />
             <ListHome data={filmeList} />
         </View>
     );

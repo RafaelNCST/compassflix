@@ -7,11 +7,15 @@ import { instance } from '../../../../services/api';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import { SpinnerMultiColor } from '../../../../components/SpinnerMultiColor';
+
 export const LogoutButton = () => {
     const [visible, setVisible] = useState(false);
+    const [logoutLoading, setLogouLoading] = useState(false);
     const { sessionId, changeSessionID } = useContext(LoginContext);
 
     const logoutRequest = () => {
+        setLogouLoading(true);
         instance
             .delete('authentication/session', {
                 data: { session_id: sessionId },
@@ -52,32 +56,43 @@ export const LogoutButton = () => {
                             Deseja mesmo Sair?
                         </Styled.TextModal>
                         <Styled.ButtonContainer>
-                            <Styled.Button
-                                onPress={() => setVisible(false)}
-                                backColor={'#000000'}
-                            >
-                                <Styled.TextModal
-                                    nameFont={'OpenSans-Bold'}
-                                    sizeFont={10}
-                                    color={'#FFFFFF'}
-                                    margin={0}
-                                >
-                                    Cancelar
-                                </Styled.TextModal>
-                            </Styled.Button>
-                            <Styled.Button
-                                onPress={() => logoutRequest()}
-                                backColor={'#FFFFFF'}
-                            >
-                                <Styled.TextModal
-                                    nameFont={'OpenSans-Bold'}
-                                    sizeFont={10}
+                            {logoutLoading ? (
+                                <SpinnerMultiColor
+                                    Loadingstate={true}
+                                    size={20}
                                     color={'#000000'}
-                                    margin={0}
-                                >
-                                    Sair
-                                </Styled.TextModal>
-                            </Styled.Button>
+                                    flexNumber={1}
+                                />
+                            ) : (
+                                <>
+                                    <Styled.Button
+                                        onPress={() => setVisible(false)}
+                                        backColor={'#000000'}
+                                    >
+                                        <Styled.TextModal
+                                            nameFont={'OpenSans-Bold'}
+                                            sizeFont={10}
+                                            color={'#FFFFFF'}
+                                            margin={0}
+                                        >
+                                            Cancelar
+                                        </Styled.TextModal>
+                                    </Styled.Button>
+                                    <Styled.Button
+                                        onPress={() => logoutRequest()}
+                                        backColor={'#FFFFFF'}
+                                    >
+                                        <Styled.TextModal
+                                            nameFont={'OpenSans-Bold'}
+                                            sizeFont={10}
+                                            color={'#000000'}
+                                            margin={0}
+                                        >
+                                            Sair
+                                        </Styled.TextModal>
+                                    </Styled.Button>
+                                </>
+                            )}
                         </Styled.ButtonContainer>
                     </Styled.ModalContainer>
                 </Styled.BodyModal>

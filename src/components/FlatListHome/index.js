@@ -30,9 +30,9 @@ export const ListHome = ({ data }) => {
                     renderItem={({ item }) => {
                         return (
                             <ItensList
-                                listItens={item.poster_path}
-                                noteItens={item.vote_average}
-                                idItens={item.id}
+                                listItens={item?.poster_path}
+                                noteItens={item?.vote_average}
+                                idItens={item?.id}
                             />
                         );
                     }}

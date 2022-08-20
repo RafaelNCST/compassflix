@@ -8,13 +8,13 @@ import anonimo from '../../assets/Images/imagemAnonima.jpg';
 import { styles } from './style';
 import { useNavigation } from '@react-navigation/native';
 
-export const HeaderUserInfos = () => {
+export const HeaderUserInfos = ({ strTitle }) => {
     const { sessionId } = useContext(LoginContext);
 
     const Navigation = useNavigation();
 
     // prettier-ignore
-    const { getRequestInfosUser, userInfos, strTitle } = useContext(ListHomeContext);
+    const { getRequestInfosUser, userInfos } = useContext(ListHomeContext);
 
     useEffect(() => {
         if (sessionId) {
@@ -25,7 +25,7 @@ export const HeaderUserInfos = () => {
     return (
         <>
             <TouchableOpacity
-                onPress={() => Navigation.navigate('UserPerfil')}
+                onPress={() => Navigation.navigate('StackUser')}
                 style={styles.containerImageUser}
             >
                 <Image
@@ -45,11 +45,11 @@ export const HeaderUserInfos = () => {
                 !
             </Text>
             <Text style={styles.bodyScreenSubtitle}>
-                Reveja ou acompanhe {strTitle.toLowerCase()} que você
+                Reveja ou acompanhe {strTitle?.toLowerCase()} que você
                 assistiu...
             </Text>
             <Text style={styles.bodyScreenPopularMovies}>
-                {strTitle.substring(3)} populares este mês
+                {strTitle?.substring(3)} populares este mês
             </Text>
         </>
     );
