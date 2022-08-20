@@ -132,4 +132,31 @@ export const styles = StyleSheet.create({
         marginTop: 14,
         fontFamily: 'OpenSans-Regular'
     },
+    buttonAvalution:{
+        backgroundColor: '#E9A6A6', 
+        width: 116, 
+        height: 22, 
+        marginRight:19,
+        alignItems:'center',  
+        borderBottomLeftRadius:5,  
+        borderBottomRightRadius:5,
+        flexDirection:'row-reverse',
+        
+    },
+    buttonEdit:{
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        borderRadius: 10, 
+        width: 15, 
+        height: 15, 
+        backgroundColor: '#C4C4C4',
+        bottom:11, 
+        right:4
+    },
+    textAvaliation:{
+        color: 'black', 
+        fontSize:10, 
+        alignItems:'center', 
+        justifyContent:'center' 
+    }
 })

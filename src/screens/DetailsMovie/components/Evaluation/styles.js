@@ -28,9 +28,15 @@ areaNote:{
 },
     inputNote:{
     width: 74,
-    height:21, 
+    height:25, 
     backgroundColor:'rgba(196, 196, 196, 0.35)', 
-    borderRadius:30
+    borderRadius:30,
+    fontSize:15,
+    padding:2,
+    alignItems:'center',
+    justifyContent:'center',
+    paddingHorizontal:2
+    
 },
     maximo:{
     fontSize:18,
