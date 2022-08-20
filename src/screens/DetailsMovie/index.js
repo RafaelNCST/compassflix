@@ -9,10 +9,7 @@ import { LoginContext } from "../../contexts/loginContext";
 import { LoadingScreensApis } from "../../components/LoadingScreensApis";
 
 export const DetailsMovie = () => {
-    const { sessionId } = useContext(LoginContext);
-    const [sucesso, setSucesso] = useState('');
-    const [status, setStatus] = useState('');
-    const [statusMessage, setStatusMenssagem] = useState('');
+    const [avaliation, setAvaliation] = useState('');
     const [detail, setDetail] = useState({});
     const [cast, setCast] = useState([]);
     const [crew, setCrew] = useState([]);
@@ -31,20 +28,7 @@ export const DetailsMovie = () => {
             })
             .catch((error) => console.log(error));
     };
-    const postNote = async () => {
-        await instance
-            .post(`/movie/${idFilmes}/rating?${sessionId}`, {
-                "success": sucesso,
-                "status_code":status ,
-                "status_message":statusMessage 
-            })
-            .then((resp) => {
-                setSucesso(resp?.sucess)
-            })
-            .catch((error) =>
-                console.log(error)
-            );
-    };
+
     const getCast = async () => {
         await instance
             .get(`movie/${idFilmes}/credits?&language=pt-BR`)
@@ -55,33 +39,36 @@ export const DetailsMovie = () => {
             .catch((error) => console.log(error));
     };
 
-    useEffect(() => {
-        getDetail();
-        getCast();
-        setTimeout(() => {
-            setLoading(true);
-        }, 2000);
-    }, []);
+        useEffect(() => {
+            getDetail();
+            getCast();
+            setTimeout(() => {
+                setLoading(true);
+            }, 2000);
+        }, []);
 
-    return (
-        <View style={styles.bodyScreen}>
-            {loading ? (
-                <>
-                    <DetailsMovieComponent
-                        Navigation={Navigation}
-                        detail={detail}
-                        visible={visible}
-                        setVisible={setVisible}
-                        directorArray={crew}
-                        note={note}
-                        setNote={setNote}
-                        
-                    />
-                    <CreditsComponent cast={cast} />
-                </>
-            ) : (
-                <LoadingScreensApis />
-            )}
-        </View>
-    );
-};
+        return (
+            <View style={styles.bodyScreen}>
+                {loading ? (
+                    <>
+                        <DetailsMovieComponent
+                            Navigation={Navigation}
+                            detail={detail}
+                            visible={visible}
+                            setVisible={setVisible}
+                            directorArray={crew}
+                            note={note}
+                            setNote={setNote}
+                            avaliation={avaliation}
+                            setAvaliation={setAvaliation}
+                            
+
+                        />
+                        <CreditsComponent cast={cast} />
+                    </>
+                ) : (
+                    <LoadingScreensApis />
+                )}
+            </View>
+        );
+    };
