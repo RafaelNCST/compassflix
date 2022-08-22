@@ -1,4 +1,10 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
+
+export const ImagePopularMovies = styled.TouchableOpacity`
+    margin-horizontal: 8;
+    padding-vertical: 15;
+    align-items: 'center';
+`;
 
 export const styles = StyleSheet.create({
     imagePopularMovies: {

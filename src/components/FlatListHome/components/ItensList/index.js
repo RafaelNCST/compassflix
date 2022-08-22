@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as Styled from './style';
 import { styles } from './style';
 import { useNavigation } from '@react-navigation/native';
 
@@ -8,9 +9,8 @@ export const ItensList = memo(({ listItens, noteItens, idItens }) => {
     const Navigation = useNavigation();
 
     return (
-        <TouchableOpacity
+        <Styled.ImagePopularMovies
             onPress={() => Navigation.navigate('DetailScreen', { idItens })}
-            style={styles.imagePopularMovies}
         >
             <View style={styles.imageContainer}>
                 <Image
@@ -28,7 +28,7 @@ export const ItensList = memo(({ listItens, noteItens, idItens }) => {
                 />
                 <Text style={styles.textPopularMovies}>{noteItens}/10</Text>
             </View>
-        </TouchableOpacity>
+        </Styled.ImagePopularMovies>
     );
 });
 
