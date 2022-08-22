@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Text, Image, TouchableOpacity } from 'react-native';
 import { ListHomeContext } from '../../contexts/listHomeContext';
-
+import * as Styled from './style.js';
 import { LoginContext } from '../../contexts/loginContext';
 
 import anonimo from '../../assets/Images/imagemAnonima.jpg';
@@ -20,12 +20,12 @@ export const HeaderUserInfos = () => {
 
     return (
         <>
-            <TouchableOpacity style={styles.containerImageUser}>
+            <Styled.containerImageUser>
                 <Image
                     style={styles.imageUser}
                     source={userInfos?.avatar?.tmdb?.avatar_path || anonimo}
                 />
-            </TouchableOpacity>
+            </Styled.containerImageUser>
             <Text style={styles.bodyScreenName}>
                 {'Olá,  '}
                 <Text style={{ color: '#e9a6a6' }}>

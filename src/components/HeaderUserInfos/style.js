@@ -1,11 +1,12 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
+
+export const containerImageUser = styled.TouchableOpacity`
+    position: absolute;
+    right: 20;
+    top: 16;
+`;
 
 export const styles = StyleSheet.create({
-    containerImageUser: {
-        position: 'absolute',
-        top: 16,
-        right: 20,
-    },
     imageUser: {
         height: 44,
         width: 44,
