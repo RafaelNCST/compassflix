@@ -12,12 +12,15 @@ export const imageUser = styled.Image`
     border-radius: 50;
 `;
 
+export const bodyScreenName = styled.Text`
+    color: '#FFFFFF';
+    font-size: 18;
+    margin-left: 14;
+    margin-top: 40;
+    font-family: 'OpenSans-Bold';
+`;
+
 export const styles = StyleSheet.create({
-    imageUser: {
-        height: 44,
-        width: 44,
-        borderRadius: 50,
-    },
     bodyScreenName: {
         color: '#FFFFFF',
         fontSize: 18,

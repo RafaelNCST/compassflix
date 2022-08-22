@@ -25,13 +25,13 @@ export const HeaderUserInfos = () => {
                     source={userInfos?.avatar?.tmdb?.avatar_path || anonimo}
                 />
             </Styled.containerImageUser>
-            <Text style={styles.bodyScreenName}>
+            <Styled.bodyScreenName>
                 {'Olá,  '}
-                <Text style={{ color: '#e9a6a6' }}>
+                <Styled.ScreenNameUserInfo>
                     {userInfos?.name || userInfos?.username}
-                </Text>
+                </Styled.ScreenNameUserInfo>
                 !
-            </Text>
+            </Styled.bodyScreenName>
             <Text style={styles.bodyScreenSubtitle}>
                 Reveja ou acompanhe {strTitle.toLowerCase()} que você
                 assistiu...
