@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Text, Image, TouchableOpacity } from 'react-native';
-import { ListHomeContext } from '../../contexts/listHomeContext';
+import { HeaderContext } from '../../contexts/headerContext';
 
 import { LoginContext } from '../../contexts/loginContext';
 
@@ -14,7 +14,7 @@ export const HeaderUserInfos = ({ strTitle }) => {
     const Navigation = useNavigation();
 
     // prettier-ignore
-    const { getRequestInfosUser, userInfos } = useContext(ListHomeContext);
+    const { getRequestInfosUser, userInfos } = useContext(HeaderContext);
 
     useEffect(() => {
         if (sessionId) {

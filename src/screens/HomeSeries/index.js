@@ -1,47 +1,46 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { View } from 'react-native';
-import { instance } from '../../services/api';
-import { ListHomeContext } from '../../contexts/listHomeContext';
+import { ListSeriesContext } from '../../contexts/listSeriesContext';
 
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
 import { ListHome } from '../../components/FlatListHome';
-import { useRoute } from '@react-navigation/native';
 
 import { styles } from './style';
 
-export const HomeSeries = () => {
-    const [seriesList, setSeriesList] = useState([]);
-    const {
-        changeInfiniteScrollLoading,
-        loadingScroll,
-        changeLoadingPage,
-        lastPage,
-    } = useContext(ListHomeContext);
+import { useRoute } from '@react-navigation/native';
 
+export const HomeSeries = () => {
     const route = useRoute();
 
-    const requestMovieListFilms = async () => {
-        await instance
-            .get(`movie/popular?&language=pt-BR&page=${lastPage}`)
-            .then(resp => {
-                setSeriesList([...seriesList, ...resp.data.results]);
-                changeLoadingPage(false);
-            })
-            .finally(() => changeInfiniteScrollLoading(false));
-    };
+    //prettier-ignore
+    const { 
+        requestTvListSeries, 
+        lastPageSeries, 
+        loadingScrollSeries,
+        loadingSeries,
+        seriesList,
+        loadInfiniteScrollSeries,
+    } = useContext(ListSeriesContext);
 
     useEffect(() => {
-        requestMovieListFilms();
+        requestTvListSeries();
     }, []);
 
     useEffect(() => {
-        if (loadingScroll) setTimeout(() => requestMovieListFilms(), 2000);
-    }, [lastPage]);
+        if (loadingScrollSeries) {
+            setTimeout(() => requestTvListSeries(), 2000);
+        }
+    }, [lastPageSeries]);
 
     return (
         <View style={styles.bodyScreen}>
             <HeaderUserInfos strTitle={route?.params?.strTitle} />
-            <ListHome data={seriesList} />
+            <ListHome
+                loading={loadingSeries}
+                data={seriesList}
+                infiniteScrollFn={loadInfiniteScrollSeries}
+                loadingState={loadingScrollSeries}
+            />
         </View>
     );
 };
