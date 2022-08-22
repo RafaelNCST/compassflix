@@ -26,18 +26,13 @@ export const SubContainerPopularMovies = styled.View`
     width: '100%';
 `;
 
-export const iconPopularMovies = styled.Icon`
+export const IconPopularMovies = styled.Icon`
     color: #ec2626;
 `;
 
-export const styles = StyleSheet.create({
-    iconPopularMovies: {
-        color: '#EC2626',
-    },
-    textPopularMovies: {
-        color: '#FFFFFF',
-        marginLeft: 4.5,
-        fontSize: 9,
-        fontFamily: 'OpenSans-SemiBold',
-    },
-});
+export const TextPopularMovies = styled.Text`
+    color: #ffffff;
+    margin-left: 4.5;
+    font-size: 9;
+    font-family: 'OpenSans-SemiBold';
+`;
