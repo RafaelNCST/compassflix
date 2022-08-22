@@ -19,6 +19,13 @@ export const ImagePoster = styled.Image`
     border-radius: 10;
 `;
 
+export const subContainerPopularMovies = styled.View`
+    flex-direction: 'row';
+    margin-top: 1;
+    justify-content: 'flex-start';
+    width: '100%';
+`;
+
 export const styles = StyleSheet.create({
     subContainerPopularMovies: {
         flexDirection: 'row',
