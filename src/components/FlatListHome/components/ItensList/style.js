@@ -19,20 +19,18 @@ export const ImagePoster = styled.Image`
     border-radius: 10;
 `;
 
-export const subContainerPopularMovies = styled.View`
+export const SubContainerPopularMovies = styled.View`
     flex-direction: 'row';
     margin-top: 1;
     justify-content: 'flex-start';
     width: '100%';
 `;
 
+export const iconPopularMovies = styled.Icon`
+    color: #ec2626;
+`;
+
 export const styles = StyleSheet.create({
-    subContainerPopularMovies: {
-        flexDirection: 'row',
-        marginTop: 1,
-        justifyContent: 'flex-start',
-        width: '100%',
-    },
     iconPopularMovies: {
         color: '#EC2626',
     },

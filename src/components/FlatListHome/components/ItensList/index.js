@@ -19,14 +19,10 @@ export const ItensList = memo(({ listItens, noteItens, idItens }) => {
                     }}
                 />
             </Styled.ImageContainer>
-            <Styled.subContainerPopularMovies>
-                <Icon
-                    style={styles.iconPopularMovies}
-                    name='star'
-                    size={13.5}
-                />
+            <Styled.SubContainerPopularMovies>
+                <Styled.iconPopularMovies name='star' size={13.5} />
                 <Text style={styles.textPopularMovies}>{noteItens}/10</Text>
-            </Styled.subContainerPopularMovies>
+            </Styled.SubContainerPopularMovies>
         </Styled.ImagePopularMovies>
     );
 });
