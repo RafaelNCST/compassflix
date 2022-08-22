@@ -20,6 +20,10 @@ export const bodyScreenName = styled.Text`
     font-family: 'OpenSans-Bold';
 `;
 
+export const ScreenNameUserInfo = styled.Text`
+    color: #e9a6a6;
+`;
+
 export const styles = StyleSheet.create({
     bodyScreenName: {
         color: '#FFFFFF',
