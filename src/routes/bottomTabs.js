@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StackFilmsRoutes } from './stackFilms';
 import { StackSeriesRoutes } from './stackSeries';
 import { StackUserRoutes } from './stackUser';
-import { ListHomeContextProvider } from '../contexts/listHomeContext';
+import { HeaderContextProvider } from '../contexts/headerContext';
 
 import {
     screenOptions,
@@ -16,7 +16,7 @@ export const BottomTabs = () => {
     const BottomTab = createBottomTabNavigator();
 
     return (
-        <ListHomeContextProvider>
+        <HeaderContextProvider>
             <BottomTab.Navigator
                 initialRouteName='StackFilms'
                 screenOptions={screenOptions}
@@ -37,6 +37,6 @@ export const BottomTabs = () => {
                     options={UserOptions}
                 />
             </BottomTab.Navigator>
-        </ListHomeContextProvider>
+        </HeaderContextProvider>
     );
 };
