@@ -32,10 +32,10 @@ export const HeaderUserInfos = () => {
                 </Styled.ScreenNameUserInfo>
                 !
             </Styled.bodyScreenName>
-            <Text style={styles.bodyScreenSubtitle}>
+            <Styled.bodyScreenSubtitle>
                 Reveja ou acompanhe {strTitle.toLowerCase()} que você
                 assistiu...
-            </Text>
+            </Styled.bodyScreenSubtitle>
             <Text style={styles.bodyScreenPopularMovies}>
                 {strTitle.substring(3)} populares este mês
             </Text>

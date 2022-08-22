@@ -24,14 +24,15 @@ export const ScreenNameUserInfo = styled.Text`
     color: #e9a6a6;
 `;
 
+export const bodyScreenSubtitle = styled.Text`
+    color: '#FFFFFF';
+    font-size: 10;
+    margin-top: 1;
+    margin-left: 14;
+    font-family: 'OpenSans-Regular';
+`;
+
 export const styles = StyleSheet.create({
-    bodyScreenName: {
-        color: '#FFFFFF',
-        fontSize: 18,
-        marginLeft: 14,
-        marginTop: 40,
-        fontFamily: 'OpenSans-Bold',
-    },
     bodyScreenSubtitle: {
         color: '#FFFFFF',
         fontSize: 10,
