@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { View } from 'react-native';
 import { ListHome } from '../../components/FlatListHome';
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
-
+import { BodyScreen } from './style';
 import { ListFilmsContext } from '../../contexts/listFilmsContext';
 
 import { styles } from './style';
@@ -31,7 +31,7 @@ export const HomeMovies = () => {
     }, [lastPageFilm]);
 
     return (
-        <View style={styles.bodyScreen}>
+        <BodyScreen>
             <HeaderUserInfos strTitle={route.params.strTitle} />
             <ListHome
                 loading={loadingFilm}
@@ -39,6 +39,6 @@ export const HomeMovies = () => {
                 infiniteScrollFn={loadInfiniteScrollFilm}
                 loadingState={loadingScrollFilm}
             />
-        </View>
+        </BodyScreen>
     );
 };
