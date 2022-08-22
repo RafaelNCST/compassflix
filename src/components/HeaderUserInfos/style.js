@@ -6,6 +6,12 @@ export const containerImageUser = styled.TouchableOpacity`
     top: 16;
 `;
 
+export const imageUser = styled.Image`
+    height: 44;
+    width: 44;
+    border-radius: 50;
+`;
+
 export const styles = StyleSheet.create({
     imageUser: {
         height: 44,

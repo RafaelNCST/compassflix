@@ -21,8 +21,7 @@ export const HeaderUserInfos = () => {
     return (
         <>
             <Styled.containerImageUser>
-                <Image
-                    style={styles.imageUser}
+                <Styled.imageUser
                     source={userInfos?.avatar?.tmdb?.avatar_path || anonimo}
                 />
             </Styled.containerImageUser>
