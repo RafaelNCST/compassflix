@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { View } from 'react-native';
 import { ListSeriesContext } from '../../contexts/listSeriesContext';
-
+import { BodyScreen } from './style';
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
 import { ListHome } from '../../components/FlatListHome';
 
@@ -33,7 +33,7 @@ export const HomeSeries = () => {
     }, [lastPageSeries]);
 
     return (
-        <View style={styles.bodyScreen}>
+        <BodyScreen>
             <HeaderUserInfos strTitle={route?.params?.strTitle} />
             <ListHome
                 loading={loadingSeries}
@@ -41,6 +41,6 @@ export const HomeSeries = () => {
                 infiniteScrollFn={loadInfiniteScrollSeries}
                 loadingState={loadingScrollSeries}
             />
-        </View>
+        </BodyScreen>
     );
 };
