@@ -1,16 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { Text, Image, TouchableOpacity } from 'react-native';
-import { ListHomeContext } from '../../contexts/listHomeContext';
-import * as Styled from './style.js';
+import { HeaderContext } from '../../contexts/headerContext';
+
 import { LoginContext } from '../../contexts/loginContext';
 
 import anonimo from '../../assets/Images/imagemAnonima.jpg';
 import { styles } from './style';
+import { useNavigation } from '@react-navigation/native';
 
-export const HeaderUserInfos = () => {
+export const HeaderUserInfos = ({ strTitle }) => {
     const { sessionId } = useContext(LoginContext);
+
+    const Navigation = useNavigation();
+
     // prettier-ignore
-    const { getRequestInfosUser, userInfos, strTitle } = useContext(ListHomeContext);
+    const { getRequestInfosUser, userInfos } = useContext(HeaderContext);
 
     useEffect(() => {
         if (sessionId) {
@@ -20,9 +24,17 @@ export const HeaderUserInfos = () => {
 
     return (
         <>
-            <Styled.containerImageUser>
-                <Styled.imageUser
-                    source={userInfos?.avatar?.tmdb?.avatar_path || anonimo}
+            <TouchableOpacity
+                onPress={() => Navigation.navigate('StackUser')}
+                style={styles.containerImageUser}
+            >
+                <Image
+                    style={styles.imageUser}
+                    source={
+                        {
+                            uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
+                        } || anonimo
+                    }
                 />
             </Styled.containerImageUser>
             <Styled.bodyScreenName>
@@ -31,14 +43,14 @@ export const HeaderUserInfos = () => {
                     {userInfos?.name || userInfos?.username}
                 </Styled.ScreenNameUserInfo>
                 !
-            </Styled.bodyScreenName>
-            <Styled.bodyScreenSubtitle>
-                Reveja ou acompanhe {strTitle.toLowerCase()} que você
+            </Text>
+            <Text style={styles.bodyScreenSubtitle}>
+                Reveja ou acompanhe {strTitle?.toLowerCase()} que você
                 assistiu...
-            </Styled.bodyScreenSubtitle>
-            <Styled.bodyScreenPopularMovies>
-                {strTitle.substring(3)} populares este mês
-            </Styled.bodyScreenPopularMovies>
+            </Text>
+            <Text style={styles.bodyScreenPopularMovies}>
+                {strTitle?.substring(3)} populares este mês
+            </Text>
         </>
     );
 };
