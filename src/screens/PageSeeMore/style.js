@@ -8,5 +8,6 @@ export const TextTitle = styled.Text`
     line-height: 27px;
     max-width: 250px;
     flex-wrap: wrap;
-    margin-top: 80px;
+    margin-top: 60px;
+    margin-bottom: 30px;
 `;

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import * as Styled from './style';
 
-import { ListHomeContext } from '../../contexts/listHomeContext';
+import { HeaderContext } from '../../contexts/headerContext';
 import { LoginContext } from '../../contexts/loginContext';
 
 import inactiveMovies from '../../assets/Images/moviesGray.png';
@@ -24,8 +24,9 @@ export const UserPerfil = () => {
     const [loading, setloading] = useState(true);
 
     const [dataAvaliationFilms, setDataAvaliationFilms] = useState([]);
+    const [dataFavoritesSeries, setDataFavoritesSeries] = useState([]);
 
-    const { userInfos } = useContext(ListHomeContext);
+    const { userInfos } = useContext(HeaderContext);
     const { sessionId } = useContext(LoginContext);
 
     const requestMoviesRated = () => {
@@ -47,10 +48,19 @@ export const UserPerfil = () => {
             });
     };
 
+    const requestSeriesFavorite = () => {
+        instance
+            .get(`account/${userInfos?.id}/favorite/tv?session_id=${sessionId}`)
+            .then(resp => {
+                setDataFavoritesSeries(resp?.data?.results);
+            });
+    };
+
     useEffect(() => {
         requestMoviesRated();
         requestSeriesRated();
-        setTimeout(() => setloading(false), 2000);
+        requestSeriesFavorite();
+        setTimeout(() => setloading(false), 1000);
     }, []);
 
     return (
@@ -89,6 +99,7 @@ export const UserPerfil = () => {
             <ContainerBottom
                 activeButton={activeButton}
                 dataAvaliationFilms={dataAvaliationFilms}
+                dataFavoritesSeries={dataFavoritesSeries}
                 loading={loading}
             />
         </BodyScreen>

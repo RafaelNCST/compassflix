@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import { ListHomeContext } from '../../../../contexts/listHomeContext';
+import { HeaderContext } from '../../../../contexts/headerContext';
 
 import * as Styled from './style';
 
@@ -14,35 +14,18 @@ import { SpinnerStick } from '../../../../components/SpinnerStick';
 export const ContainerBottom = ({
     activeButton,
     dataAvaliationFilms,
+    dataFavoritesSeries,
     loading,
 }) => {
     const Navigation = useNavigation();
 
-    const { userInfos } = useContext(ListHomeContext);
+    const { userInfos } = useContext(HeaderContext);
 
     const [dataFavoritesFilms, setDataFavoritesFilms] = useState([
         { id: 0, image: require('../../../../assets/MocksUser/apartment.png') },
         { id: 1, image: require('../../../../assets/MocksUser/apartment.png') },
         { id: 2, image: require('../../../../assets/MocksUser/apartment.png') },
         { id: 3, image: require('../../../../assets/MocksUser/apartment.png') },
-    ]);
-    const [dataFavoritesSeries, setDataFavoritesSeries] = useState([
-        {
-            id: 0,
-            image: require('../../../../assets/MocksUser/strangelove.png'),
-        },
-        {
-            id: 1,
-            image: require('../../../../assets/MocksUser/strangelove.png'),
-        },
-        {
-            id: 2,
-            image: require('../../../../assets/MocksUser/strangelove.png'),
-        },
-        {
-            id: 3,
-            image: require('../../../../assets/MocksUser/strangelove.png'),
-        },
     ]);
     const [dataAvaliationSeries, setDataAvaliationSeries] = useState([
         {
@@ -67,20 +50,22 @@ export const ContainerBottom = ({
         },
     ]);
 
-    const Title1Movies = 'Avaliações de filmes recentes de';
-    const Title2Movies = 'Filmes favoritos de';
-    const Title1Series = 'Avaliações de séries recentes de';
-    const Title2Series = 'Séries favoritas de';
-
-    const OpenPageFavorites = () => {
-        Navigation.navigate('PageSeeMoreScreen', {
-            Title: activeButton === 0 ? Title1Movies : Title1Series,
-        });
-    };
+    const Title1Movies = 'Avaliações de filmes recentes de ';
+    const Title2Movies = 'Filmes favoritos de ';
+    const Title1Series = 'Avaliações de séries recentes de ';
+    const Title2Series = 'Séries favoritas de ';
 
     const OpenPageAvaliation = () => {
         Navigation.navigate('PageSeeMoreScreen', {
+            Title: activeButton === 0 ? Title1Movies : Title1Series,
+            type: activeButton === 0 ? 0 : 1,
+        });
+    };
+
+    const OpenPageFavorites = () => {
+        Navigation.navigate('PageSeeMoreScreen', {
             Title: activeButton === 0 ? Title2Movies : Title2Series,
+            type: activeButton === 0 ? 2 : 3,
         });
     };
 
@@ -92,10 +77,10 @@ export const ContainerBottom = ({
                         color={'#FFFFFF'}
                         fontFamily={'OpenSans-SemiBold'}
                     >
-                        Filmes Favoritos de{' '}
+                        {activeButton === 0 ? Title2Movies : Title2Series}
                         {userInfos?.name || userInfos?.username}
                     </TextInfos>
-                    <TouchableOpacity onPress={() => OpenPageAvaliation()}>
+                    <TouchableOpacity onPress={() => OpenPageFavorites()}>
                         <TextInfos
                             color={'#E9A6A6'}
                             fontFamily={'OpenSans-SemiBold'}
@@ -111,12 +96,17 @@ export const ContainerBottom = ({
                         {(activeButton === 0
                             ? dataFavoritesFilms
                             : dataFavoritesSeries
-                        ).map((item, index) => (
-                            <Styled.ImageFavorites
-                                key={index}
-                                source={item.image}
-                            />
-                        ))}
+                        ).map((item, index) => {
+                            if (index === 3) return null;
+                            return (
+                                <Styled.ImageFavorites
+                                    key={index}
+                                    source={{
+                                        uri: `https://image.tmdb.org/t/p/original${item.poster_path}`,
+                                    }}
+                                />
+                            );
+                        })}
                     </Styled.ListData>
                 )}
             </Styled.ContainerData>
@@ -126,10 +116,10 @@ export const ContainerBottom = ({
                         color={'#FFFFFF'}
                         fontFamily={'OpenSans-SemiBold'}
                     >
-                        Avaliações de filmes recentes de{' '}
+                        {activeButton === 0 ? Title1Movies : Title1Series}
                         {userInfos?.name || userInfos?.username}
                     </TextInfos>
-                    <TouchableOpacity onPress={() => OpenPageFavorites()}>
+                    <TouchableOpacity onPress={() => OpenPageAvaliation()}>
                         <TextInfos
                             color={'#E9A6A6'}
                             fontFamily={'OpenSans-SemiBold'}
