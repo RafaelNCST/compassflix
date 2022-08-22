@@ -12,13 +12,14 @@ export const ImageContainer = styled.View`
     border-radius: 10;
 `;
 
+export const ImagePoster = styled.Image`
+    height: 95;
+    width: 76;
+    resize-mode: 'contain';
+    border-radius: 10;
+`;
+
 export const styles = StyleSheet.create({
-    imagePoster: {
-        height: 95,
-        width: 76,
-        resizeMode: 'contain',
-        borderRadius: 10,
-    },
     subContainerPopularMovies: {
         flexDirection: 'row',
         marginTop: 1,
