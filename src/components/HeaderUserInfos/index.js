@@ -36,9 +36,9 @@ export const HeaderUserInfos = () => {
                 Reveja ou acompanhe {strTitle.toLowerCase()} que você
                 assistiu...
             </Styled.bodyScreenSubtitle>
-            <Text style={styles.bodyScreenPopularMovies}>
+            <Styled.bodyScreenPopularMovies>
                 {strTitle.substring(3)} populares este mês
-            </Text>
+            </Styled.bodyScreenPopularMovies>
         </>
     );
 };

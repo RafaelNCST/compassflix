@@ -32,20 +32,11 @@ export const bodyScreenSubtitle = styled.Text`
     font-family: 'OpenSans-Regular';
 `;
 
-export const styles = StyleSheet.create({
-    bodyScreenSubtitle: {
-        color: '#FFFFFF',
-        fontSize: 10,
-        marginTop: 1,
-        marginLeft: 14,
-        fontFamily: 'OpenSans-Regular',
-    },
-    bodyScreenPopularMovies: {
-        color: '#FFFFFF',
-        fontSize: 12,
-        marginTop: 21,
-        marginLeft: 14,
-        marginBottom: 30,
-        fontFamily: 'OpenSans-SemiBold',
-    },
-});
+export const bodyScreenPopularMovies = styled.Text`
+    color: '#FFFFFF';
+    font-size: 12;
+    margin-top: 21;
+    margin-left: 14;
+    margin-bottom: 30;
+    font-family: 'OpenSans-SemiBold';
+`;
