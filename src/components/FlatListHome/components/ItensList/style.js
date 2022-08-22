@@ -26,10 +26,6 @@ export const SubContainerPopularMovies = styled.View`
     width: '100%';
 `;
 
-export const IconPopularMovies = styled.Icon`
-    color: #ec2626;
-`;
-
 export const TextPopularMovies = styled.Text`
     color: #ffffff;
     margin-left: 4.5;

@@ -20,7 +20,7 @@ export const ItensList = memo(({ listItens, noteItens, idItens }) => {
                 />
             </Styled.ImageContainer>
             <Styled.SubContainerPopularMovies>
-                <Styled.IconPopularMovies name='star' size={13.5} />
+                <Icon color={'#ec2626'} name='star' size={13.5} />
                 <Styled.TextPopularMovies>
                     {noteItens}/10
                 </Styled.TextPopularMovies>
