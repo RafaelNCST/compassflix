@@ -22,7 +22,6 @@ export const HeaderUserInfos = ({ strTitle }) => {
         }
     }, [sessionId]);
 
-    console.log(userInfos?.avatar?.tmdb?.avatar_path);
     return (
         <>
             <Styled.ContainerImageUser
@@ -30,9 +29,11 @@ export const HeaderUserInfos = ({ strTitle }) => {
             >
                 <Styled.ImageUser
                     source={
-                        {
-                            uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
-                        } || anonimo
+                        userInfos.avatar?.tmdb?.avatar_path
+                            ? {
+                                  uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
+                              }
+                            : anonimo
                     }
                 />
             </Styled.ContainerImageUser>
