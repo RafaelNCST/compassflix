@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { View } from 'react-native';
 import { instance } from '../../services/api';
 import { ListHomeContext } from '../../contexts/listHomeContext';
-
+import { BodyScreen } from './style';
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
 import { ListHome } from '../../components/FlatListHome';
 
@@ -38,9 +38,9 @@ export const HomeSeries = () => {
     }, [lastPage]);
 
     return (
-        <View style={styles.bodyScreen}>
+        <BodyScreen>
             <HeaderUserInfos />
             <ListHome data={seriesList} />
-        </View>
+        </BodyScreen>
     );
 };
