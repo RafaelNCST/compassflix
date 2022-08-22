@@ -12,14 +12,14 @@ export const ItensList = memo(({ listItens, noteItens, idItens }) => {
         <Styled.ImagePopularMovies
             onPress={() => Navigation.navigate('DetailScreen', { idItens })}
         >
-            <View style={styles.imageContainer}>
+            <Styled.ImageContainer>
                 <Image
                     style={styles.imagePoster}
                     source={{
                         uri: `https://image.tmdb.org/t/p/w500${listItens}`,
                     }}
                 />
-            </View>
+            </Styled.ImageContainer>
             <View style={styles.subContainerPopularMovies}>
                 <Icon
                     style={styles.iconPopularMovies}

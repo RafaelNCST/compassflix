@@ -6,17 +6,13 @@ export const ImagePopularMovies = styled.TouchableOpacity`
     align-items: 'center';
 `;
 
+export const ImageContainer = styled.View`
+    width: 76;
+    height: 95;
+    border-radius: 10;
+`;
+
 export const styles = StyleSheet.create({
-    imagePopularMovies: {
-        marginHorizontal: 8,
-        paddingVertical: 15,
-        alignItems: 'center',
-    },
-    imageContainer: {
-        width: 76,
-        height: 95,
-        borderRadius: 10,
-    },
     imagePoster: {
         height: 95,
         width: 76,
