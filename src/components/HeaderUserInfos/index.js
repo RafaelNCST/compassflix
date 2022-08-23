@@ -31,9 +31,11 @@ export const HeaderUserInfos = ({ strTitle }) => {
                 <Image
                     style={styles.imageUser}
                     source={
-                        {
-                            uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
-                        } || anonimo
+                        userInfos?.avatar?.tmdb?.avatar_path
+                            ? {
+                                  uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
+                              }
+                            : anonimo
                     }
                 />
             </TouchableOpacity>

@@ -22,9 +22,11 @@ export const ContainerTop = ({
             <Styled.ContainerUser heightContainer={110}>
                 <Styled.ImageUser
                     source={
-                        {
-                            uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
-                        } || anonimo
+                        userInfos?.avatar?.tmdb?.avatar_path
+                            ? {
+                                  uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
+                              }
+                            : anonimo
                     }
                 />
                 <Styled.TextTitle paddingTop={3} size={20} color={'#FFFFFF'}>
