@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, Dimensions } from 'react-native';
 import { LoginInputs } from './components/LoginInputs';
 import { styles } from './style';
 import * as Styled from './style';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { instance } from '../../services/api';
 import { SpinnerRed } from '../../components/SpinnerRed';
@@ -15,15 +16,25 @@ export const Login = () => {
 
     const { endLoadingRequest, isLoading } = useContext(LoginContext);
 
-    useEffect(() => {
+    const requestToken = () => {
         instance
             .get('authentication/token/new?')
             .then(resp => {
                 endLoadingRequest(resp.data.request_token, false);
             })
             .catch(error => console.log(error));
+    };
+    const sessionIdExist = async () => {
+        const getSessionId = AsyncStorage.getItem('sessionId');
+        if (await getSessionId) {
+            endLoadingRequest(await getSessionId, true);
+        } else {
+            requestToken();
+        }
+    };
+    useEffect(() => {
+        sessionIdExist();
     }, []);
-
     return (
         <Styled.BodyScreen>
             <Styled.ImageContainer height={height} width={width}>
