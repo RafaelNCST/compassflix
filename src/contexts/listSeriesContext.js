@@ -11,7 +11,7 @@ export const ListSeriesContextProvider = ({ children }) => {
 
     const requestTvListSeries = async () => {
         await instance
-            .get(`movie/popular?&language=pt-BR&page=${lastPageSeries}`)
+            .get(`tv/popular?&language=pt-BR&page=${lastPageSeries}`)
             .then(resp => {
                 setSeriesList([...seriesList, ...resp.data.results]);
                 setLoadingSeries(false);
