@@ -97,7 +97,7 @@ export const ContainerBottom = ({
                             ? dataFavoritesFilms
                             : dataFavoritesSeries
                         ).map((item, index) => {
-                            if (index === 3) return null;
+                            if (index > 3) return null;
                             return (
                                 <Styled.ImageFavorites
                                     key={index}
@@ -136,7 +136,7 @@ export const ContainerBottom = ({
                             ? dataAvaliationFilms
                             : dataAvaliationSeries
                         ).map((item, index) => {
-                            if (index === 4) null;
+                            if (index > 4) return null;
                             return (
                                 <Styled.ImageAvaliation
                                     key={index}

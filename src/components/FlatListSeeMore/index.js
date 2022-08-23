@@ -3,6 +3,7 @@ import { SpinnerMultiColor } from '../SpinnerMultiColor';
 import { ItensSeeMoreList } from './components/ItensList';
 
 import * as Styled from './style';
+import { styles } from './style';
 
 import { FlatList } from 'react-native';
 
@@ -29,7 +30,7 @@ export const ListSeeMore = ({
             ) : (
                 <FlatList
                     data={data}
-                    contentContainerStyle={Styled.ContainerFlatList}
+                    contentContainerStyle={styles.ContainerFlatList}
                     numColumns={4}
                     onEndReached={
                         lastPage < totalPages ? loadInfiniteScroll : null

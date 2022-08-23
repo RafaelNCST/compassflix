@@ -40,6 +40,7 @@ export const ImageFavorites = styled.Image`
     width: 67px;
     height: 89px;
     margin: 8px;
+    border-radius: 7px;
 `;
 
 export const ImageAvaliation = styled.Image`
