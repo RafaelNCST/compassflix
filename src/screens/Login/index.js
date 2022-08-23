@@ -1,7 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import { View, Text, Image, KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView, Dimensions } from 'react-native';
 import { LoginInputs } from './components/LoginInputs';
 import { styles } from './style';
+import * as Styled from './style';
 
 import { instance } from '../../services/api';
 import { SpinnerRed } from '../../components/SpinnerRed';
@@ -9,6 +10,9 @@ import { SpinnerRed } from '../../components/SpinnerRed';
 import { LoginContext } from '../../contexts/loginContext';
 
 export const Login = () => {
+    const height = Dimensions.get('screen').height;
+    const width = Dimensions.get('screen').width;
+
     const { endLoadingRequest, isLoading } = useContext(LoginContext);
 
     useEffect(() => {
@@ -21,13 +25,13 @@ export const Login = () => {
     }, []);
 
     return (
-        <View style={styles.bodyScreen}>
-            <View style={styles.imageContainer}>
-                <Image
+        <Styled.BodyScreen>
+            <Styled.ImageContainer height={height} width={width}>
+                <Styled.image
                     source={require('../../assets/Images/fundo.png')}
                     style={styles.image}
                 />
-            </View>
+            </Styled.ImageContainer>
             {isLoading ? (
                 <SpinnerRed height={100} width={100} />
             ) : (
@@ -36,19 +40,19 @@ export const Login = () => {
                     keyboardVerticalOffset={40}
                     style={styles.viewAll}
                 >
-                    <Image
+                    <Styled.LogoImage
                         source={require('../../assets/Images/logo.png')}
                         style={styles.logoImage}
                     />
-                    <View style={styles.bottomView}>
-                        <Text style={styles.textLogin}>Login</Text>
-                        <Text style={styles.continueText}>
+                    <Styled.BottomView>
+                        <Styled.TextLogin>Login</Styled.TextLogin>
+                        <Styled.ContinueText>
                             Entre na sua conta para continuar.
-                        </Text>
-                    </View>
+                        </Styled.ContinueText>
+                    </Styled.BottomView>
                     <LoginInputs />
                 </KeyboardAvoidingView>
             )}
-        </View>
+        </Styled.BodyScreen>
     );
 };
