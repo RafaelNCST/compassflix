@@ -1,13 +1,45 @@
-import React from 'react';
+import React , { useContext, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style'
 import { Detail } from '../Detail'
 import { Evaluation } from '../Evaluation';
+import { instance } from '../../../../services/api';
+import { LoginContext } from "../../../../contexts/loginContext";
+import { useRoute } from "@react-navigation/native";
 
 
 
-export const DetailsMovieComponent = ({ setAvaliation, avaliation, Navigation, note, setNote, detail, visible, setVisible, directorArray }) => {
+export const DetailsMovieComponent = ({ setAvaliation, movieStates, avaliation, Navigation, note, setNote, detail, visible, setVisible, directorArray }) => {
+    const { sessionId } = useContext(LoginContext);
+    const { idFilmes } = useRoute().params;
+    const [favorite, setFavorite] = useState(false);
+
+    const postFavoriteMovie = async () => {
+        await instance.post(`account/13846517/favorite?&session_id=${sessionId}`, 
+        {"media_type": "movie",
+        "media_id": idFilmes,
+        "favorite": favorite
+    }). then((resp) => {
+            console.log("funcionou")
+            console.log(resp?.data?.success)
+            
+    }) .catch((error) => {
+        if(error.response){
+            console.log(error.response.data);
+        }else if(error.request){
+            console.log(error.request.data);
+        }else{
+            console.log('Error', error.message);
+        }
+    })
+}
+    
+    const click = () => {
+        setFavorite(!favorite)
+        postFavoriteMovie()
+    }
+
 
     const date = new Date(detail?.release_date)
 
@@ -21,8 +53,8 @@ export const DetailsMovieComponent = ({ setAvaliation, avaliation, Navigation, n
                 <Icon name='arrow-back' size={30} color={'black'} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.favoriteButtom}>
-                <Icon name='grade' size={30} color={'black'} />
+            <TouchableOpacity style={styles.favoriteButtom} onPress={()=> click()}>
+                <Icon name='grade' size={30} color={favorite ? 'red' : 'white' } style={styles.Favorite}/>
             </TouchableOpacity>
 
             <Modal animationType='fade' visible={visible} transparent={true}>
@@ -48,17 +80,17 @@ export const DetailsMovieComponent = ({ setAvaliation, avaliation, Navigation, n
                         <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
                     </TouchableOpacity>
 
-                    
-                    
 
                     <TouchableOpacity onPress={() => setNote(true)} style={styles.buttonAvalution}>
-                    <View style={styles.buttonEdit}>
-                        <Icon name='edit' size={10} color={'#000000'} />
-                    </View>
-                        <Text style={styles.textAvaliation}> AVALIE AGORA </Text>
+                        <Text style={styles.textAvaliation}>
+                            {(movieStates?.rated?.value) || "Avalie Agora !!" } </Text>
                     </TouchableOpacity>
                     
-
+                    <View style={styles.buttonEdit}>
+                        <TouchableOpacity onPress={() => setNote(true)}>
+                        <Icon name='edit' size={10} color={'#000000'} />
+                        </TouchableOpacity>
+                    </View>
 
                 </View>
 

@@ -9,6 +9,7 @@ import { LoginContext } from "../../contexts/loginContext";
 import { LoadingScreensApis } from "../../components/LoadingScreensApis";
 
 export const DetailsMovie = () => {
+    const { sessionId } = useContext(LoginContext);
     const [avaliation, setAvaliation] = useState('');
     const [detail, setDetail] = useState({});
     const [cast, setCast] = useState([]);
@@ -16,9 +17,27 @@ export const DetailsMovie = () => {
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [note, setNote] = useState(false);
+    const [movieStates, setMovieStates] = useState({});
 
     const Navigation = useNavigation();
     const { idFilmes } = useRoute().params;
+
+    const getStates = async () => {
+        await instance.get(`movie/${idFilmes}/account_states?&session_id=${sessionId}`)
+            .then((resp) => {
+                setMovieStates(resp?.data);
+
+            })
+            .catch((error) => {
+                if(error.response){
+                    console.log(error.response.data);
+                }else if(error.request){
+                    console.log(error.request.data);
+                }else{
+                    console.log('Error', error.message);
+                }
+            })
+    }
 
     const getDetail = async () => {
         await instance
@@ -47,6 +66,10 @@ export const DetailsMovie = () => {
             }, 2000);
         }, []);
 
+        useEffect(() => {
+            getStates();
+        },[avaliation])
+
         return (
             <View style={styles.bodyScreen}>
                 {loading ? (
@@ -61,8 +84,8 @@ export const DetailsMovie = () => {
                             setNote={setNote}
                             avaliation={avaliation}
                             setAvaliation={setAvaliation}
+                            movieStates = {movieStates}
                             
-
                         />
                         <CreditsComponent cast={cast} />
                     </>

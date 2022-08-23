@@ -1,8 +1,6 @@
-import React ,{ useState, useContext }from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import React ,{ useContext }from 'react';
+import { View, Text, TouchableOpacity, TextInput} from 'react-native';
 import { useRoute } from "@react-navigation/native";
-import { TextInput } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles';
 import { instance } from '../../../../services/api';
 import { LoginContext } from "../../../../contexts/loginContext";
@@ -17,8 +15,6 @@ export const Evaluation = ({ avaliation, setAvaliation, setNote}) => {
             "value": parseFloat(avaliation)
         }) .then((resp) => {
                 setAvaliation(resp?.value);
-                console.log("deu certo");
-                console.log(resp?.data?.success);
             })
             .catch((error) => {
                 if(error.response){
@@ -41,7 +37,7 @@ export const Evaluation = ({ avaliation, setAvaliation, setNote}) => {
             <Text style={styles.title}> Faça a sua avaliação ! </Text>
             </View>
             <View style={styles.areaInputNote}>
-            <TextInput style={styles.inputNote} keyboardType='numeric' onChangeText={(number) =>setAvaliation(number)}/> 
+            <TextInput style={styles.inputNote} keyboardType='numeric' onChangeText={(number) => captureText(number)}/> 
             <Text style={styles.maximo} >/10</Text>
             </View>
             <View style={styles.areaButtons}>

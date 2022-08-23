@@ -141,6 +141,8 @@ export const styles = StyleSheet.create({
         borderBottomLeftRadius:5,  
         borderBottomRightRadius:5,
         flexDirection:'row-reverse',
+        alignItems:'center',
+        justifyContent:'center'
         
     },
     buttonEdit:{
@@ -151,12 +153,22 @@ export const styles = StyleSheet.create({
         height: 15, 
         backgroundColor: '#C4C4C4',
         bottom:11, 
-        right:4
+        left:125,
+        bottom:27
     },
     textAvaliation:{
-        color: 'black', 
-        fontSize:10, 
+        
+        color: 'black',  
         alignItems:'center', 
-        justifyContent:'center' 
+        justifyContent:'center',
+    },
+    formatFavorite:{
+        backgroundColor:'#EC2626',
+        borderWidth:1,
+        borderColor:'rede'
+
+    },
+    Favorite:{
+        color:'red',
     }
 })
