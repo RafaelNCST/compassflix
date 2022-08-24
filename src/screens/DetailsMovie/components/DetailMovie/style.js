@@ -109,6 +109,7 @@ export const styles = StyleSheet.create({
         color: 'white',
     },
     areaDescription: {
+        top:16,
         width: "90%",
         height: 95,
     },
@@ -157,10 +158,11 @@ export const styles = StyleSheet.create({
         bottom:27
     },
     textAvaliation:{
-        
-        color: 'black',  
+        fontWeight:'bold',
+        color:'black',
         alignItems:'center', 
         justifyContent:'center',
+        fontSize:12
     },
     formatFavorite:{
         backgroundColor:'#EC2626',
@@ -168,4 +170,5 @@ export const styles = StyleSheet.create({
         borderColor:'rede'
 
     },
+   
 })

@@ -1,14 +1,9 @@
 import React ,{ useContext }from 'react';
 import { View, Text, TouchableOpacity, TextInput} from 'react-native';
-import { useRoute } from "@react-navigation/native";
+import Icon  from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './styles';
-import { instance } from '../../../../services/api';
-import { LoginContext } from "../../../../contexts/loginContext";
-
 
 export const Evaluation = ({  setNoteAvaliation, setNote, PostRateMovie}) => {
-    const { sessionId } = useContext(LoginContext);
-    const { idFilmes } = useRoute().params;
 
     return (
         <View style={styles.areaNote}>
@@ -16,6 +11,7 @@ export const Evaluation = ({  setNoteAvaliation, setNote, PostRateMovie}) => {
             <Text style={styles.title}> Faça a sua avaliação ! </Text>
             </View>
             <View style={styles.areaInputNote}>
+            <Icon style={{left:15}}name='create' color={'#C4C4C4'} size={12} />
             <TextInput style={styles.inputNote} keyboardType='numeric' onChangeText={(number) => setNoteAvaliation(number)}/> 
             <Text style={styles.maximo} >/10</Text>
             </View>
@@ -24,7 +20,7 @@ export const Evaluation = ({  setNoteAvaliation, setNote, PostRateMovie}) => {
                 <Text style={styles.textCancelButton}> CANCELAR </Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.okButton} onPress={ () => PostRateMovie()}>
-                <Text style={styles.textOkButton}>Ok</Text>
+                <Text style={styles.textOkButton}>OK</Text>
             </TouchableOpacity>
             </View>
         </View>

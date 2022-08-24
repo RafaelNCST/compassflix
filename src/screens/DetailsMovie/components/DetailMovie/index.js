@@ -6,13 +6,15 @@ import { Detail } from '../Detail'
 import { Evaluation } from '../Evaluation';
 import { instance } from '../../../../services/api';
 import { LoginContext } from "../../../../contexts/loginContext";
-import { useRoute } from "@react-navigation/native";
-
+import { useRoute } from "@react-navigation/native"; 
+import StarActice from '../../../../assets/Images/StarActive.png'
+import StarInative from '../../../../assets/Images/StarInative.png'
 
 
 export const DetailsMovieComponent = ({ markFavorite ,noteAvaliation, movieStates, setMarkFavorite, setNoteAvaliation , Navigation, note, setNote, detail, visible, setVisible, directorArray }) => {
     const { sessionId } = useContext(LoginContext);
     const { idFilmes } = useRoute().params;
+    const [verification, setVerification] = useState(false);
 
     const postFavoriteMovie = async () => {
         await instance.post(`account/13846517/favorite?&session_id=${sessionId}`, 
@@ -20,7 +22,9 @@ export const DetailsMovieComponent = ({ markFavorite ,noteAvaliation, movieState
         "media_id": idFilmes,
         "favorite": markFavorite
     }). then((resp) => {
+            
     }) .catch((error) => {
+        setVerification(true)
         if(error.response){
             console.log(error.response.data);
         }else if(error.request){
@@ -30,16 +34,16 @@ export const DetailsMovieComponent = ({ markFavorite ,noteAvaliation, movieState
         }
     })
 }
+
+
 const PostRateMovie = async () => {
     await instance.post(`movie/${idFilmes}/rating?session_id=${sessionId}`, {
         "value": parseFloat(noteAvaliation)
-    }) .then((resp) => {
+    }) .then(resp => {
             setNoteAvaliation(resp?.value);
             setNote(false)
-        
         })
-        .catch((error) => {
-            
+        .catch(error => {
             if(error.response){
                 console.log(error.response.data);
             }else if(error.request){
@@ -69,7 +73,7 @@ const PostRateMovie = async () => {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.favoriteButtom} onPress={()=> click()}>
-                <Icon name='grade' size={30} color={movieStates?.favorite === true ? 'black' : 'red' }/>
+                <Image style={{width:25, height:25}} source={ movieStates?.favorite === true ? StarActice : StarInative }/>
             </TouchableOpacity>
 
             <Modal animationType='fade' visible={visible} transparent={true}>
@@ -95,11 +99,8 @@ const PostRateMovie = async () => {
                     <TouchableOpacity onPress={() => setVisible(true)}>
                         <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
                     </TouchableOpacity>
-
-
-                    <TouchableOpacity onPress={() => setNote(true)} style={[styles.buttonAvalution, {backgroundColor: movieStates?.rated?.value === '' ?  '#E9A6A6' : '#8BE0EC'}]}>
-                        <Text style={styles.textAvaliation}>
-                            {(movieStates?.rated?.value) || "Avalie Agora !!" } </Text>
+                    <TouchableOpacity onPress={() => setNote(true)} style={[styles.buttonAvalution, {backgroundColor: movieStates?.rated?.value ? '#8BE0EC' : '#E9A6A6'   }]}>
+                        <Text style={styles.textAvaliation}> { movieStates?.rated?.value ? "Sua nota é: " + (movieStates?.rated?.value) + " /10" : "Avalie Agora"} </Text>
                     </TouchableOpacity>
                     
                     <View style={styles.buttonEdit}>
@@ -113,7 +114,7 @@ const PostRateMovie = async () => {
                 <View style={styles.infoArea}>
                     <View style={styles.titleArea}>
                         <View style={styles.containerNameAndYear}>
-                            <TouchableOpacity onPress={() => setVisible(true)}>
+                            <TouchableOpacity onPress={() => setVisible(true)} >
                                 <Text style={styles.textTitle}>{(detail?.title).length > 10 ? (detail?.title).substring(0, 10) + '...' : detail?.title}</Text>
                             </TouchableOpacity>
                             <Text style={styles.textAno}>{date.getFullYear()}</Text>
