@@ -18,7 +18,8 @@ areaNote:{
     title:{
     color:'#000000',
     marginTop:10,
-    fontSize:18
+    fontSize:18,
+    fontWeight:'bold'
 },
     areaInputNote:{
     flex:1,
@@ -35,12 +36,13 @@ areaNote:{
     padding:2,
     alignItems:'center',
     justifyContent:'center',
-    paddingHorizontal:2
+    paddingHorizontal:15,
     
 },
     maximo:{
     fontSize:18,
-    color:'#000000'
+    color:'#000000',
+    fontWeight:'bold'
 },
     areaButtons:{
     width:290, 
@@ -62,7 +64,9 @@ areaNote:{
     color:'#000000', 
     justifyContent:'center', 
     alignItems:'center', 
-    fontSize:10
+    fontSize:10,
+    top:5,
+    fontWeight:'bold'
 },
     okButton:{
     width:100, 
@@ -75,6 +79,8 @@ areaNote:{
     color:'white', 
     justifyContent:'center', 
     alignItems:'center', 
-    fontSize:10
+    fontSize:10,
+    top:5,
+    fontWeight:'bold'
 }
 })
