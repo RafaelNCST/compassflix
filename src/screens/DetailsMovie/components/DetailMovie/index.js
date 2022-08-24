@@ -10,20 +10,16 @@ import { useRoute } from "@react-navigation/native";
 
 
 
-export const DetailsMovieComponent = ({ setAvaliation, movieStates, avaliation, Navigation, note, setNote, detail, visible, setVisible, directorArray }) => {
+export const DetailsMovieComponent = ({ markFavorite ,noteAvaliation, movieStates, setMarkFavorite, setNoteAvaliation , Navigation, note, setNote, detail, visible, setVisible, directorArray }) => {
     const { sessionId } = useContext(LoginContext);
     const { idFilmes } = useRoute().params;
-    const [favorite, setFavorite] = useState(false);
 
     const postFavoriteMovie = async () => {
         await instance.post(`account/13846517/favorite?&session_id=${sessionId}`, 
         {"media_type": "movie",
         "media_id": idFilmes,
-        "favorite": favorite
+        "favorite": markFavorite
     }). then((resp) => {
-            console.log("funcionou")
-            console.log(resp?.data?.success)
-            
     }) .catch((error) => {
         if(error.response){
             console.log(error.response.data);
@@ -34,9 +30,28 @@ export const DetailsMovieComponent = ({ setAvaliation, movieStates, avaliation, 
         }
     })
 }
-    
+const PostRateMovie = async () => {
+    await instance.post(`movie/${idFilmes}/rating?session_id=${sessionId}`, {
+        "value": parseFloat(noteAvaliation)
+    }) .then((resp) => {
+            setNoteAvaliation(resp?.value);
+            setNote(false)
+        
+        })
+        .catch((error) => {
+            
+            if(error.response){
+                console.log(error.response.data);
+            }else if(error.request){
+                console.log(error.request.data);
+            }else{
+                console.log('Error', error.message);
+            }
+        })
+    }
+
     const click = () => {
-        setFavorite(!favorite)
+        setMarkFavorite(!markFavorite)
         postFavoriteMovie()
     }
 
@@ -54,7 +69,7 @@ export const DetailsMovieComponent = ({ setAvaliation, movieStates, avaliation, 
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.favoriteButtom} onPress={()=> click()}>
-                <Icon name='grade' size={30} color={favorite ? 'red' : 'white' } style={styles.Favorite}/>
+                <Icon name='grade' size={30} color={movieStates?.favorite === true ? 'black' : 'red' }/>
             </TouchableOpacity>
 
             <Modal animationType='fade' visible={visible} transparent={true}>
@@ -69,8 +84,9 @@ export const DetailsMovieComponent = ({ setAvaliation, movieStates, avaliation, 
             <Modal animationType='fade' visible={note} transparent={true} >
                 <Evaluation
                     setNote={setNote}
-                    setAvaliation={setAvaliation}
-                    avaliation={avaliation}
+                    setNoteAvaliation={setNoteAvaliation}
+                    noteAvaliation={noteAvaliation}
+                    PostRateMovie = {PostRateMovie}
                 />
             </Modal>
 
@@ -81,7 +97,7 @@ export const DetailsMovieComponent = ({ setAvaliation, movieStates, avaliation, 
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity onPress={() => setNote(true)} style={styles.buttonAvalution}>
+                    <TouchableOpacity onPress={() => setNote(true)} style={[styles.buttonAvalution, {backgroundColor: movieStates?.rated?.value === '' ?  '#E9A6A6' : '#8BE0EC'}]}>
                         <Text style={styles.textAvaliation}>
                             {(movieStates?.rated?.value) || "Avalie Agora !!" } </Text>
                     </TouchableOpacity>

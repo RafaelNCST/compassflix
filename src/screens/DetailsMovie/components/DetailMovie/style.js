@@ -168,7 +168,4 @@ export const styles = StyleSheet.create({
         borderColor:'rede'
 
     },
-    Favorite:{
-        color:'red',
-    }
 })

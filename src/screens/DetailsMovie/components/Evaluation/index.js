@@ -6,30 +6,9 @@ import { instance } from '../../../../services/api';
 import { LoginContext } from "../../../../contexts/loginContext";
 
 
-export const Evaluation = ({ avaliation, setAvaliation, setNote}) => {
+export const Evaluation = ({  setNoteAvaliation, setNote, PostRateMovie}) => {
     const { sessionId } = useContext(LoginContext);
     const { idFilmes } = useRoute().params;
-
-    const PostRateMovie = async () => {
-        await instance.post(`movie/${idFilmes}/rating?session_id=${sessionId}`, {
-            "value": parseFloat(avaliation)
-        }) .then((resp) => {
-                setAvaliation(resp?.value);
-            })
-            .catch((error) => {
-                if(error.response){
-                    console.log(error.response.data);
-                }else if(error.request){
-                    console.log(error.request.data);
-                }else{
-                    console.log('Error', error.message);
-                }
-            })
-        }
-
-        const captureText = (number) => {
-            setAvaliation(number)
-        }
 
     return (
         <View style={styles.areaNote}>
@@ -37,7 +16,7 @@ export const Evaluation = ({ avaliation, setAvaliation, setNote}) => {
             <Text style={styles.title}> Faça a sua avaliação ! </Text>
             </View>
             <View style={styles.areaInputNote}>
-            <TextInput style={styles.inputNote} keyboardType='numeric' onChangeText={(number) => captureText(number)}/> 
+            <TextInput style={styles.inputNote} keyboardType='numeric' onChangeText={(number) => setNoteAvaliation(number)}/> 
             <Text style={styles.maximo} >/10</Text>
             </View>
             <View style={styles.areaButtons}>

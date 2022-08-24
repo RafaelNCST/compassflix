@@ -10,7 +10,8 @@ import { LoadingScreensApis } from "../../components/LoadingScreensApis";
 
 export const DetailsMovie = () => {
     const { sessionId } = useContext(LoginContext);
-    const [avaliation, setAvaliation] = useState('');
+    const [noteAvaliation, setNoteAvaliation] = useState('');
+    const [markFavorite, setMarkFavorite] = useState(false);
     const [detail, setDetail] = useState({});
     const [cast, setCast] = useState([]);
     const [crew, setCrew] = useState([]);
@@ -26,6 +27,7 @@ export const DetailsMovie = () => {
         await instance.get(`movie/${idFilmes}/account_states?&session_id=${sessionId}`)
             .then((resp) => {
                 setMovieStates(resp?.data);
+                console.log(resp?.data?.favorite)
 
             })
             .catch((error) => {
@@ -44,6 +46,7 @@ export const DetailsMovie = () => {
             .get(`movie/${idFilmes}?&language=pt-BR`)
             .then((resp) => {
                 setDetail(resp.data);
+            
             })
             .catch((error) => console.log(error));
     };
@@ -68,7 +71,7 @@ export const DetailsMovie = () => {
 
         useEffect(() => {
             getStates();
-        },[avaliation])
+        },[noteAvaliation, markFavorite])
 
         return (
             <View style={styles.bodyScreen}>
@@ -82,9 +85,11 @@ export const DetailsMovie = () => {
                             directorArray={crew}
                             note={note}
                             setNote={setNote}
-                            avaliation={avaliation}
-                            setAvaliation={setAvaliation}
+                            noteAvaliation={noteAvaliation}
+                            setNoteAvaliation={setNoteAvaliation}
                             movieStates = {movieStates}
+                            markFavorite ={markFavorite}
+                            setMarkFavorite={setMarkFavorite}
                             
                         />
                         <CreditsComponent cast={cast} />
