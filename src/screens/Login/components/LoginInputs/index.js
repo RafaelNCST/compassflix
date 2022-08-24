@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { LoginContext } from '../../../../contexts/loginContext';
-import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { styles } from './style';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as Animatable from 'react-native-animatable';
+import * as Styled from './style';
 
 import { instance } from '../../../../services/api';
 
@@ -96,7 +96,7 @@ export const LoginInputs = () => {
 
     return (
         <>
-            <View style={styles.loginInput}>
+            <Styled.LoginInput>
                 <Animatable.View
                     style={styles.input}
                     animation={erroruser ? 'shake' : null}
@@ -109,12 +109,11 @@ export const LoginInputs = () => {
                             erroruser ? '#EC2626' : 'rgba(255, 255, 255, 0.5)'
                         }
                     />
-                    <TextInput
+                    <Styled.TextStyle
                         placeholder='Usuário'
                         placeholderTextColor={
                             erroruser ? '#EC2626' : 'rgba(255, 255, 255, 0.5)'
                         }
-                        style={styles.textStyle}
                         onChangeText={Text => changeCharSpecial(Text)}
                         value={username}
                     />
@@ -132,12 +131,11 @@ export const LoginInputs = () => {
                             errorpass ? '#EC2626' : 'rgba(255, 255, 255, 0.5)'
                         }
                     />
-                    <TextInput
+                    <Styled.TextStyle
                         placeholder='senha'
                         placeholderTextColor={
                             errorpass ? '#EC2626' : 'rgba(255, 255, 255, 0.5)'
                         }
-                        style={styles.textStyle}
                         value={password}
                         onChangeText={Text => {
                             setPassword(Text);
@@ -145,7 +143,7 @@ export const LoginInputs = () => {
                         }}
                         secureTextEntry={hidePass}
                     />
-                    <TouchableOpacity
+                    <Styled.Eye
                         style={styles.eye}
                         onPress={() => setHidePass(!hidePass)}
                     >
@@ -154,22 +152,22 @@ export const LoginInputs = () => {
                             color='rgba(255, 255, 255, 0.5)'
                             size={20}
                         />
-                    </TouchableOpacity>
+                    </Styled.Eye>
                 </Animatable.View>
-            </View>
+            </Styled.LoginInput>
 
-            <View style={styles.errorContainer}>
+            <Styled.ErrorContainer>
                 {(erroruser || errorpass) && (
-                    <Text style={styles.errorText}>{message}</Text>
+                    <Styled.ErrorText>{message}</Styled.ErrorText>
                 )}
-            </View>
+            </Styled.ErrorContainer>
 
             {loading ? (
                 <SpinnerRed height={40} width={'100%'} />
             ) : (
-                <TouchableOpacity onPress={validInput} style={styles.button}>
-                    <Text style={styles.enter}>Entrar</Text>
-                </TouchableOpacity>
+                <Styled.Button onPress={validInput}>
+                    <Styled.Enter>Entrar</Styled.Enter>
+                </Styled.Button>
             )}
         </>
     );
