@@ -82,5 +82,8 @@ areaNote:{
     fontSize:10,
     top:5,
     fontWeight:'bold'
+},
+menssagError:{
+    color:"#EC2626"
 }
 })

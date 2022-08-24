@@ -15,6 +15,7 @@ export const DetailsMovieComponent = ({ markFavorite ,noteAvaliation, movieState
     const { sessionId } = useContext(LoginContext);
     const { idFilmes } = useRoute().params;
     const [verification, setVerification] = useState(false);
+    const [menssagError, setMenssagError] = useState('')
 
     const postFavoriteMovie = async () => {
         await instance.post(`account/13846517/favorite?&session_id=${sessionId}`, 
@@ -24,7 +25,6 @@ export const DetailsMovieComponent = ({ markFavorite ,noteAvaliation, movieState
     }). then((resp) => {
             
     }) .catch((error) => {
-        setVerification(true)
         if(error.response){
             console.log(error.response.data);
         }else if(error.request){
@@ -40,19 +40,35 @@ const PostRateMovie = async () => {
     await instance.post(`movie/${idFilmes}/rating?session_id=${sessionId}`, {
         "value": parseFloat(noteAvaliation)
     }) .then(resp => {
+            setVerification(false)
             setNoteAvaliation(resp?.value);
             setNote(false)
+            
         })
         .catch(error => {
-            if(error.response){
-                console.log(error.response.data);
-            }else if(error.request){
-                console.log(error.request.data);
-            }else{
-                console.log('Error', error.message);
+            setVerification(true)
+            setNoteAvaliation('')
+            if (error?.response?.status === 400){
+                setMenssagError("A nota deve ser de 0,50 a 10")
             }
         })
     }
+    
+
+    const validationNote = () => {
+        setVerification(false)
+        if(noteAvaliation === 0 && noteAvaliation > 10){
+            setVerification(true)
+            setMenssagError("A nota deve ser de 0.50 a 10")
+            
+        }else if(noteAvaliation === ''){
+            setVerification(true)
+            setMenssagError("Por favor digite sua nota")
+        }else{
+            PostRateMovie();
+        }
+    }
+
 
     const click = () => {
         setMarkFavorite(!markFavorite)
@@ -73,7 +89,7 @@ const PostRateMovie = async () => {
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.favoriteButtom} onPress={()=> click()}>
-                <Image style={{width:25, height:25}} source={ movieStates?.favorite === true ? StarActice : StarInative }/>
+                <Image style={{width:23, height:23}} source={ movieStates?.favorite === true ? StarActice : StarInative }/>
             </TouchableOpacity>
 
             <Modal animationType='fade' visible={visible} transparent={true}>
@@ -91,6 +107,11 @@ const PostRateMovie = async () => {
                     setNoteAvaliation={setNoteAvaliation}
                     noteAvaliation={noteAvaliation}
                     PostRateMovie = {PostRateMovie}
+                    validationNote={validationNote}
+                    menssagError={menssagError}
+                    verification={verification}
+                    setVerification={setVerification}
+                    noteAvaliation={noteAvaliation}
                 />
             </Modal>
 
@@ -99,7 +120,7 @@ const PostRateMovie = async () => {
                     <TouchableOpacity onPress={() => setVisible(true)}>
                         <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detail?.poster_path}` }} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => setNote(true)} style={[styles.buttonAvalution, {backgroundColor: movieStates?.rated?.value ? '#8BE0EC' : '#E9A6A6'   }]}>
+                    <TouchableOpacity onPress={() => setNote(true)} style={[styles.buttonAvalution, {backgroundColor: movieStates?.rated?.value ? '#8BE0EC' : '#E9A6A6'}]}>
                         <Text style={styles.textAvaliation}> { movieStates?.rated?.value ? "Sua nota é: " + (movieStates?.rated?.value) + " /10" : "Avalie Agora"} </Text>
                     </TouchableOpacity>
                     
