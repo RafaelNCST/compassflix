@@ -2,18 +2,18 @@ import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 
 export const CastArea = styled.View`
-    margin-top: 27;
-    margin-bottom: 10;
-    width: 60;
+    margin-top: 27px;
+    margin-bottom: 10px;
+    width: 60px;
     align-self: flex-start;
-    margin-left: 15;
+    margin-left: 15px;
 `;
 
 export const CastTitle = styled.View`
-    height: 25;
-    width: 60;
+    height: 25px;
+    width: 60px;
     background-color: #9c4a8b;
-    border-radius: 10;
+    border-radius: 10px;
     justify-content: center;
     align-items: center;
 `;
@@ -23,12 +23,12 @@ export const TextCast = styled.Text`
 `;
 
 export const SpaceCast = styled.View`
-    margin-horizontal: 10;
-    margin-top: 7;
-    width: 32;
+    margin-horizontal: 10px;
+    margin-top: 7px;
+    width: 32px;
     border-style: solid;
     border-color: #9c4a8b;
-    border-top-width: 1;
+    border-top-width: 1px;
     align-self: center;
 `;
 
@@ -41,31 +41,31 @@ export const AreaItens = styled.View`
     flex: 1;
     flex-direction: row;
     background-color: black;
-    margin-vertical: 5;
+    margin-vertical: 5px;
 `;
 
 export const Name = styled.Text`
     color: white;
-    font-size: 14;
+    font-size: 14px;
     font-family: 'OpenSans-Bold';
 `;
 
 export const Character = styled.Text`
     color: white;
-    font-size: 11;
+    font-size: 11px;
     font-family: 'OpenSans-SemiBold';
 `;
 
 export const ImageActors = styled.View`
-    width: 52;
-    height: 54;
-    margin-right: 10;
+    width: 52px;
+    height: 54px;
+    margin-right: 10px;
 `;
 
 export const ImagePerfilActors = styled.Image`
-    width: 48;
-    height: 48;
-    border-radius: 30;
+    width: 48px;
+    height: 48px;
+    border-radius: 30px;
 `;
 
 export const Actor = styled.View`
