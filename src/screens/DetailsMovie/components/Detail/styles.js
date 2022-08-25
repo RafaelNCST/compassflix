@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export const ModalScreens = styled.View`
     flex: 1;
@@ -56,15 +57,6 @@ export const GenresContainer = styled.View`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-`;
-
-export const GenresArea = styled.View`
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    margin: 3px;
-    height: 25px;
-    border-radius: 15px;
 `;
 
 export const GenresText = styled.Text`
