@@ -23,9 +23,10 @@ export const Detail = ({ imageMovie, titleMovie, genreMovie, setVisible }) => {
                     <Styled.TitleModal>{titleMovie}</Styled.TitleModal>
                     <Styled.GenresContainer>
                         {genreMovie.map((item, index) => (
-                            <Styled.GenresArea
+                            <View
                                 key={index}
                                 style={[
+                                    styles.genresArea,
                                     {
                                         backgroundColor:
                                             genresColors[item?.name],
@@ -33,12 +34,12 @@ export const Detail = ({ imageMovie, titleMovie, genreMovie, setVisible }) => {
                                     },
                                 ]}
                             >
-                                <Styled.GenresText style={styles.genresText}>
+                                <Styled.GenresText>
                                     {(item?.name).length > 8
                                         ? (item?.name).substring(0, 8) + '.'
                                         : item?.name}
                                 </Styled.GenresText>
-                            </Styled.GenresArea>
+                            </View>
                         ))}
                     </Styled.GenresContainer>
                 </Styled.InfoModal>

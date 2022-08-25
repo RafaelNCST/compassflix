@@ -73,3 +73,14 @@ export const GenresText = styled.Text`
     justify-content: center;
     font-family: 'OpenSans-SemiBold';
 `;
+
+export const styles = StyleSheet.create({
+    genresArea: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 80,
+        margin: 3,
+        height: 25,
+        borderRadius: 15,
+    },
+});
