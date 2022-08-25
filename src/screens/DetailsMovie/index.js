@@ -42,7 +42,7 @@ export const DetailsMovie = () => {
         setTimeout(() => {
             setLoading(true);
         }, 2000)
-    }, [])
+    }, []);
 
 
     return (
