@@ -61,11 +61,3 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
-
-.prettierrc.js
-.ruby-version
-
-Gemfile
-.flowconfig
-.eslintrc.js
-.buckconfig
