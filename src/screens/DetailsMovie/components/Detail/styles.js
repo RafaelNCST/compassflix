@@ -31,42 +31,45 @@ export const IconeButton = styled.TouchableOpacity`
     border-radius: 30px;
 `;
 
-export const styles = StyleSheet.create({
-    infoModal: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    imageModal: {
-        width: 116,
-        height: 180,
-        borderRadius: 8,
-    },
-    titleModal: {
-        fontSize: 20,
-        color: 'white',
-        marginVertical: 15,
-        fontFamily: 'OpenSans-Bold',
-    },
-    genresContainer: {
-        width: '100%',
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-    },
-    genresArea: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 80,
-        margin: 3,
-        height: 25,
-        borderRadius: 15,
-    },
-    genresText: {
-        color: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'OpenSans-SemiBold',
-    },
-});
+export const InfoModal = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const ImageModal = styled.Image`
+    width: 116px;
+    height: 180px;
+    border-radius: 8px;
+`;
+
+export const TitleModal = styled.Text`
+    font-size: 20px;
+    color: white;
+    margin-vertical: 15px;
+    font-family: 'OpenSans-Bold';
+`;
+
+export const GenresContainer = styled.View`
+    width: 100%;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+`;
+
+export const GenresArea = styled.View`
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    margin: 3px;
+    height: 25px;
+    border-radius: 15px;
+`;
+
+export const GenresText = styled.Text`
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-family: 'OpenSans-SemiBold';
+`;
