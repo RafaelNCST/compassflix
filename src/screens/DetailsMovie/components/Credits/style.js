@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
 export const CastArea = styled.View`
     margin-top: 27;
@@ -31,44 +32,48 @@ export const SpaceCast = styled.View`
     align-self: center;
 `;
 
+export const Cast = styled.View`
+    width: 90%;
+    flex: 1;
+`;
+
+export const AreaItens = styled.View`
+    flex: 1;
+    flex-direction: row;
+    background-color: black;
+    margin-vertical: 5;
+`;
+
+export const Name = styled.Text`
+    color: white;
+    font-size: 14;
+    font-family: 'OpenSans-Bold';
+`;
+
+export const Character = styled.Text`
+    color: white;
+    font-size: 11;
+    font-family: 'OpenSans-SemiBold';
+`;
+
+export const ImageActors = styled.View`
+    width: 52;
+    height: 54;
+    margin-right: 10;
+`;
+
+export const ImagePerfilActors = styled.Image`
+    width: 48;
+    height: 48;
+    border-radius: 30;
+`;
+
+export const Actor = styled.View`
+    justify-content: center;
+`;
+
 export const styles = StyleSheet.create({
-    cast: {
-        width: '90%',
-        flex: 1,
-    },
     listCredits: {
-        paddingVertical: 5,
-    },
-    areaItens: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: 'black',
-        marginVertical: 5,
-    },
-    name: {
-        color: 'white',
-        fontSize: 14,
-        fontFamily: 'OpenSans-Bold',
-    },
-    character: {
-        color: 'white',
-        fontSize: 11,
-        fontFamily: 'OpenSans-SemiBold',
-    },
-    imageActors: {
-        width: 52,
-        height: 54,
-        marginRight: 10,
-    },
-    imagePerfilActors: {
-        width: 48,
-        height: 48,
-        borderRadius: 30,
-    },
-    actor: {
-        justifyContent: 'center',
-    },
-    listCredits: {
-        paddingVertical: 3,
+        paddingVertical: 8,
     },
 });

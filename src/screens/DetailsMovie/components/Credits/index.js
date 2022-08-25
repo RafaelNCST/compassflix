@@ -15,17 +15,16 @@ export const CreditsComponent = ({ cast }) => {
                 <Styled.SpaceCast />
             </Styled.CastArea>
 
-            <View style={styles.cast}>
+            <Styled.Cast>
                 <FlatList
                     data={cast}
                     contentContainerStyle={styles.listCredits}
                     keyExtractor={(item, index) => index}
                     renderItem={({ item }) => {
                         return (
-                            <View style={styles.areaItens}>
-                                <View style={styles.imageActors}>
-                                    <Image
-                                        style={styles.imagePerfilActors}
+                            <Styled.AreaItens>
+                                <Styled.ImageActors>
+                                    <Styled.ImagePerfilActors
                                         source={
                                             item?.profile_path
                                                 ? {
@@ -34,20 +33,18 @@ export const CreditsComponent = ({ cast }) => {
                                                 : anonimo
                                         }
                                     />
-                                </View>
-                                <View style={styles.actor}>
-                                    <Text style={styles.name}>
-                                        {item?.name}
-                                    </Text>
-                                    <Text style={styles.character}>
+                                </Styled.ImageActors>
+                                <Styled.Actor>
+                                    <Styled.Name>{item?.name}</Styled.Name>
+                                    <Styled.Character>
                                         {item?.character}
-                                    </Text>
-                                </View>
-                            </View>
+                                    </Styled.Character>
+                                </Styled.Actor>
+                            </Styled.AreaItens>
                         );
                     }}
                 />
-            </View>
+            </Styled.Cast>
         </>
     );
 };
