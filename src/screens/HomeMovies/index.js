@@ -1,11 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import { View } from 'react-native';
 import { ListHome } from '../../components/FlatListHome';
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
 import { BodyScreen } from './style';
 import { ListFilmsContext } from '../../contexts/listFilmsContext';
-
-import { styles } from './style';
 
 import { useRoute } from '@react-navigation/native';
 
