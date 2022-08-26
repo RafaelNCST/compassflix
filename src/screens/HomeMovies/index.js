@@ -1,46 +1,44 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { View } from 'react-native';
-import { instance } from '../../services/api';
-import { ListHomeContext } from '../../contexts/listHomeContext';
-
 import { ListHome } from '../../components/FlatListHome';
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
+import { BodyScreen } from './style';
+import { ListFilmsContext } from '../../contexts/listFilmsContext';
 
 import { styles } from './style';
 
-export const HomeMovies = () => {
-    const [filmeList, setFilmeList] = useState([]);
-    const {
-        changeInfiniteScrollLoading,
-        loadingScroll,
-        changeLoadingPage,
-        lastPage,
-        changeTitleName,
-    } = useContext(ListHomeContext);
+import { useRoute } from '@react-navigation/native';
 
-    const requestMovieListFilms = async () => {
-        await instance
-            .get(`movie/popular?&language=pt-BR&page=${lastPage}`)
-            .then(resp => {
-                setFilmeList([...filmeList, ...resp.data.results]);
-                changeLoadingPage(false);
-            })
-            .finally(() => changeInfiniteScrollLoading(false));
-    };
+export const HomeMovies = () => {
+    const route = useRoute();
+
+    //prettier-ignore
+    const {
+        requestMovieListFilms,
+        loadingScrollFilm,
+        lastPageFilm,
+        loadingFilm,
+        filmeList,
+        loadInfiniteScrollFilm,
+    } = useContext(ListFilmsContext);
 
     useEffect(() => {
         requestMovieListFilms();
-        changeTitleName('os Filmes');
     }, []);
 
     useEffect(() => {
-        if (loadingScroll) setTimeout(() => requestMovieListFilms(), 2000);
-    }, [lastPage]);
+        if (loadingScrollFilm) setTimeout(() => requestMovieListFilms(), 2000);
+    }, [lastPageFilm]);
 
     return (
-        <View style={styles.bodyScreen}>
-            <HeaderUserInfos />
-            <ListHome data={filmeList} />
-        </View>
+        <BodyScreen>
+            <HeaderUserInfos strTitle={route.params.strTitle} />
+            <ListHome
+                loading={loadingFilm}
+                data={filmeList}
+                infiniteScrollFn={loadInfiniteScrollFilm}
+                loadingState={loadingScrollFilm}
+            />
+        </BodyScreen>
     );
 };

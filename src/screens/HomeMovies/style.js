@@ -1,9 +1,7 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 
-export const styles = StyleSheet.create({
-    bodyScreen: {
-        flex: 1,
-        backgroundColor: '#000000',
-        width: '100%',
-    },
-});
+export const BodyScreen = styled.View`
+    flex: 1;
+    background-color: #000000;
+    width: 100%;
+`;

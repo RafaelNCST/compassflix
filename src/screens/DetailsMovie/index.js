@@ -3,11 +3,13 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { View } from 'react-native';
 import { styles } from './style';
 import { CreditsComponent } from './components/Credits';
+// prettier-ignore
 import { DetailsMovieComponent } from './/components/DetailMovie'
+// prettier-ignore
 import { instance } from '../../services/api'
-
+// prettier-ignore
 import { LoadingScreensApis } from '../../components/LoadingScreensApis'
-
+// prettier-ignore
 export const DetailsMovie = () => {
 
     const [detail, setDetail] = useState({});
@@ -17,10 +19,10 @@ export const DetailsMovie = () => {
     const [loading, setLoading] = useState(false)
 
     const Navigation = useNavigation()
-    const { idFilmes } = useRoute().params;
+    const { idItens } = useRoute().params;
 
     const getDetail = async () => {
-        await instance.get(`movie/${idFilmes}?&language=pt-BR`)
+        await instance.get(`movie/${idItens}?&language=pt-BR`)
             .then(resp => {
                 setDetail(resp.data);
             })
@@ -28,7 +30,7 @@ export const DetailsMovie = () => {
     }
 
     const getCast = async () => {
-        await instance.get(`movie/${idFilmes}/credits?&language=pt-BR`)
+        await instance.get(`movie/${idItens}/credits?&language=pt-BR`)
             .then(resp => {
                 setCast(resp.data.cast);
                 setCrew(resp.data.crew)

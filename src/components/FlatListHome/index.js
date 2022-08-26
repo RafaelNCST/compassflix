@@ -1,15 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native';
 import { SpinnerMultiColor } from '../SpinnerMultiColor';
 import { ItensList } from './components/ItensList';
-import { ListHomeContext } from '../../contexts/listHomeContext';
 
 import { styles } from './style';
 
-export const ListHome = ({ data }) => {
-    // prettier-ignore
-    const { loading, loadInfiniteScroll, loadingScroll } = useContext(ListHomeContext);
-
+export const ListHome = ({ loading, data, infiniteScrollFn, loadingState }) => {
     return (
         <>
             {loading ? (
@@ -24,22 +20,22 @@ export const ListHome = ({ data }) => {
                     data={data}
                     contentContainerStyle={styles.containerPopularMovies}
                     numColumns={4}
-                    onEndReached={loadInfiniteScroll}
+                    onEndReached={infiniteScrollFn}
                     onEndReachedThreshold={0.2}
                     keyExtractor={(_, index) => index}
                     renderItem={({ item }) => {
                         return (
                             <ItensList
-                                listItens={item.poster_path}
-                                noteItens={item.vote_average}
-                                idItens={item.id}
+                                listItens={item?.poster_path}
+                                noteItens={item?.vote_average}
+                                idItens={item?.id}
                             />
                         );
                     }}
                     ListFooterComponent={() => {
                         return (
                             <SpinnerMultiColor
-                                Loadingstate={loadingScroll}
+                                Loadingstate={loadingState}
                                 size={25}
                                 color={'#FFFFFF'}
                                 flexNumber={0}

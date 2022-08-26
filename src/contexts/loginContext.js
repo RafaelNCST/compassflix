@@ -19,8 +19,8 @@ export const LoginContextProvider = ({ children }) => {
         setIsLoading(false);
     };
 
-    const changeSessionID = async id => {
-        setSignedIn(true);
+    const changeSessionID = (state, id) => {
+        setSignedIn(state);
         setSessionId(id);
         AsyncStorage.setItem('sessionId', id);
     };
