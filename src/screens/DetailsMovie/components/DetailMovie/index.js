@@ -44,7 +44,10 @@ export const DetailsMovieComponent = ({
                 'media_id': idItens,
                 'favorite': markFavorite,
             })
-            .then(resp => {})
+            .then(resp => {
+                setMarkFavorite(!markFavorite)}
+                
+                )
             .catch(error => {
                 if (error.response) {
                     console.log(error.response.data);
@@ -88,11 +91,6 @@ export const DetailsMovieComponent = ({
         }
     };
 
-    const click = () => {
-        setMarkFavorite(!markFavorite);
-        postFavoriteMovie();
-    };
-
     const date = new Date(detail?.release_date);
 
     return (
@@ -116,7 +114,7 @@ export const DetailsMovieComponent = ({
 
             <TouchableOpacity
                 style={styles.favoriteButtom}
-                onPress={() => click()}
+                onPress={() => postFavoriteMovie()}
             >
                 <Image
                     style={{ width: 23, height: 23 }}
@@ -175,17 +173,18 @@ export const DetailsMovieComponent = ({
                             {' '}
                             {movieStates?.rated?.value
                                 ? 'Sua nota é: ' +
-                                  movieStates?.rated?.value +
-                                  ' /10'
+                                movieStates?.rated?.value +
+                                ' /10'
                                 : 'Avalie Agora'}{' '}
                         </Text>
                     </TouchableOpacity>
-
+                    { movieStates?.rated !== false ? (
                     <View style={styles.buttonEdit}>
                         <TouchableOpacity onPress={() => setNote(true)}>
                             <Icon name='edit' size={10} color={'#000000'} />
                         </TouchableOpacity>
                     </View>
+                    ) : (null) }
                 </View>
 
                 <View style={styles.infoArea}>
@@ -195,7 +194,7 @@ export const DetailsMovieComponent = ({
                                 <Text style={styles.textTitle}>
                                     {(detail?.title).length > 10
                                         ? (detail?.title).substring(0, 10) +
-                                          '...'
+                                        '...'
                                         : detail?.title}
                                 </Text>
                             </TouchableOpacity>
@@ -237,7 +236,7 @@ export const DetailsMovieComponent = ({
                             <Text style={styles.likesQtd}>
                                 {detail?.popularity > 1000
                                     ? Math.floor(detail?.popularity / 1000) +
-                                      'K'
+                                    'K'
                                     : (detail?.popularity).toFixed(0)}
                             </Text>
                         </View>

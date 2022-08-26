@@ -137,14 +137,14 @@ export const styles = StyleSheet.create({
         backgroundColor: '#E9A6A6', 
         width: 116, 
         height: 22, 
-        marginRight:19,
+        marginRight:20,
         alignItems:'center',  
         borderBottomLeftRadius:5,  
         borderBottomRightRadius:5,
         flexDirection:'row-reverse',
         alignItems:'center',
-        justifyContent:'center'
-        
+        justifyContent:'center',
+        bottom:5
     },
     buttonEdit:{
         justifyContent: 'center', 
@@ -155,7 +155,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#C4C4C4',
         bottom:11, 
         left:125,
-        bottom:27
+        bottom:31
     },
     textAvaliation:{
         fontWeight:'bold',
