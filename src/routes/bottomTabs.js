@@ -2,7 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StackFilmsRoutes } from './stackFilms';
 import { StackSeriesRoutes } from './stackSeries';
-import { UserPerfil } from '../screens/UserPerfil';
+import { StackUserRoutes } from './stackUser';
+import { HeaderContextProvider } from '../contexts/headerContext';
 
 import {
     screenOptions,
@@ -15,25 +16,27 @@ export const BottomTabs = () => {
     const BottomTab = createBottomTabNavigator();
 
     return (
-        <BottomTab.Navigator
-            initialRouteName='StackHome'
-            screenOptions={screenOptions}
-        >
-            <BottomTab.Screen
-                name='StackSeries'
-                component={StackSeriesRoutes}
-                options={seriesOptions}
-            />
-            <BottomTab.Screen
-                name='StackHome'
-                component={StackFilmsRoutes}
-                options={homeOptions}
-            />
-            <BottomTab.Screen
-                name='UserPerfil'
-                component={UserPerfil}
-                options={UserOptions}
-            />
-        </BottomTab.Navigator>
+        <HeaderContextProvider>
+            <BottomTab.Navigator
+                initialRouteName='StackFilms'
+                screenOptions={screenOptions}
+            >
+                <BottomTab.Screen
+                    name='StackSeries'
+                    component={StackSeriesRoutes}
+                    options={seriesOptions}
+                />
+                <BottomTab.Screen
+                    name='StackFilms'
+                    component={StackFilmsRoutes}
+                    options={homeOptions}
+                />
+                <BottomTab.Screen
+                    name='StackUser'
+                    component={StackUserRoutes}
+                    options={UserOptions}
+                />
+            </BottomTab.Navigator>
+        </HeaderContextProvider>
     );
 };

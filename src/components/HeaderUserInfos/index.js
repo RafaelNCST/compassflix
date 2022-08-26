@@ -1,16 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { Text, Image, TouchableOpacity } from 'react-native';
-import { ListHomeContext } from '../../contexts/listHomeContext';
-
+import { HeaderContext } from '../../contexts/headerContext';
+import * as Styled from './style';
 import { LoginContext } from '../../contexts/loginContext';
 
 import anonimo from '../../assets/Images/imagemAnonima.jpg';
 import { styles } from './style';
+import { useNavigation } from '@react-navigation/native';
 
-export const HeaderUserInfos = () => {
+export const HeaderUserInfos = ({ strTitle }) => {
     const { sessionId } = useContext(LoginContext);
+
+    const Navigation = useNavigation();
+
     // prettier-ignore
-    const { getRequestInfosUser, userInfos, strTitle } = useContext(ListHomeContext);
+    const { getRequestInfosUser, userInfos } = useContext(HeaderContext);
 
     useEffect(() => {
         if (sessionId) {
@@ -20,26 +24,33 @@ export const HeaderUserInfos = () => {
 
     return (
         <>
-            <TouchableOpacity style={styles.containerImageUser}>
-                <Image
-                    style={styles.imageUser}
-                    source={userInfos?.avatar?.tmdb?.avatar_path || anonimo}
+            <Styled.ContainerImageUser
+                onPress={() => Navigation.navigate('StackUser')}
+            >
+                <Styled.ImageUser
+                    source={
+                        userInfos.avatar?.tmdb?.avatar_path
+                            ? {
+                                  uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
+                              }
+                            : anonimo
+                    }
                 />
-            </TouchableOpacity>
-            <Text style={styles.bodyScreenName}>
+            </Styled.ContainerImageUser>
+            <Styled.BodyScreenName>
                 {'Olá,  '}
-                <Text style={{ color: '#e9a6a6' }}>
+                <Styled.ScreenNameUserInfo>
                     {userInfos?.name || userInfos?.username}
-                </Text>
+                </Styled.ScreenNameUserInfo>
                 !
-            </Text>
-            <Text style={styles.bodyScreenSubtitle}>
-                Reveja ou acompanhe {strTitle.toLowerCase()} que você
+            </Styled.BodyScreenName>
+            <Styled.BodyScreenSubtitle>
+                Reveja ou acompanhe {strTitle?.toLowerCase()} que você
                 assistiu...
-            </Text>
-            <Text style={styles.bodyScreenPopularMovies}>
-                {strTitle.substring(3)} populares este mês
-            </Text>
+            </Styled.BodyScreenSubtitle>
+            <Styled.BodyScreenPopularMovies>
+                {strTitle?.substring(3)} populares este mês
+            </Styled.BodyScreenPopularMovies>
         </>
     );
 };

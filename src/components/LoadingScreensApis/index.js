@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import * as Styled from './style';
 import { styles } from './style';
-
+import * as Styled from './style';
 import Lottie from 'lottie-react-native';
 
 export const LoadingScreensApis = () => {

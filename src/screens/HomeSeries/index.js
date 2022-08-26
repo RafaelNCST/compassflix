@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { View } from 'react-native';
-import { instance } from '../../services/api';
-import { ListHomeContext } from '../../contexts/listHomeContext';
-
+import { ListSeriesContext } from '../../contexts/listSeriesContext';
+import { BodyScreen } from './style';
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
 import { ListHome } from '../../components/FlatListHome';
 
@@ -29,18 +28,24 @@ export const HomeSeries = () => {
     };
 
     useEffect(() => {
-        requestMovieListFilms();
-        changeTitleName('as Séries');
+        requestTvListSeries();
     }, []);
 
     useEffect(() => {
-        if (loadingScroll) setTimeout(() => requestMovieListFilms(), 2000);
-    }, [lastPage]);
+        if (loadingScrollSeries) {
+            setTimeout(() => requestTvListSeries(), 2000);
+        }
+    }, [lastPageSeries]);
 
     return (
-        <View style={styles.bodyScreen}>
-            <HeaderUserInfos />
-            <ListHome data={seriesList} />
-        </View>
+        <BodyScreen>
+            <HeaderUserInfos strTitle={route?.params?.strTitle} />
+            <ListHome
+                loading={loadingSeries}
+                data={seriesList}
+                infiniteScrollFn={loadInfiniteScrollSeries}
+                loadingState={loadingScrollSeries}
+            />
+        </BodyScreen>
     );
 };
