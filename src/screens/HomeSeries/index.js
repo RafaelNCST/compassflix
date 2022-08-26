@@ -20,7 +20,7 @@ export const HomeSeries = () => {
 
     const requestMovieListFilms = async () => {
         await instance
-            .get(`movie/popular?&language=pt-BR&page=${lastPage}`)
+            .get(`tv/popular?&language=pt-BR&page=${lastPage}`)
             .then(resp => {
                 setSeriesList([...seriesList, ...resp.data.results]);
                 changeLoadingPage(false);
