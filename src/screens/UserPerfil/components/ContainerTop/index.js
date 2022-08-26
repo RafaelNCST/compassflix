@@ -22,6 +22,7 @@ export const ContainerTop = ({
             <LogoutButton logoutApi={logoutApi} />
             <Styled.ContainerUser heightContainer={110}>
                 <Styled.ImageUser
+                    accessibilityHint='Imagem de Usuário'
                     source={
                         userInfos?.avatar?.tmdb?.avatar_path
                             ? {
