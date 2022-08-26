@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Text, Image, TouchableOpacity } from 'react-native';
 import { HeaderContext } from '../../contexts/headerContext';
-
+import * as Styled from './style';
 import { LoginContext } from '../../contexts/loginContext';
 
 import anonimo from '../../assets/Images/imagemAnonima.jpg';
@@ -24,12 +24,10 @@ export const HeaderUserInfos = ({ strTitle }) => {
 
     return (
         <>
-            <TouchableOpacity
+            <Styled.ContainerImageUser
                 onPress={() => Navigation.navigate('StackUser')}
-                style={styles.containerImageUser}
             >
-                <Image
-                    style={styles.imageUser}
+                <Styled.ImageUser
                     source={
                         userInfos?.avatar?.tmdb?.avatar_path
                             ? {
@@ -38,21 +36,21 @@ export const HeaderUserInfos = ({ strTitle }) => {
                             : anonimo
                     }
                 />
-            </TouchableOpacity>
-            <Text style={styles.bodyScreenName}>
+            </Styled.ContainerImageUser>
+            <Styled.BodyScreenName>
                 {'Olá,  '}
-                <Text style={{ color: '#e9a6a6' }}>
+                <Styled.ScreenNameUserInfo>
                     {userInfos?.name || userInfos?.username}
-                </Text>
+                </Styled.ScreenNameUserInfo>
                 !
-            </Text>
-            <Text style={styles.bodyScreenSubtitle}>
+            </Styled.BodyScreenName>
+            <Styled.BodyScreenSubtitle>
                 Reveja ou acompanhe {strTitle?.toLowerCase()} que você
                 assistiu...
-            </Text>
-            <Text style={styles.bodyScreenPopularMovies}>
+            </Styled.BodyScreenSubtitle>
+            <Styled.BodyScreenPopularMovies>
                 {strTitle?.substring(3)} populares este mês
-            </Text>
+            </Styled.BodyScreenPopularMovies>
         </>
     );
 };

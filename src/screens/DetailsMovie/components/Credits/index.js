@@ -1,21 +1,21 @@
 import React from 'react';
 import { View, Text, Image, FlatList } from 'react-native';
 import anonimo from '../../../../assets/Images/imagemAnonima.jpg';
-
+import * as Styled from './style';
 import { styles } from './style';
 
 export const CreditsComponent = ({ cast }) => {
     return (
         <>
-            <View style={styles.castArea}>
-                <View style={styles.castTitle}>
-                    <Text style={styles.textCast}>Elenco</Text>
-                </View>
+            <Styled.CastArea>
+                <Styled.CastTitle>
+                    <Styled.TextCast>Elenco</Styled.TextCast>
+                </Styled.CastTitle>
 
-                <View style={styles.spaceCast} />
-            </View>
+                <Styled.SpaceCast />
+            </Styled.CastArea>
 
-            <View style={styles.cast}>
+            <Styled.Cast>
                 <FlatList
                     data={cast}
                     contentContainerStyle={styles.listCredits}
@@ -29,8 +29,8 @@ export const CreditsComponent = ({ cast }) => {
                                         source={
                                             item?.profile_path
                                                 ? {
-                                                      uri: `https://image.tmdb.org/t/p/original${item?.profile_path}`,
-                                                  }
+                                                    uri: `https://image.tmdb.org/t/p/original${item?.profile_path}`,
+                                                }
                                                 : anonimo
                                         }
                                     />
@@ -47,7 +47,7 @@ export const CreditsComponent = ({ cast }) => {
                         );
                     }}
                 />
-            </View>
+            </Styled.Cast>
         </>
     );
 };

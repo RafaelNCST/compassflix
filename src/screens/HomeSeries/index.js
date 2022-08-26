@@ -1,25 +1,21 @@
 import React, { useEffect, useContext } from 'react';
-import { View } from 'react-native';
 import { ListSeriesContext } from '../../contexts/listSeriesContext';
-
+import { BodyScreen } from './style';
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
 import { ListHome } from '../../components/FlatListHome';
-
-import { styles } from './style';
 
 import { useRoute } from '@react-navigation/native';
 
 export const HomeSeries = () => {
     const route = useRoute();
 
-    //prettier-ignore
-    const { 
-        requestTvListSeries, 
-        lastPageSeries, 
+    const {
+        requestTvListSeries,
         loadingScrollSeries,
-        loadingSeries,
-        seriesList,
         loadInfiniteScrollSeries,
+        loadingSeries,
+        lastPageSeries,
+        seriesList,
     } = useContext(ListSeriesContext);
 
     useEffect(() => {
@@ -33,7 +29,7 @@ export const HomeSeries = () => {
     }, [lastPageSeries]);
 
     return (
-        <View style={styles.bodyScreen}>
+        <BodyScreen>
             <HeaderUserInfos strTitle={route?.params?.strTitle} />
             <ListHome
                 loading={loadingSeries}
@@ -41,6 +37,6 @@ export const HomeSeries = () => {
                 infiniteScrollFn={loadInfiniteScrollSeries}
                 loadingState={loadingScrollSeries}
             />
-        </View>
+        </BodyScreen>
     );
 };

@@ -1,11 +1,8 @@
 import React, { useEffect, useContext } from 'react';
-import { View } from 'react-native';
 import { ListHome } from '../../components/FlatListHome';
 import { HeaderUserInfos } from '../../components/HeaderUserInfos';
-
+import { BodyScreen } from './style';
 import { ListFilmsContext } from '../../contexts/listFilmsContext';
-
-import { styles } from './style';
 
 import { useRoute } from '@react-navigation/native';
 
@@ -13,9 +10,9 @@ export const HomeMovies = () => {
     const route = useRoute();
 
     //prettier-ignore
-    const { 
-        requestMovieListFilms, 
-        loadingScrollFilm, 
+    const {
+        requestMovieListFilms,
+        loadingScrollFilm,
         lastPageFilm,
         loadingFilm,
         filmeList,
@@ -31,7 +28,7 @@ export const HomeMovies = () => {
     }, [lastPageFilm]);
 
     return (
-        <View style={styles.bodyScreen}>
+        <BodyScreen>
             <HeaderUserInfos strTitle={route.params.strTitle} />
             <ListHome
                 loading={loadingFilm}
@@ -39,6 +36,6 @@ export const HomeMovies = () => {
                 infiniteScrollFn={loadInfiniteScrollFilm}
                 loadingState={loadingScrollFilm}
             />
-        </View>
+        </BodyScreen>
     );
 };
