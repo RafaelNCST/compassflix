@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     castArea: {
@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
         width: 60,
         alignSelf: 'flex-start',
-        marginLeft: 15
+        marginLeft: 15,
     },
     castTitle: {
         height: 25,
@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-
     },
     textCast: {
         color: 'white',
@@ -27,14 +26,14 @@ export const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: '#9C4A8B',
         borderTopWidth: 1,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     cast: {
         width: '90%',
-        flex: 1
+        flex: 1,
     },
     listCredits: {
-        paddingVertical: 5
+        paddingVertical: 5,
     },
     areaItens: {
         flex: 1,
@@ -45,24 +44,24 @@ export const styles = StyleSheet.create({
     name: {
         color: 'white',
         fontSize: 14,
-        fontFamily: 'OpenSans-Bold'
+        fontFamily: 'OpenSans-Bold',
     },
     character: {
         color: 'white',
         fontSize: 11,
-        fontFamily: 'OpenSans-SemiBold'
+        fontFamily: 'OpenSans-SemiBold',
     },
     imageActors: {
         width: 52,
         height: 54,
-        marginRight: 10
+        marginRight: 10,
     },
     imagePerfilActors: {
         width: 48,
         height: 48,
-        borderRadius: 30
+        borderRadius: 30,
     },
     actor: {
         justifyContent: 'center',
-    }
-})
+    },
+});
