@@ -204,8 +204,9 @@ export const DetailsSerie = () => {
             </View>
             <View style={styles.areaDescription}>
                 <ScrollView style={styles.scrollDescription}>
-                    <Text style={styles.tagline}>{detailSerie?.tagline}</Text>
-                    <Text style={styles.textDescription}>{detailSerie?.overview}</Text>
+                    <Text style={styles.tagline}>{(detailSerie?.tagline)?.toUpperCase() || detailSerie?.title}</Text>
+                    <Text style={styles.textDescription}>{(detailSerie?.overview)?.toString() ||
+                            'Descrição indisponível'}</Text>
                 </ScrollView>
             </View>
             <View style={styles.areaDropDown}>
