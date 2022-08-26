@@ -128,7 +128,7 @@ export const DetailsSerie = () => {
         getStatesSerie();
     }, [markFavoriteSerie, noteAvaliationSerie]);
 
-    console.log(serieStates?.rated?.value);
+
 
     const date = new Date(detailSerie?.first_air_date);
 
