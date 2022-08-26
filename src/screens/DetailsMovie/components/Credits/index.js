@@ -29,8 +29,8 @@ export const CreditsComponent = ({ cast }) => {
                                         source={
                                             item?.profile_path
                                                 ? {
-                                                      uri: `https://image.tmdb.org/t/p/original${item?.profile_path}`,
-                                                  }
+                                                    uri: `https://image.tmdb.org/t/p/original${item?.profile_path}`,
+                                                }
                                                 : anonimo
                                         }
                                     />

@@ -45,6 +45,10 @@ export const AreaItens = styled.View`
 export const styles = StyleSheet.create({
     listCredits: {
         paddingVertical: 5,
+        
+    },
+    areaItens:{
+        flexDirection:'row'
     },
     name: {
         color: 'white',
