@@ -22,14 +22,13 @@ export const DetailsMovie = () => {
     const [movieStates, setMovieStates] = useState({});
 
     const Navigation = useNavigation();
-    const { idFilmes } = useRoute().params;
+    const { idItens } = useRoute().params;
 
     const getStates = async () => {
         await instance
-            .get(`movie/${idFilmes}/account_states?&session_id=${sessionId}`)
+            .get(`movie/${idItens}/account_states?&session_id=${sessionId}`)
             .then(resp => {
                 setMovieStates(resp?.data);
-                console.log(resp?.data?.favorite);
             })
             .catch(error => {
                 if (error.response) {
@@ -44,7 +43,7 @@ export const DetailsMovie = () => {
 
     const getDetail = async () => {
         await instance
-            .get(`movie/${idFilmes}?&language=pt-BR`)
+            .get(`movie/${idItens}?&language=pt-BR`)
             .then(resp => {
                 setDetail(resp.data);
             })
@@ -53,7 +52,7 @@ export const DetailsMovie = () => {
 
     const getCast = async () => {
         await instance
-            .get(`movie/${idFilmes}/credits?&language=pt-BR`)
+            .get(`movie/${idItens}/credits?&language=pt-BR`)
             .then(resp => {
                 setCast(resp.data.cast);
                 setCrew(resp.data.crew);
