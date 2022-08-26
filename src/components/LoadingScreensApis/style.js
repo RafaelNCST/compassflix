@@ -1,13 +1,12 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 
-export const styles = StyleSheet.create({
-    loadingApis: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-    },
-    containerAnimationLoading: {
-        width: 300,
-        height: 150,
-    },
-});
+export const loadingApis = styled.View`
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+`;
+
+export const containerAnimationLoading = styled.View`
+    width: 300px;
+    height: 150px;
+`;

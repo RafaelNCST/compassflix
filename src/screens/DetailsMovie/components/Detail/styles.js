@@ -1,71 +1,78 @@
+import styled from 'styled-components/native';
+import { StyleSheet, Dimensions } from 'react-native';
 
-import { StyleSheet } from "react-native";
+export const ModalScreens = styled.View`
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ModalArea = styled.View`
+    width: 80%;
+    height: 400px;
+    background-color: #1c2227;
+    border-radius: 10px;
+`;
+
+export const IconeArea = styled.View`
+    width: 100%;
+    height: 50px;
+    align-items: flex-end;
+    justify-content: center;
+`;
+
+export const IconeButton = styled.TouchableOpacity`
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+`;
+
+export const InfoModal = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const ImageModal = styled.Image`
+    width: 116px;
+    height: 180px;
+    border-radius: 8px;
+`;
+
+export const TitleModal = styled.Text`
+    font-size: 20px;
+    color: white;
+    margin-vertical: 15px;
+    font-family: 'OpenSans-Bold';
+`;
+
+export const GenresContainer = styled.View`
+    width: 100%;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+`;
+
+export const GenresText = styled.Text`
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-family: 'OpenSans-SemiBold';
+`;
 
 export const styles = StyleSheet.create({
-
-modalScreens: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.8)',
-    justifyContent: 'center',
-    alignItems: 'center'
-},
-modalArea: {
-    width: '80%',
-    height: 400,
-    backgroundColor: '#1C2227',
-    borderRadius: 10
-},
-iconeArea: {
-    width: '100%',
-    height: 50,
-    alignItems: 'flex-end',
-    justifyContent: 'center'
-},
-iconeButton: {
-    marginRight: 10,
-    width: 30,
-    height: 30,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 30
-},
-infoModal: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-},
-imageModal: {
-    width: 116,
-    height: 180,
-    borderRadius: 8,
-},
-titleModal: {
-    fontSize: 20,
-    color: 'white',
-    marginVertical: 15,
-    fontFamily: 'OpenSans-Bold'
-},
-genresContainer: {
-    width: '100%',
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center'
-},
-genresArea: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 80,
-    margin: 3,
-    height: 25,
-    borderRadius: 15,
-},
-genresText: {
-    color: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: 'OpenSans-SemiBold'
-
-}
-})
+    genresArea: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 80,
+        margin: 3,
+        height: 25,
+        borderRadius: 15,
+    },
+});

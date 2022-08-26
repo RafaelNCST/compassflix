@@ -52,7 +52,7 @@ export const LoginInputs = () => {
                 request_token: requestToken,
             })
             .then(resp => {
-                changeSessionID(resp?.data?.session_id);
+                changeSessionID(true, resp?.data?.session_id);
             })
             .catch(error => {
                 setPassword('');
