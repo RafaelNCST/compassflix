@@ -8,7 +8,7 @@ import { Detail } from '../Detail';
 
 export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible, directorArray }) => {
 
-    const date = new Date(detail?.release_date)
+    const date = new Date(detail?.release_date);
 
     return (
         <>
@@ -44,7 +44,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible,
                         <Text style={styles.textDuration}>{detail?.runtime}min</Text>
                     </View>
 
-                    {directorArray.find(item => item.job === "Director") ?
+                    {directorArray.find(item => item.job === 'Director') ?
                         (<Text style={styles.textDirector}>Direção por <Text style={styles.stroke}>{directorArray.find(item => item.job === 'Director').name}</Text></Text>
                         ) : (
                             <Text style={styles.textDirector} >  Direção índisponivel </Text>
@@ -55,7 +55,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible,
                         <Text style={styles.textNote}>{(detail?.vote_average).toFixed(1)}/10</Text>
                         <View style={styles.bottomLike}>
                             <TouchableOpacity>
-                                <Icon name="favorite" size={25} color={"red"} />
+                                <Icon name="favorite" size={25} color={'red'} />
                             </TouchableOpacity>
                             <Text style={styles.likesQtd}>{detail?.popularity > 1000 ? Math.floor(detail?.popularity / 1000) + 'K' : (detail?.popularity).toFixed(0)}</Text>
                         </View>
@@ -67,10 +67,10 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible,
                 <ScrollView style={styles.scrollDescription}>
                     <Text style={styles.tagline}>{(detail?.tagline).toUpperCase() || detail?.title}</Text>
                     <Text style={styles.textDescription}>
-                        {(detail?.overview).toString() || "Descrição indisponível"}
+                        {(detail?.overview).toString() || 'Descrição indisponível'}
                     </Text>
                 </ScrollView>
             </View>
         </>
-    )
-}
+    );
+};

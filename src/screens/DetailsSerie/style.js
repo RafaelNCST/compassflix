@@ -164,4 +164,8 @@ export const styles = StyleSheet.create({
         marginTop: 14,
         fontFamily: 'OpenSans-Regular'
     },
+    areaDropDown:{
+        top:40, 
+        height:270
+    }
 });
