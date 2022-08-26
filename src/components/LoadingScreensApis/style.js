@@ -7,6 +7,6 @@ export const loadingApis = styled.View`
 `;
 
 export const containerAnimationLoading = styled.View`
-    width: 300;
-    height: 150;
+    width: 300px;
+    height: 150px;
 `;

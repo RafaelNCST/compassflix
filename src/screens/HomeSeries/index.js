@@ -7,20 +7,25 @@ import { ListHome } from '../../components/FlatListHome';
 
 import { styles } from './style';
 
-import { useRoute } from '@react-navigation/native';
-
 export const HomeSeries = () => {
-    const route = useRoute();
-
-    //prettier-ignore
+    const [seriesList, setSeriesList] = useState([]);
     const {
-        requestTvListSeries,
-        lastPageSeries,
-        loadingScrollSeries,
-        loadingSeries,
-        seriesList,
-        loadInfiniteScrollSeries,
-    } = useContext(ListSeriesContext);
+        changeInfiniteScrollLoading,
+        loadingScroll,
+        changeLoadingPage,
+        lastPage,
+        changeTitleName,
+    } = useContext(ListHomeContext);
+
+    const requestMovieListFilms = async () => {
+        await instance
+            .get(`tv/popular?&language=pt-BR&page=${lastPage}`)
+            .then(resp => {
+                setSeriesList([...seriesList, ...resp.data.results]);
+                changeLoadingPage(false);
+            })
+            .finally(() => changeInfiniteScrollLoading(false));
+    };
 
     useEffect(() => {
         requestTvListSeries();

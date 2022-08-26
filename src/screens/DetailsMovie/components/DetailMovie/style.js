@@ -19,6 +19,17 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    favoriteButtom:{
+        position:'absolute',
+        backgroundColor:'white',
+        width: 40,
+        height: 40,
+        alignItems:'center',
+        justifyContent:'center',
+        top:15,
+        right:20,
+        borderRadius:30
+    },
     infoArea: {
         flex: 1,
         paddingTop: 10,
@@ -35,7 +46,7 @@ export const styles = StyleSheet.create({
         height: 180,
         marginTop: -35,
         borderRadius: 8,
-        marginLeft: 20
+        marginLeft: 20,
     },
     titleArea: {
         flex: 1,
@@ -98,6 +109,7 @@ export const styles = StyleSheet.create({
         color: 'white',
     },
     areaDescription: {
+        top:16,
         width: "90%",
         height: 95,
     },
@@ -121,4 +133,42 @@ export const styles = StyleSheet.create({
         marginTop: 14,
         fontFamily: 'OpenSans-Regular'
     },
+    buttonAvalution:{
+        backgroundColor: '#E9A6A6', 
+        width: 116, 
+        height: 22, 
+        marginRight:19,
+        alignItems:'center',  
+        borderBottomLeftRadius:5,  
+        borderBottomRightRadius:5,
+        flexDirection:'row-reverse',
+        alignItems:'center',
+        justifyContent:'center'
+        
+    },
+    buttonEdit:{
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        borderRadius: 10, 
+        width: 15, 
+        height: 15, 
+        backgroundColor: '#C4C4C4',
+        bottom:11, 
+        left:125,
+        bottom:27
+    },
+    textAvaliation:{
+        fontWeight:'bold',
+        color:'black',
+        alignItems:'center', 
+        justifyContent:'center',
+        fontSize:12
+    },
+    formatFavorite:{
+        backgroundColor:'#EC2626',
+        borderWidth:1,
+        borderColor:'rede'
+
+    },
+   
 })

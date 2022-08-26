@@ -1,68 +1,75 @@
-import { StyleSheet } from "react-native";
+import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
+
+export const CastArea = styled.View`
+    margin-top: 27px;
+    margin-bottom: 10px;
+    width: 60px;
+    align-self: flex-start;
+    margin-left: 15px;
+`;
+
+export const CastTitle = styled.View`
+    height: 25px;
+    width: 60px;
+    background-color: #9c4a8b;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const TextCast = styled.Text`
+    color: white;
+`;
+
+export const SpaceCast = styled.View`
+    margin-top: 7px;
+    width: 32px;
+    border-style: solid;
+    border-color: #9c4a8b;
+    border-top-width: 1px;
+    align-self: center;
+`;
+
+export const Cast = styled.View`
+    width: 90%;
+    flex: 1;
+`;
+
+export const AreaItens = styled.View`
+    flex: 1;
+    flex-direction: row;
+    background-color: black;
+`;
 
 export const styles = StyleSheet.create({
-    castArea: {
-        marginTop: 27,
-        marginBottom: 10,
-        width: 60,
-        alignSelf: 'flex-start',
-        marginLeft: 15
-    },
-    castTitle: {
-        height: 25,
-        width: 60,
-        backgroundColor: '#9C4A8B',
-        borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-
-    },
-    textCast: {
-        color: 'white',
-    },
-    spaceCast: {
-        marginHorizontal: 10,
-        marginTop: 7,
-        width: 32,
-        borderStyle: 'solid',
-        borderColor: '#9C4A8B',
-        borderTopWidth: 1,
-        alignSelf: 'center'
-    },
-    cast: {
-        width: '90%',
-        flex: 1
-    },
     listCredits: {
-        paddingVertical: 5
-    },
-    areaItens: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: 'black',
-        marginVertical: 5,
+        paddingVertical: 5,
     },
     name: {
         color: 'white',
         fontSize: 14,
-        fontFamily: 'OpenSans-Bold'
+        fontFamily: 'OpenSans-Bold',
     },
     character: {
         color: 'white',
         fontSize: 11,
-        fontFamily: 'OpenSans-SemiBold'
+        fontFamily: 'OpenSans-SemiBold',
     },
     imageActors: {
         width: 52,
         height: 54,
-        marginRight: 10
+        marginRight: 10,
     },
     imagePerfilActors: {
         width: 48,
         height: 48,
-        borderRadius: 30
+        borderRadius: 30,
     },
     actor: {
         justifyContent: 'center',
-    }
-})
+    },
+    listCredits: {
+        paddingVertical: 3,
+    },
+});

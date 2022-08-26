@@ -1,10 +1,8 @@
-import { StyleSheet } from "react-native";
+import styled from 'styled-components/native';
 
-export const styles = StyleSheet.create({
-    bodyScreen: {
-        alignItems: 'center',
-        flex: 1,
-        width: '100%',
-        backgroundColor: 'black'
-    }
-})
+export const BodyScreen = styled.View`
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    background-color: black;
+`;
