@@ -66,7 +66,7 @@ export const DetailsSerie = () => {
                 'media_id': '94997',
                 'favorite': markFavoriteSerie
             }).then((resp) => {
-                console.log(resp?.data?.favorite)
+                setMarkFavoriteSerie(!markFavoriteSerie);
             }).catch((error) => console.log(error));
         };       
         
@@ -103,12 +103,7 @@ export const DetailsSerie = () => {
                 postRateSerie();
             }
         };
-
-        const click = () => {
-            setMarkFavoriteSerie(!markFavoriteSerie);
-            postFavoriteSerie();
-            };
-            
+    
         useEffect(() => {
             getDetailSerie();
             getEpisode();
@@ -134,7 +129,7 @@ export const DetailsSerie = () => {
                 <Icon name='arrow-back' size={30} color={'black'} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.favoriteButtom} onPress={()=> click() }>
+            <TouchableOpacity style={styles.favoriteButtom} onPress={()=>  postFavoriteSerie() }>
                 <Image style={{width:23, height:23}} source={serieState?.favorite ? StarActice : StarInative}/>
             </TouchableOpacity>
 
@@ -168,7 +163,7 @@ export const DetailsSerie = () => {
                     <TouchableOpacity style={[styles.buttonAvalution, {backgroundColor: serieState?.rated?.value ? '#8BE0EC' : '#E9A6A6'}]} onPress={() =>  setAssessmentSerie(true)}>
                         <Text style={styles.textAvaliation}> {serieState?.rated?.value ? 'Sua nota é: ' + (serieState?.rated?.value) + '/10' : 'Avalie Agora' } </Text>
                     </TouchableOpacity>
-                    { serieState?.rated?.value < 11 ? (
+                    { serieState?.rated !== false ? (
                         <View style={styles.buttonEdit}>
                         <TouchableOpacity onPress={() =>  setAssessmentSerie(true)}>
                             <Icon name='edit' size={10} color={'#000000'} />
