@@ -40,9 +40,9 @@ export const DetailsMovieComponent = ({
     const postFavoriteMovie = async () => {
         await instance
             .post(`account/${idItens}/favorite?&session_id=${sessionId}`, {
-                media_type: 'movie',
-                media_id: idFilmes,
-                favorite: markFavorite,
+                'media_type': 'movie',
+                'media_id': idItens,
+                'favorite': markFavorite,
             })
             .then(resp => {})
             .catch(error => {
