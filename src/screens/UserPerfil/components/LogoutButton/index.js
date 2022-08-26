@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { LoginContext } from '../../../../contexts/loginContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as Styled from './style';
 import { Modal } from 'react-native';
@@ -20,8 +21,9 @@ export const LogoutButton = () => {
             .delete('authentication/session', {
                 data: { session_id: sessionId },
             })
-            .then(resp => {
+            .then(async resp => {
                 if (resp.data.success) {
+                    await AsyncStorage.removeItem('sessionId');
                     changeSessionID(false, null);
                 }
             })

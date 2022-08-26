@@ -21,7 +21,7 @@ export const ImageContainer = styled.View`
 
 export const SubContainerPopularMovies = styled.View`
     flex-direction: row;
-    margin-top: 1;
+    margin-top: 1px;
     justify-content: flex-start;
     width: 100%;
 `;

@@ -25,6 +25,8 @@ export const UserPerfil = () => {
 
     const [dataAvaliationFilms, setDataAvaliationFilms] = useState([]);
     const [dataFavoritesSeries, setDataFavoritesSeries] = useState([]);
+    const [dataAvaliationSeries, setDataAvaliationSeries] = useState([]);
+    const [dataFavoritesMovies, setDataFavoritesMovies] = useState([]);
 
     const { userInfos } = useContext(HeaderContext);
     const { sessionId } = useContext(LoginContext);
@@ -45,6 +47,7 @@ export const UserPerfil = () => {
             .get(`account/${userInfos?.id}/rated/tv?session_id=${sessionId}`)
             .then(resp => {
                 setRateQuantitySeries(resp?.data?.total_results);
+                setDataAvaliationSeries(resp?.data?.results);
             });
     };
 
@@ -55,11 +58,21 @@ export const UserPerfil = () => {
                 setDataFavoritesSeries(resp?.data?.results);
             });
     };
+    const requestMoviesFavorite = () => {
+        instance
+            .get(
+                `account/${userInfos?.id}/favorite/movies?session_id=${sessionId}`,
+            )
+            .then(resp => {
+                setDataFavoritesMovies(resp?.data?.results);
+            });
+    };
 
     useEffect(() => {
         requestMoviesRated();
         requestSeriesRated();
         requestSeriesFavorite();
+        requestMoviesFavorite();
         setTimeout(() => setloading(false), 1000);
     }, []);
 
@@ -99,7 +112,9 @@ export const UserPerfil = () => {
             <ContainerBottom
                 activeButton={activeButton}
                 dataAvaliationFilms={dataAvaliationFilms}
+                dataAvaliationSeries={dataAvaliationSeries}
                 dataFavoritesSeries={dataFavoritesSeries}
+                dataFavoritesMovies={dataFavoritesMovies}
                 loading={loading}
             />
         </BodyScreen>
