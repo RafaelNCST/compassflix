@@ -16,6 +16,7 @@ import { instance } from '../../services/api';
 import StarActice from '../../assets/Images/StarActice.png';
 import StarInative from '../../assets/Images/StarInative.png';
 import { LoginContext } from '../../contexts/loginContext';
+import { ListSeriesContext } from '../../contexts/listSeriesContext';
 import { ExtraInformatinSerie } from './components/ExtraInformationSerie';
 import { EvaluationSerie } from './components/EvaluationSerie';
 import { ListSeason } from './components/ListSeason';
@@ -29,7 +30,6 @@ export const DetailsSerie = () => {
     const [detailSerie, setDetailSerie] = useState({});
     const [markFavoriteSerie, setMarkFavoriteSerie] = useState(false);
     const [buttomEdit, setButtomEdit] = useState(false);
-    const [serieStates, setSerieStates] = useState({});
     const [extraInformation, setExtraInformation] = useState(false);
     const [director, setDirector] = useState([]);
     const [seasons, setSeasons] = useState([]);
@@ -39,6 +39,7 @@ export const DetailsSerie = () => {
 
     const { idItens } = useRoute().params;
     const { sessionId } = useContext(LoginContext);
+    const { serieStates, setSerieStates } = useContext(ListSeriesContext);
 
     console.log(noteAvaliationSerie);
 

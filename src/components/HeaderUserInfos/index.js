@@ -29,7 +29,7 @@ export const HeaderUserInfos = ({ strTitle }) => {
             >
                 <Styled.ImageUser
                     source={
-                        userInfos.avatar?.tmdb?.avatar_path
+                        userInfos?.avatar?.tmdb?.avatar_path
                             ? {
                                   uri: `https://image.tmdb.org/t/p/original${userInfos?.avatar?.tmdb?.avatar_path}`,
                               }

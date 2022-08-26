@@ -3,31 +3,24 @@ import { LoginContext } from '../../../../contexts/loginContext';
 
 import * as Styled from './style';
 import { Modal } from 'react-native';
-import { instance } from '../../../../services/api';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { SpinnerMultiColor } from '../../../../components/SpinnerMultiColor';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const LogoutButton = () => {
+export const LogoutButton = ({ logoutApi }) => {
     const [visible, setVisible] = useState(false);
     const [logoutLoading, setLogouLoading] = useState(false);
     const { sessionId, changeSessionID } = useContext(LoginContext);
 
-    const logoutRequest = () => {
+    const LogoutFn = async () => {
         setLogouLoading(true);
-        instance
-            .delete('authentication/session', {
-                data: { session_id: sessionId },
-            })
-            .then(resp => {
-                if (resp.data.success) {
-                    changeSessionID(false, null);
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        let resp = await logoutApi(sessionId);
+        if (resp.data.success) {
+            await AsyncStorage.removeItem('sessionId');
+            changeSessionID(false, null);
+        }
     };
 
     return (
@@ -79,7 +72,7 @@ export const LogoutButton = () => {
                                         </Styled.TextModal>
                                     </Styled.Button>
                                     <Styled.Button
-                                        onPress={() => logoutRequest()}
+                                        onPress={() => LogoutFn()}
                                         backColor={'#FFFFFF'}
                                     >
                                         <Styled.TextModal

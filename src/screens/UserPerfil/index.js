@@ -1,21 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react';
-import * as Styled from './style';
 
 import { HeaderContext } from '../../contexts/headerContext';
 import { LoginContext } from '../../contexts/loginContext';
-
-import inactiveMovies from '../../assets/Images/moviesGray.png';
-import inactiveSeries from '../../assets/Images/seriesGray.png';
-
-import activeMovies from '../../assets/Images/moviesColored.png';
-import activeSeries from '../../assets/Images/seriesColored.png';
+import { ListFilmsContext } from '../../contexts/listFilmsContext';
+import { ListSeriesContext } from '../../contexts/listSeriesContext';
 
 import { BodyScreen } from '../../components/StyledComponents/GlobalStyleds';
 
 import { ContainerTop } from './components/ContainerTop';
+import { ContainerMid } from './components/ContainerMid';
 import { ContainerBottom } from './components/ContainerBottom';
+import { requestMoviesRated } from './apis/moviesRequest';
 
 import { instance } from '../../services/api';
+import { useNavigation } from '@react-navigation/native';
+
+import { logoutRequest } from './apis/logoutRequest';
 
 export const UserPerfil = () => {
     const [activeButton, setActiveButton] = useState(0);
@@ -25,19 +25,24 @@ export const UserPerfil = () => {
 
     const [dataAvaliationFilms, setDataAvaliationFilms] = useState([]);
     const [dataFavoritesSeries, setDataFavoritesSeries] = useState([]);
+    const [dataAvaliationSeries, setDataAvaliationSeries] = useState([]);
+    const [dataFavoritesMovies, setDataFavoritesMovies] = useState([]);
+
+    const Navigation = useNavigation();
 
     const { userInfos } = useContext(HeaderContext);
     const { sessionId } = useContext(LoginContext);
+    const { movieStates } = useContext(ListFilmsContext);
+    const { serieStates } = useContext(ListSeriesContext);
 
-    const requestMoviesRated = () => {
-        instance
-            .get(
-                `account/${userInfos?.id}/rated/movies?session_id=${sessionId}`,
-            )
-            .then(resp => {
-                setRateQuantityMovies(resp?.data?.total_results);
-                setDataAvaliationFilms(resp?.data?.results);
-            });
+    const changeButtonsMid = number => {
+        setActiveButton(number);
+    };
+
+    const requestMoviesRatedFn = async () => {
+        let resp = await requestMoviesRated(userInfos, sessionId);
+        setRateQuantityMovies(resp?.data?.total_results);
+        setDataAvaliationFilms(resp?.data?.results);
     };
 
     const requestSeriesRated = () => {
@@ -45,6 +50,7 @@ export const UserPerfil = () => {
             .get(`account/${userInfos?.id}/rated/tv?session_id=${sessionId}`)
             .then(resp => {
                 setRateQuantitySeries(resp?.data?.total_results);
+                setDataAvaliationSeries(resp?.data?.results);
             });
     };
 
@@ -55,13 +61,23 @@ export const UserPerfil = () => {
                 setDataFavoritesSeries(resp?.data?.results);
             });
     };
+    const requestMoviesFavorite = () => {
+        instance
+            .get(
+                `account/${userInfos?.id}/favorite/movies?session_id=${sessionId}`,
+            )
+            .then(resp => {
+                setDataFavoritesMovies(resp?.data?.results);
+            });
+    };
 
     useEffect(() => {
-        requestMoviesRated();
+        requestMoviesRatedFn();
         requestSeriesRated();
         requestSeriesFavorite();
+        requestMoviesFavorite();
         setTimeout(() => setloading(false), 1000);
-    }, []);
+    }, [movieStates, serieStates]);
 
     return (
         <BodyScreen>
@@ -71,36 +87,20 @@ export const UserPerfil = () => {
                 rateQuantitySeries={rateQuantitySeries}
                 activeButton={activeButton}
                 loading={loading}
+                logoutApi={logoutRequest}
             />
-            <Styled.ContainerMid>
-                <Styled.ButtonMenu
-                    onPress={() => setActiveButton(0)}
-                    disabled={activeButton === 0 ? true : false}
-                    sizeRight={activeButton === 0 ? 1 : 0}
-                >
-                    <Styled.ImageButton
-                        source={
-                            activeButton === 0 ? activeMovies : inactiveMovies
-                        }
-                    />
-                </Styled.ButtonMenu>
-                <Styled.ButtonMenu
-                    onPress={() => setActiveButton(1)}
-                    disabled={activeButton === 1 ? true : false}
-                    sizeLeft={activeButton === 1 ? 1 : 0}
-                >
-                    <Styled.ImageButton
-                        source={
-                            activeButton === 1 ? activeSeries : inactiveSeries
-                        }
-                    />
-                </Styled.ButtonMenu>
-            </Styled.ContainerMid>
+            <ContainerMid
+                activeButton={activeButton}
+                onPress={changeButtonsMid}
+            />
             <ContainerBottom
                 activeButton={activeButton}
                 dataAvaliationFilms={dataAvaliationFilms}
+                dataAvaliationSeries={dataAvaliationSeries}
                 dataFavoritesSeries={dataFavoritesSeries}
+                dataFavoritesMovies={dataFavoritesMovies}
                 loading={loading}
+                Navigation={Navigation}
             />
         </BodyScreen>
     );

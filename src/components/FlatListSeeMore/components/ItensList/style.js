@@ -1,35 +1,34 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 
-export const styles = StyleSheet.create({
-    imagePopularMovies: {
-        marginHorizontal: 8,
-        paddingVertical: 15,
-        alignItems: 'center',
-    },
-    imageContainer: {
-        width: 76,
-        height: 95,
-        borderRadius: 10,
-    },
-    imagePoster: {
-        height: 95,
-        width: 76,
-        resizeMode: 'contain',
-        borderRadius: 10,
-    },
-    subContainerPopularMovies: {
-        flexDirection: 'row',
-        marginTop: 1,
-        justifyContent: 'flex-start',
-        width: '100%',
-    },
-    iconPopularMovies: {
-        color: '#EC2626',
-    },
-    textPopularMovies: {
-        color: '#FFFFFF',
-        marginLeft: 4.5,
-        fontSize: 9,
-        fontFamily: 'OpenSans-SemiBold',
-    },
-});
+export const ButtonBody = styled.TouchableOpacity`
+    margin-horizontal: 8px;
+    padding-vertical: ${props => props.paddingv}px;
+    align-items: center;
+`;
+
+export const ImagePoster = styled.Image`
+    height: 95px;
+    width: 76px;
+    object-fit: contain;
+    border-radius: 10px;
+`;
+
+export const ImageContainer = styled.View`
+    width: 76px;
+    height: 95px;
+    border-radius: 10px;
+`;
+
+export const SubContainerPopularMovies = styled.View`
+    flex-direction: row;
+    margin-top: 1px;
+    justify-content: flex-start;
+    width: 100%;
+`;
+
+export const TextPopularMovies = styled.Text`
+    color: #ffffff;
+    margin-left: 4.5px;
+    font-size: 9px;
+    font-family: 'OpenSans-SemiBold';
+`;

@@ -1,34 +1,32 @@
 import React, { memo } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { styles } from './style';
+import * as Styled from './style';
 import { useNavigation } from '@react-navigation/native';
 
 export const ItensSeeMoreList = memo(({ listItens, noteItens, idItens }) => {
     const Navigation = useNavigation();
 
     return (
-        <TouchableOpacity
+        <Styled.ButtonBody
             onPress={() => Navigation.navigate('DetailUserMovie', { idItens })}
-            style={styles.imagePopularMovies}
+            paddingv={noteItens ? 15 : 10}
         >
-            <View style={styles.imageContainer}>
-                <Image
-                    style={styles.imagePoster}
+            <Styled.ImageContainer>
+                <Styled.ImagePoster
                     source={{
                         uri: `https://image.tmdb.org/t/p/w500${listItens}`,
                     }}
                 />
-            </View>
-            <View style={styles.subContainerPopularMovies}>
-                <Icon
-                    style={styles.iconPopularMovies}
-                    name='star'
-                    size={13.5}
-                />
-                <Text style={styles.textPopularMovies}>{noteItens}/10</Text>
-            </View>
-        </TouchableOpacity>
+            </Styled.ImageContainer>
+            {noteItens && (
+                <Styled.SubContainerPopularMovies>
+                    <Icon color='#EC2626' name='star' size={13.5} />
+                    <Styled.TextPopularMovies>
+                        {noteItens}/10
+                    </Styled.TextPopularMovies>
+                </Styled.SubContainerPopularMovies>
+            )}
+        </Styled.ButtonBody>
     );
 });
 

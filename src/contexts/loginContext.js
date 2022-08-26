@@ -22,7 +22,9 @@ export const LoginContextProvider = ({ children }) => {
     const changeSessionID = (state, id) => {
         setSignedIn(state);
         setSessionId(id);
-        AsyncStorage.setItem('sessionId', id);
+        if (id) {
+            AsyncStorage.setItem('sessionId', id);
+        }
     };
 
     return (

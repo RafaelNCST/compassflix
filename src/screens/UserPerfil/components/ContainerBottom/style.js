@@ -1,9 +1,16 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const ContainerBottom = styled.View`
     flex: 4;
     align-items: center;
     width: 100%;
+`;
+
+export const Message = styled.View`
+    margin-top: 35px;
+`;
+export const MessageText = styled.Text`
+    color: #fff;
 `;
 
 export const ContainerData = styled.View`
@@ -40,6 +47,7 @@ export const ImageFavorites = styled.Image`
     width: 67px;
     height: 89px;
     margin: 8px;
+    border-radius: 7px;
 `;
 
 export const ImageAvaliation = styled.Image`

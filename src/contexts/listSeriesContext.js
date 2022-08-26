@@ -8,6 +8,7 @@ export const ListSeriesContextProvider = ({ children }) => {
     const [loadingSeries, setLoadingSeries] = useState(true);
     const [loadingScrollSeries, setLoadingScrollSeries] = useState(false);
     const [lastPageSeries, setLastPageSeries] = useState(1);
+    const [serieStates, setSerieStates] = useState({});
 
     const requestTvListSeries = async () => {
         await instance
@@ -34,6 +35,8 @@ export const ListSeriesContextProvider = ({ children }) => {
                 requestTvListSeries,
                 seriesList,
                 lastPageSeries,
+                serieStates,
+                setSerieStates,
             }}
         >
             {children}
