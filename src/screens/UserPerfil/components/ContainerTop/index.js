@@ -15,10 +15,11 @@ export const ContainerTop = ({
     rateQuantitySeries,
     activeButton,
     loading,
+    logoutApi,
 }) => {
     return (
         <Styled.ContainerTop>
-            <LogoutButton />
+            <LogoutButton logoutApi={logoutApi} />
             <Styled.ContainerUser heightContainer={110}>
                 <Styled.ImageUser
                     source={
