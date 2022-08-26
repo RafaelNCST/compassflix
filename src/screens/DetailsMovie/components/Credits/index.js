@@ -22,9 +22,10 @@ export const CreditsComponent = ({ cast }) => {
                     keyExtractor={(item, index) => index}
                     renderItem={({ item }) => {
                         return (
-                            <Styled.AreaItens>
-                                <Styled.ImageActors>
-                                    <Styled.ImagePerfilActors
+                            <View style={styles.areaItens}>
+                                <View style={styles.imageActors}>
+                                    <Image
+                                        style={styles.imagePerfilActors}
                                         source={
                                             item?.profile_path
                                                 ? {
@@ -33,14 +34,16 @@ export const CreditsComponent = ({ cast }) => {
                                                 : anonimo
                                         }
                                     />
-                                </Styled.ImageActors>
-                                <Styled.Actor>
-                                    <Styled.Name>{item?.name}</Styled.Name>
-                                    <Styled.Character>
+                                </View>
+                                <View style={styles.actor}>
+                                    <Text style={styles.name}>
+                                        {item?.name}
+                                    </Text>
+                                    <Text style={styles.character}>
                                         {item?.character}
-                                    </Styled.Character>
-                                </Styled.Actor>
-                            </Styled.AreaItens>
+                                    </Text>
+                                </View>
+                            </View>
                         );
                     }}
                 />

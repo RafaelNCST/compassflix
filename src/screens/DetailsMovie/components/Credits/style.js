@@ -23,7 +23,6 @@ export const TextCast = styled.Text`
 `;
 
 export const SpaceCast = styled.View`
-    margin-horizontal: 10px;
     margin-top: 7px;
     width: 32px;
     border-style: solid;
@@ -41,39 +40,36 @@ export const AreaItens = styled.View`
     flex: 1;
     flex-direction: row;
     background-color: black;
-    margin-vertical: 5px;
-`;
-
-export const Name = styled.Text`
-    color: white;
-    font-size: 14px;
-    font-family: 'OpenSans-Bold';
-`;
-
-export const Character = styled.Text`
-    color: white;
-    font-size: 11px;
-    font-family: 'OpenSans-SemiBold';
-`;
-
-export const ImageActors = styled.View`
-    width: 52px;
-    height: 54px;
-    margin-right: 10px;
-`;
-
-export const ImagePerfilActors = styled.Image`
-    width: 48px;
-    height: 48px;
-    border-radius: 30px;
-`;
-
-export const Actor = styled.View`
-    justify-content: center;
 `;
 
 export const styles = StyleSheet.create({
     listCredits: {
-        paddingVertical: 8,
+        paddingVertical: 5,
+    },
+    name: {
+        color: 'white',
+        fontSize: 14,
+        fontFamily: 'OpenSans-Bold',
+    },
+    character: {
+        color: 'white',
+        fontSize: 11,
+        fontFamily: 'OpenSans-SemiBold',
+    },
+    imageActors: {
+        width: 52,
+        height: 54,
+        marginRight: 10,
+    },
+    imagePerfilActors: {
+        width: 48,
+        height: 48,
+        borderRadius: 30,
+    },
+    actor: {
+        justifyContent: 'center',
+    },
+    listCredits: {
+        paddingVertical: 3,
     },
 });
