@@ -6,7 +6,7 @@ export const ContainerBottom = styled.View`
     width: 100%;
 `;
 
-export const Message = styled.TouchableOpacity`
+export const Message = styled.View`
     margin-top: 35px;
 `;
 export const MessageText = styled.Text`

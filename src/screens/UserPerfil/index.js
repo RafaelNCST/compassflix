@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import { HeaderContext } from '../../contexts/headerContext';
 import { LoginContext } from '../../contexts/loginContext';
+import { ListFilmsContext } from '../../contexts/listFilmsContext';
+import { ListSeriesContext } from '../../contexts/listSeriesContext';
 
 import { BodyScreen } from '../../components/StyledComponents/GlobalStyleds';
 
@@ -30,6 +32,8 @@ export const UserPerfil = () => {
 
     const { userInfos } = useContext(HeaderContext);
     const { sessionId } = useContext(LoginContext);
+    const { movieStates } = useContext(ListFilmsContext);
+    const { serieStates } = useContext(ListSeriesContext);
 
     const changeButtonsMid = number => {
         setActiveButton(number);
@@ -73,7 +77,7 @@ export const UserPerfil = () => {
         requestSeriesFavorite();
         requestMoviesFavorite();
         setTimeout(() => setloading(false), 1000);
-    }, []);
+    }, [movieStates, serieStates]);
 
     return (
         <BodyScreen>

@@ -63,7 +63,7 @@ export const ContainerBottom = ({
                             : dataFavoritesSeries) == false ? (
                             <Styled.Message>
                                 <Styled.MessageText>
-                                    Favorite agora!
+                                    sem favoritos no momento!
                                 </Styled.MessageText>
                             </Styled.Message>
                         ) : (
@@ -119,7 +119,7 @@ export const ContainerBottom = ({
                             : dataAvaliationSeries) == false ? (
                             <Styled.Message>
                                 <Styled.MessageText>
-                                    Avalie agora!
+                                    Sem Avalições No momento!
                                 </Styled.MessageText>
                             </Styled.Message>
                         ) : (
