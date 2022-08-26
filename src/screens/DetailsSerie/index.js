@@ -28,10 +28,11 @@ export const DetailsSerie = () => {
     const [listEpisode, setListEpisode] = useState([]);
     const Navigation = useNavigation();
 
+    const { idItens } = useRoute().params;
     const { sessionId } = useContext(LoginContext);
 
         const getDetailSerie = async () => {
-            await instance.get(`tv/94997?&language=pt-BR`)
+            await instance.get(`tv/${idItens}?&language=pt-BR`)
                 .then((resp) => {
                     setDetailSerie(resp.data);
                     setSeasons(resp?.data.seasons);
@@ -43,7 +44,7 @@ export const DetailsSerie = () => {
         };
 
         const getEpisode = async () => {
-        await instance.get(`/tv/94997/season/1?&language=pt-BR`)
+        await instance.get(`/tv/${idItens}/season/1?&language=pt-BR`)
         .then((resp)=> {
             setListEpisode(resp?.data?.episodes);
             
@@ -53,7 +54,7 @@ export const DetailsSerie = () => {
         };
 
         const getStatesSerie = async () => {
-            await instance.get(`tv/94997$/account_states?&session_id=${sessionId}`)
+            await instance.get(`tv/${idItens}/account_states?&session_id=${sessionId}`)
                 .then((resp) => {
                     setSerieStates(resp?.data);
                 })
@@ -61,9 +62,9 @@ export const DetailsSerie = () => {
         };
 
         const postFavoriteSerie = async () => {
-            await instance.post(`account/94997/favorite?&session_id=${sessionId}`,{
+            await instance.post(`account/${idItens}/favorite?&session_id=${sessionId}`,{
                 'media_type': 'tv',
-                'media_id': '94997',
+                'media_id': idItens,
                 'favorite': markFavoriteSerie
             }).then((resp) => {
                 setMarkFavoriteSerie(!markFavoriteSerie);
@@ -71,7 +72,7 @@ export const DetailsSerie = () => {
         };       
         
         const postRateSerie = async () => {
-            await instance.post(`tv/94997/rating?&session_id=${sessionId}`,{
+            await instance.post(`tv/${idItens}/rating?&session_id=${sessionId}`,{
                 'value':parseFloat(noteAvaliationSerie)
             }).then(resp => {
                 setNoteAvaliatioSerie(resp?.value);
