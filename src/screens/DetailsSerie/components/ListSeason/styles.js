@@ -29,6 +29,26 @@ export const styles = StyleSheet.create({
         bottom:5, 
         borderBottomRightRadius:5,
         borderBottomLeftRadius:5
+    },
+    buttoArea:{
+        width:'90%',
+        left:15,
+        marginVertical:5, 
+        backgroundColor:'rgba(255, 255, 255, 0.5)', 
+        borderRadius:5
+    },
+    seasonAndEpisode:{
+        flexDirection:'row'
+    },
+    seasonText:{
+        color:'#ffff', 
+        marginLeft:15
+    },
+    episodeText:{
+        color:'#ffff'
+    },
+    nameSerieText:{
+        color:'#ffff', marginLeft:15
     }
 
 

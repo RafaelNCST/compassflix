@@ -39,12 +39,12 @@ return (
         return(
             <>
             { showContet &&  
-            <View style={{width:'90%',left:15 ,marginVertical:5, backgroundColor:'rgba(255, 255, 255, 0.5)', borderRadius:5}}>
-            <View style={{flexDirection:'row'}}>     
-            <Text style={{color:'#ffff', marginLeft:15}}> T{item?.season_number}</Text>
-            <Text style={{color:'#ffff'}}> E{item?.episode_number}</Text>
+            <View style={styles.buttoArea}>
+            <View style={styles.seasonAndEpisode}>     
+            <Text style={styles.seasonText}> T{item?.season_number}</Text>
+            <Text style={styles.episodeText}> E{item?.episode_number}</Text>
             </View> 
-            <Text style={{color:'#ffff', marginLeft:15}}>{item?.name}</Text>
+            <Text style={styles.nameSerieText}>{item?.name}</Text>
             </View>
         }
             </>

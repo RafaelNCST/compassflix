@@ -23,7 +23,7 @@ export const DetailsSerie = () => {
     const [buttomEdit, setButtomEdit] = useState(false);
     const [serieState, setSerieStates] = useState ({});
     const [extraInformation, setExtraInformation] = useState(false);
-    const [director, setDiretor] = useState([]);
+    const [director, setDirector] = useState([]);
     const [seasons, setSeasons] = useState([]);
     const [listEpisode, setListEpisode] = useState([]);
     const Navigation = useNavigation();
@@ -31,10 +31,11 @@ export const DetailsSerie = () => {
     const { sessionId } = useContext(LoginContext);
 
         const getDetailSerie = async () => {
-            await instance.get(`tv/90802?&language=pt-BR`)
+            await instance.get(`tv/94997?&language=pt-BR`)
                 .then((resp) => {
                     setDetailSerie(resp.data);
                     setSeasons(resp?.data.seasons);
+                    setDirector(resp?.data?.created_by);
                     
                     
                 })
@@ -42,17 +43,17 @@ export const DetailsSerie = () => {
         };
 
         const getEpisode = async () => {
-        await instance.get(`/tv/90802/season/1?&language=pt-BR`)
+        await instance.get(`/tv/94997/season/1?&language=pt-BR`)
         .then((resp)=> {
             setListEpisode(resp?.data?.episodes);
-            setDiretor(resp?.data?.crew);
+            
         })
         .catch(error => console.log(error));
 
         };
 
         const getStatesSerie = async () => {
-            await instance.get(`tv/90802$/account_states?&session_id=${sessionId}`)
+            await instance.get(`tv/94997$/account_states?&session_id=${sessionId}`)
                 .then((resp) => {
                     setSerieStates(resp?.data);
                 })
@@ -60,17 +61,17 @@ export const DetailsSerie = () => {
         };
 
         const postFavoriteSerie = async () => {
-            await instance.post(`account/13846517/favorite?&session_id=${sessionId}`,{
+            await instance.post(`account/94997/favorite?&session_id=${sessionId}`,{
                 'media_type': 'tv',
-                'media_id': '90802',
+                'media_id': '94997',
                 'favorite': markFavoriteSerie
-            }).then(() => {
-                    setMarkFavoriteSerie(!markFavoriteSerie);
+            }).then((resp) => {
+                console.log(resp?.data?.favorite)
             }).catch((error) => console.log(error));
         };       
         
         const postRateSerie = async () => {
-            await instance.post(`tv/90802/rating?&session_id=${sessionId}`,{
+            await instance.post(`tv/94997/rating?&session_id=${sessionId}`,{
                 'value':parseFloat(noteAvaliationSerie)
             }).then(resp => {
                 setNoteAvaliatioSerie(resp?.value);
@@ -85,10 +86,9 @@ export const DetailsSerie = () => {
             });
         
         };
-        const buttmEdit = () => {
-            setAssessmentSerie(true);
-            setButtomEdit(true);
-        };
+        
+        
+    
 
         const validationNoteSerie = () => {
             setVerificationSerie(false);
@@ -105,6 +105,7 @@ export const DetailsSerie = () => {
         };
 
         const click = () => {
+            setMarkFavoriteSerie(!markFavoriteSerie);
             postFavoriteSerie();
             };
             
@@ -132,7 +133,8 @@ export const DetailsSerie = () => {
             <TouchableOpacity style={styles.buttomBack} onPress={() => Navigation.goBack()} >
                 <Icon name='arrow-back' size={30} color={'black'} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.favoriteButtom} onPress={()=> click()}>
+
+            <TouchableOpacity style={styles.favoriteButtom} onPress={()=> click() }>
                 <Image style={{width:23, height:23}} source={serieState?.favorite ? StarActice : StarInative}/>
             </TouchableOpacity>
 
@@ -140,7 +142,7 @@ export const DetailsSerie = () => {
                 <ExtraInformatinSerie
                     imageMovie={detailSerie?.poster_path}
                     titleMovie={detailSerie?.name}
-                    genreMovie={detailSerie?.genres}
+                    genres={detailSerie?.genres}
                     setExtraInformation={setExtraInformation}
                 />
             </Modal>
@@ -163,27 +165,36 @@ export const DetailsSerie = () => {
                     <TouchableOpacity onPress={() => setExtraInformation(true)}>
                         <Image style={styles.imagePerfil} source={{ uri: `https://image.tmdb.org/t/p/original${detailSerie?.poster_path}` }} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.buttonAvalution, {backgroundColor: serieState?.rated?.value ? '#8BE0EC' : '#E9A6A6'}]} onPress={() => buttmEdit()}>
+                    <TouchableOpacity style={[styles.buttonAvalution, {backgroundColor: serieState?.rated?.value ? '#8BE0EC' : '#E9A6A6'}]} onPress={() =>  setAssessmentSerie(true)}>
                         <Text style={styles.textAvaliation}> {serieState?.rated?.value ? 'Sua nota é: ' + (serieState?.rated?.value) + '/10' : 'Avalie Agora' } </Text>
                     </TouchableOpacity>
-                    <View style={styles.buttonEdit}>
-                        <TouchableOpacity onPress={() => buttomEdit()}>
+                    { serieState?.rated?.value < 11 ? (
+                        <View style={styles.buttonEdit}>
+                        <TouchableOpacity onPress={() =>  setAssessmentSerie(true)}>
                             <Icon name='edit' size={10} color={'#000000'} />
                         </TouchableOpacity>
                     </View>
+                    ) : (null)}
+                    
             </View>
             <View style={styles.infoArea}>
                 <View style={styles.titleArea}>
                         <View style={styles.containerNameAndYear}>
                                 <TouchableOpacity onPress={() => setExtraInformation(true)}>
-                                    <Text style={styles.textTitle}>{detailSerie?.name}</Text>
+                                    <Text style={styles.textTitle}>{(detailSerie?.name)?.length > 10 ? (detailSerie?.name)?.substring(0, 10) + '...' : detailSerie?.name}</Text>
                                 </TouchableOpacity>
                             <Text style={styles.textAno}>{date.getFullYear()}</Text>
                         </View>
                 </View>
-
-               
                 
+                {director.find(item => item.gender === 2) ?
+                        (<Text style={styles.textDirector}>Direção por <Text style={styles.stroke}>{director.find(item => item.gender === 2).name}</Text></Text>
+                        ) : (
+                            <Text style={styles.textDirector} >  Direção índisponivel </Text>
+                        )
+                    }
+                    
+            
                 <View style={styles.notesArea}>
                     <Text style={styles.textNote}>{parseFloat(detailSerie?.vote_average).toFixed(1)}/10</Text>
                     <View style={styles.bottomLike}>
@@ -201,9 +212,7 @@ export const DetailsSerie = () => {
                     <Text style={styles.textDescription}>{detailSerie?.overview}</Text>
                 </ScrollView>
             </View>
-
             <View style={styles.areaDropDown}>
-
             <FlatList
                 data={seasons}
                 keyExtractor={(_, index) => index}

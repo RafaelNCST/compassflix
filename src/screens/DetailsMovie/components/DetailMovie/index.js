@@ -37,7 +37,7 @@ export const DetailsMovieComponent = ({ Navigation, detail, visible, setVisible,
                     <View style={styles.titleArea}>
                         <View style={styles.containerNameAndYear}>
                             <TouchableOpacity onPress={() => setVisible(true)}>
-                                <Text style={styles.textTitle}>{(detail?.title).length > 10 ? (detail?.title).substring(0, 10) + '...' : detail?.title}</Text>
+                                <Text style={styles.textTitle}>{(detail?.title)?.length > 10 ? (detail?.title)?.substring(0, 10) + '...' : detail?.title}</Text>
                             </TouchableOpacity>
                             <Text style={styles.textAno}>{date.getFullYear()}</Text>
                         </View>
