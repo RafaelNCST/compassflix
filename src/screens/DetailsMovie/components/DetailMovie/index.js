@@ -15,7 +15,7 @@ import { Evaluation } from '../Evaluation';
 import { instance } from '../../../../services/api';
 import { LoginContext } from '../../../../contexts/loginContext';
 import { useRoute } from '@react-navigation/native';
-import StarActice from '../../../../assets/Images/StarActive.png';
+import StarActice from '../../../../assets/Images/StarActice.png';
 import StarInative from '../../../../assets/Images/StarInative.png';
 
 export const DetailsMovieComponent = ({
