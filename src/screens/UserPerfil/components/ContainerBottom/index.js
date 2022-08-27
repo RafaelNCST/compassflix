@@ -9,6 +9,8 @@ import { TextInfos } from '../../../../components/StyledComponents/GlobalStyleds
 
 import { SpinnerStick } from '../../../../components/SpinnerStick';
 
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import {
     OpenPageAvaliation,
     OpenPageFavorites,
@@ -130,12 +132,25 @@ export const ContainerBottom = ({
                                 ).map((item, index) => {
                                     if (index > 4) return null;
                                     return (
-                                        <Styled.ImageAvaliation
+                                        <Styled.ContainerAvaliationData
                                             key={index}
-                                            source={{
-                                                uri: `https://image.tmdb.org/t/p/original${item.poster_path}`,
-                                            }}
-                                        />
+                                        >
+                                            <Styled.ImageAvaliation
+                                                source={{
+                                                    uri: `https://image.tmdb.org/t/p/original${item.poster_path}`,
+                                                }}
+                                            />
+                                            <Styled.ContainerInfosData>
+                                                <Icon
+                                                    color={'#ec2626'}
+                                                    name='star'
+                                                    size={13.5}
+                                                />
+                                                <Styled.ContainerInfosDataText>
+                                                    {item.rating}/10
+                                                </Styled.ContainerInfosDataText>
+                                            </Styled.ContainerInfosData>
+                                        </Styled.ContainerAvaliationData>
                                     );
                                 })}
                             </>

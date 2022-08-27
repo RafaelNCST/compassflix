@@ -25,7 +25,10 @@ export const StackUserRoutes = () => {
                     name='DetailUserMovie'
                     component={DetailsMovie}
                 />
-                <StackUser.Screen name='DetailSerie' component={DetailsSerie} />
+                <StackUser.Screen
+                    name='DetailUserSerie'
+                    component={DetailsSerie}
+                />
             </StackUser.Navigator>
         </ListSeeMoreContextProvider>
     );

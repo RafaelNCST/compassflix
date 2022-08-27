@@ -32,22 +32,31 @@ export const PageSeeMore = () => {
         loadingPage,
     } = useContext(ListSeeMoreContext);
 
-    const route = useRoute();
+    const { Title, TypeButton } = useRoute()?.params;
+
+    const checkNavigation = () => {
+        console.log(TypeButton);
+        if (TypeButton == 0 || TypeButton == 2) {
+            return 'DetailUserMovie';
+        } else {
+            return 'DetailUserSerie';
+        }
+    };
 
     useEffect(() => {
-        if (route?.params?.type === 0) {
+        if (TypeButton === 0) {
             setType('rated');
             setProgram('movies');
             firstRunRequest(userInfos?.id, sessionId, 'rated', 'movies');
-        } else if (route?.params?.type === 1) {
+        } else if (TypeButton === 1) {
             setType('rated');
             setProgram('series');
             firstRunRequest(userInfos?.id, sessionId, 'rated', 'tv');
-        } else if (route?.params?.type === 2) {
+        } else if (TypeButton === 2) {
             setType('favorite');
             setProgram('movies');
             firstRunRequest(userInfos?.id, sessionId, 'favorite', 'movies');
-        } else if (route?.params?.type === 3) {
+        } else if (TypeButton === 3) {
             setType('favorite');
             setProgram('series');
             firstRunRequest(userInfos?.id, sessionId, 'favorite', 'tv');
@@ -64,7 +73,7 @@ export const PageSeeMore = () => {
         <BodyScreen>
             <BackButton />
             <Styled.TextTitle color={'#FFFFFF'}>
-                {route?.params?.Title}{' '}
+                {Title}{' '}
                 <Styled.TextTitle color={'#E9A6A6'}>
                     {userInfos?.name || userInfos?.username}
                 </Styled.TextTitle>
@@ -85,6 +94,7 @@ export const PageSeeMore = () => {
                     loadInfiniteScroll={loadInfiniteScroll}
                     lastPage={lastPage}
                     type={type}
+                    TypeButton={checkNavigation}
                     program={program}
                 />
             )}

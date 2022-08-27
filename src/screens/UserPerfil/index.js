@@ -11,8 +11,10 @@ import { ContainerTop } from './components/ContainerTop';
 import { ContainerMid } from './components/ContainerMid';
 import { ContainerBottom } from './components/ContainerBottom';
 import { requestMoviesRated } from './apis/moviesRequest';
+import { requestMoviesFavorite } from './apis/moviesRequest';
+import { requestSeriesRated } from './apis/seriesRequest';
+import { requestSeriesFavorite } from './apis/seriesRequest';
 
-import { instance } from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
 
 import { logoutRequest } from './apis/logoutRequest';
@@ -45,37 +47,27 @@ export const UserPerfil = () => {
         setDataAvaliationFilms(resp?.data?.results);
     };
 
-    const requestSeriesRated = () => {
-        instance
-            .get(`account/${userInfos?.id}/rated/tv?session_id=${sessionId}`)
-            .then(resp => {
-                setRateQuantitySeries(resp?.data?.total_results);
-                setDataAvaliationSeries(resp?.data?.results);
-            });
+    const requestMoviesFavoriteFn = async () => {
+        let resp = await requestMoviesFavorite(userInfos?.id, sessionId);
+        setDataFavoritesMovies(resp?.data?.results);
     };
 
-    const requestSeriesFavorite = () => {
-        instance
-            .get(`account/${userInfos?.id}/favorite/tv?session_id=${sessionId}`)
-            .then(resp => {
-                setDataFavoritesSeries(resp?.data?.results);
-            });
+    const requestSeriesFavoriteFn = async () => {
+        let resp = await requestSeriesFavorite(userInfos?.id, sessionId);
+        setDataFavoritesSeries(resp?.data?.results);
     };
-    const requestMoviesFavorite = () => {
-        instance
-            .get(
-                `account/${userInfos?.id}/favorite/movies?session_id=${sessionId}`,
-            )
-            .then(resp => {
-                setDataFavoritesMovies(resp?.data?.results);
-            });
+
+    const requestSeriesRatedFn = async () => {
+        let resp = await requestSeriesRated(userInfos?.id, sessionId);
+        setRateQuantitySeries(resp?.data?.total_results);
+        setDataAvaliationSeries(resp?.data?.results);
     };
 
     useEffect(() => {
         requestMoviesRatedFn();
-        requestSeriesRated();
-        requestSeriesFavorite();
-        requestMoviesFavorite();
+        requestSeriesRatedFn();
+        requestSeriesFavoriteFn();
+        requestMoviesFavoriteFn();
         setTimeout(() => setloading(false), 1000);
     }, [movieStates, serieStates]);
 

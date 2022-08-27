@@ -7,3 +7,11 @@ export const requestMoviesRated = async (userInfos, sessionId) => {
 
     return resp;
 };
+
+export const requestMoviesFavorite = (userInfos, sessionId) => {
+    let resp = instance.get(
+        `account/${userInfos?.id}/favorite/movies?session_id=${sessionId}`,
+    );
+
+    return resp;
+};

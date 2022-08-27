@@ -15,9 +15,12 @@ export const ListSeeMore = ({
     lastPage,
     program,
     type,
+    TypeButton,
 }) => {
     const blank1 = program === 'movies' ? 'filme' : 'série';
     const blank2 = type === 'favorite' ? 'favoritou' : 'avaliou';
+
+    console.log(TypeButton());
 
     return (
         <>
@@ -43,6 +46,7 @@ export const ListSeeMore = ({
                                 listItens={item?.poster_path}
                                 noteItens={item?.rating}
                                 idItens={item?.id}
+                                typeNavigation={TypeButton}
                             />
                         );
                     }}

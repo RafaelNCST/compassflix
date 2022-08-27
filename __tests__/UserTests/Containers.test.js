@@ -1,5 +1,4 @@
 import React from 'react';
-import { renderHook } from '@testing-library/react-hooks';
 import { cleanup, render, fireEvent } from '@testing-library/react-native';
 import {
     describe,
@@ -27,9 +26,10 @@ describe('Test Mid Container: 0 is Movies and 1 is Series', () => {
     it('Mid Container is renderer?', () => {
         activeButton = jest.fn();
         onPressMock = jest.fn();
-        wrapper = render(
+        const { debug } = render(
             <ContainerMid activeButton={activeButton} onPress={onPressMock} />,
         );
+        debug();
     });
 
     describe('Testing Button Movies Actived', () => {
@@ -97,7 +97,7 @@ describe('Bottom Container: testing buttons and titles ', () => {
         userInfos = jest.fn();
         data = jest.fn();
         activeButton = jest.fn();
-        renderHook(
+        render(
             <HeaderContext.Provider value={userInfos}>
                 <ContainerBottom
                     activeButton={activeButton}

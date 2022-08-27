@@ -6,13 +6,13 @@ export const Title2Series = 'Séries favoritas de ';
 export const OpenPageAvaliation = (activeButton, Navigation) => {
     Navigation.navigate('PageSeeMoreScreen', {
         Title: activeButton === 0 ? Title1Movies : Title1Series,
-        type: activeButton === 0 ? 0 : 1,
+        TypeButton: activeButton === 0 ? 0 : 1,
     });
 };
 
 export const OpenPageFavorites = (activeButton, Navigation) => {
     Navigation.navigate('PageSeeMoreScreen', {
         Title: activeButton === 0 ? Title2Movies : Title2Series,
-        type: activeButton === 0 ? 2 : 3,
+        TypeButton: activeButton === 0 ? 2 : 3,
     });
 };
