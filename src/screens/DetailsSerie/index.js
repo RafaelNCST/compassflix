@@ -41,8 +41,6 @@ export const DetailsSerie = () => {
     const { sessionId } = useContext(LoginContext);
     const { serieStates, setSerieStates } = useContext(ListSeriesContext);
 
-    console.log(noteAvaliationSerie);
-
     const getDetailSerie = async () => {
         await instance
             .get(`tv/${idItens}?&language=pt-BR`)
@@ -128,8 +126,6 @@ export const DetailsSerie = () => {
     useEffect(() => {
         getStatesSerie();
     }, [markFavoriteSerie, noteAvaliationSerie]);
-
-
 
     const date = new Date(detailSerie?.first_air_date);
 
@@ -314,11 +310,12 @@ export const DetailsSerie = () => {
                     <View style={styles.areaDescription}>
                         <ScrollView style={styles.scrollDescription}>
                             <Text style={styles.tagline}>
-                            {(detailSerie?.tagline).toUpperCase() || detailSerie?.name}
+                                {(detailSerie?.tagline).toUpperCase() ||
+                                    detailSerie?.name}
                             </Text>
                             <Text style={styles.textDescription}>
-                        {(detailSerie?.overview).toString() ||
-                            'Descrição indisponível'}
+                                {(detailSerie?.overview).toString() ||
+                                    'Descrição indisponível'}
                             </Text>
                         </ScrollView>
                     </View>

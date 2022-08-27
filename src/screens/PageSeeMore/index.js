@@ -35,7 +35,6 @@ export const PageSeeMore = () => {
     const { Title, TypeButton } = useRoute()?.params;
 
     const checkNavigation = () => {
-        console.log(TypeButton);
         if (TypeButton == 0 || TypeButton == 2) {
             return 'DetailUserMovie';
         } else {
