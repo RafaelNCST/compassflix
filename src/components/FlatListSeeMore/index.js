@@ -20,8 +20,6 @@ export const ListSeeMore = ({
     const blank1 = program === 'movies' ? 'filme' : 'série';
     const blank2 = type === 'favorite' ? 'favoritou' : 'avaliou';
 
-    console.log(TypeButton());
-
     return (
         <>
             {totalPages === 0 ? (
