@@ -13,7 +13,6 @@ import * as Styled from './style';
 export const DetailsMovie = () => {
     const { sessionId } = useContext(LoginContext);
     const { movieStates, setMovieStates } = useContext(ListFilmsContext);
-
     const [noteAvaliation, setNoteAvaliation] = useState('');
     const [markFavorite, setMarkFavorite] = useState(false);
     const [detail, setDetail] = useState({});
@@ -22,7 +21,6 @@ export const DetailsMovie = () => {
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [note, setNote] = useState(false);
-
     const Navigation = useNavigation();
     const { idItens } = useRoute().params;
 
