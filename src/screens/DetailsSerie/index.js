@@ -250,10 +250,10 @@ export const DetailsSerie = () => {
                                         }
                                     >
                                         <Text style={styles.textTitle}>
-                                            {detailSerie?.name?.length > 10
+                                            {detailSerie?.name?.length > 14
                                                 ? detailSerie?.name?.substring(
                                                       0,
-                                                      10,
+                                                      14,
                                                   ) + '...'
                                                 : detailSerie?.name}
                                         </Text>
@@ -314,10 +314,11 @@ export const DetailsSerie = () => {
                     <View style={styles.areaDescription}>
                         <ScrollView style={styles.scrollDescription}>
                             <Text style={styles.tagline}>
-                                {detailSerie?.tagline}
+                            {(detailSerie?.tagline).toUpperCase() || detailSerie?.name}
                             </Text>
                             <Text style={styles.textDescription}>
-                                {detailSerie?.overview}
+                        {(detailSerie?.overview).toString() ||
+                            'Descrição indisponível'}
                             </Text>
                         </ScrollView>
                     </View>

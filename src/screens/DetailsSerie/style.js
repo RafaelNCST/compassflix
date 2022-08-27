@@ -100,7 +100,7 @@ export const styles = StyleSheet.create({
     textTitle: {
         color: 'white',
         fontSize: 20,
-        maxWidth: 150,
+        maxWidth: 180,
         fontFamily: 'OpenSans-Bold'
     },
     textAno: {
