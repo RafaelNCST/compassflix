@@ -56,3 +56,22 @@ export const ImageAvaliation = styled.Image`
     margin: 7px;
     border-radius: 7px;
 `;
+
+export const ContainerAvaliationData = styled.View`
+    flex-direction: column;
+`;
+
+export const ContainerInfosData = styled.View`
+    flex-direction: row;
+    margin-top: 1px;
+    margin-left: 5px;
+    justify-content: flex-start;
+    width: 100%;
+`;
+
+export const ContainerInfosDataText = styled.Text`
+    color: #ffffff;
+    margin-left: 4.5px;
+    font-size: 9px;
+    font-family: 'OpenSans-SemiBold';
+`;
