@@ -6,11 +6,15 @@ import { LoginContext } from '../../contexts/loginContext';
 import { ListFilmsContext } from '../../contexts/listFilmsContext';
 import { LoadingScreensApis } from '../../components/LoadingScreensApis';
 import {getCast, getDetail, getStates} from './apis/GetMovieInformation';
+import {postFavoriteMovie} from './apis/PostSendUserInformationMovie';
+import { instance } from '../../services/api';
 import * as Styled from './style';
 
 export const DetailsMovie = () => {
-    const { sessionId } = useContext(LoginContext);
-    const { movieStates, setMovieStates } = useContext(ListFilmsContext);
+    const [verification, setVerification] = useState(false);
+    const [menssagError, setMenssagError] = useState('');
+    const {sessionId} = useContext(LoginContext);
+    const {movieStates, setMovieStates} = useContext(ListFilmsContext);
     const [noteAvaliation, setNoteAvaliation] = useState('');
     const [markFavorite, setMarkFavorite] = useState(false);
     const [detail, setDetail] = useState({});
@@ -20,7 +24,7 @@ export const DetailsMovie = () => {
     const [loading, setLoading] = useState(false);
     const [note, setNote] = useState(false);
     const Navigation = useNavigation();
-    const { idItens } = useRoute().params;
+    const {idItens} = useRoute().params;
 
     const accountStatus = async () => {
     let resp = await getStates(idItens, sessionId);
@@ -37,6 +41,31 @@ export const DetailsMovie = () => {
                 setCast(resp?.data?.cast);
                 setCrew(resp?.data?.crew);
     };
+
+    const FavoriteMovie = async () => {
+        await postFavoriteMovie(idItens,sessionId, markFavorite);
+        setMarkFavorite(!markFavorite);
+};
+
+const RateMovie = async () => {
+    await instance
+    .post(`movie/${idItens}/rating?session_id=${sessionId}`, {
+        value: parseFloat(noteAvaliation),
+    })
+    .then(resp => {
+        setVerification(false);
+        setNoteAvaliation(resp?.value);
+        setNote(false);
+    })
+    .catch(error => {
+        setVerification(true);
+        setNoteAvaliation('');
+        if (error?.response?.status === 400) {
+            setMenssagError('A nota deve ser de 0,50 a 10');
+        }
+    });
+};
+
 
     useEffect(() => {
         movieInformation();
@@ -69,6 +98,14 @@ export const DetailsMovie = () => {
                         setMarkFavorite={setMarkFavorite}
                         idItens={idItens}
                         sessionId={sessionId}
+                        FavoriteMovie={FavoriteMovie}
+                        RateMovie={RateMovie}
+                        verification={verification}
+                        setVerification={setVerification}
+                        menssagError={menssagError}
+                        setMenssagError={setMenssagError}
+
+
                     />
                     <CreditsComponent cast={cast} />
                 </>

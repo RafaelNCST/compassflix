@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import {
     View,
     Text,
@@ -12,18 +12,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style';
 import { Detail } from '../Detail';
 import { Evaluation } from '../Evaluation';
-import { instance } from '../../../../services/api';
-import { LoginContext } from '../../../../contexts/loginContext';
-import { useRoute } from '@react-navigation/native';
 import StarActice from '../../../../assets/Images/StarActice.png';
 import StarInative from '../../../../assets/Images/StarInative.png';
-import {postFavoriteMovie} from '../../apis/PostSendUserInformationMovie';
 
 export const DetailsMovieComponent = ({
-    markFavorite,
     noteAvaliation,
     movieStates,
-    setMarkFavorite,
     setNoteAvaliation,
     Navigation,
     note,
@@ -32,36 +26,13 @@ export const DetailsMovieComponent = ({
     visible,
     setVisible,
     directorArray,
-    idItens,
-    sessionId
+    FavoriteMovie,
+    RateMovie,
+    verification,
+    setVerification,
+    menssagError,
+    setMenssagError
 }) => {
-
-    const [verification, setVerification] = useState(false);
-    const [menssagError, setMenssagError] = useState('');
-
-    const FavoriteMovie = async () => {
-            await postFavoriteMovie(idItens,sessionId, markFavorite);
-            setMarkFavorite(!markFavorite);
-    };
-
-    const RateMovie = async () => {
-        await instance
-        .post(`movie/${idItens}/rating?session_id=${sessionId}`, {
-            value: parseFloat(noteAvaliation),
-        })
-        .then(resp => {
-            setVerification(false);
-            setNoteAvaliation(resp?.value);
-            setNote(false);
-        })
-        .catch(error => {
-            setVerification(true);
-            setNoteAvaliation('');
-            if (error?.response?.status === 400) {
-                setMenssagError('A nota deve ser de 0,50 a 10');
-            }
-        });
-};
 
     const validationNote = () => {
         setVerification(false);
