@@ -17,6 +17,7 @@ import { LoginContext } from '../../../../contexts/loginContext';
 import { useRoute } from '@react-navigation/native';
 import StarActice from '../../../../assets/Images/StarActice.png';
 import StarInative from '../../../../assets/Images/StarInative.png';
+import {postFavoriteMovie} from '../../apis/PostSendUserInformationMovie';
 
 export const DetailsMovieComponent = ({
     markFavorite,
@@ -31,52 +32,36 @@ export const DetailsMovieComponent = ({
     visible,
     setVisible,
     directorArray,
+    idItens,
+    sessionId
 }) => {
-    const { sessionId } = useContext(LoginContext);
-    const { idItens } = useRoute().params;
+
     const [verification, setVerification] = useState(false);
     const [menssagError, setMenssagError] = useState('');
 
-    const postFavoriteMovie = async () => {
-        await instance
-            .post(`account/${idItens}/favorite?&session_id=${sessionId}`, {
-                'media_type': 'movie',
-                'media_id': idItens,
-                'favorite': markFavorite,
-            })
-            .then(resp => {
-                setMarkFavorite(!markFavorite)}
-                
-                )
-            .catch(error => {
-                if (error.response) {
-                    console.log(error.response.data);
-                } else if (error.request) {
-                    console.log(error.request.data);
-                } else {
-                    console.log('Error', error.message);
-                }
-            });
+    const FavoriteMovie = async () => {
+            await postFavoriteMovie(idItens,sessionId, markFavorite);
+            setMarkFavorite(!markFavorite);
     };
 
-    const PostRateMovie = async () => {
+    const RateMovie = async () => {
         await instance
-            .post(`movie/${idItens}/rating?session_id=${sessionId}`, {
-                value: parseFloat(noteAvaliation),
-            })
-            .then(resp => {
-                setVerification(false);
-                setNoteAvaliation(resp?.value);
-                setNote(false);
-            })
-            .catch(error => {
-                setVerification(true);
-                setNoteAvaliation('');
-                if (error?.response?.status === 400) {
-                    setMenssagError('A nota deve ser de 0,50 a 10');
-                }
-            });
-    };
+        .post(`movie/${idItens}/rating?session_id=${sessionId}`, {
+            value: parseFloat(noteAvaliation),
+        })
+        .then(resp => {
+            setVerification(false);
+            setNoteAvaliation(resp?.value);
+            setNote(false);
+        })
+        .catch(error => {
+            setVerification(true);
+            setNoteAvaliation('');
+            if (error?.response?.status === 400) {
+                setMenssagError('A nota deve ser de 0,50 a 10');
+            }
+        });
+};
 
     const validationNote = () => {
         setVerification(false);
@@ -87,7 +72,7 @@ export const DetailsMovieComponent = ({
             setVerification(true);
             setMenssagError('Por favor digite sua nota');
         } else {
-            PostRateMovie();
+            RateMovie();
         }
     };
 
@@ -114,7 +99,7 @@ export const DetailsMovieComponent = ({
 
             <TouchableOpacity
                 style={styles.favoriteButtom}
-                onPress={() => postFavoriteMovie()}
+                onPress={() => FavoriteMovie()}
             >
                 <Image
                     style={{ width: 23, height: 23 }}
@@ -140,7 +125,6 @@ export const DetailsMovieComponent = ({
                     setNote={setNote}
                     setNoteAvaliation={setNoteAvaliation}
                     noteAvaliation={noteAvaliation}
-                    PostRateMovie={PostRateMovie}
                     validationNote={validationNote}
                     menssagError={menssagError}
                     verification={verification}
@@ -192,7 +176,7 @@ export const DetailsMovieComponent = ({
                         <View style={styles.containerNameAndYear}>
                             <TouchableOpacity onPress={() => setVisible(true)}>
                                 <Text style={styles.textTitle}>
-                                    {(detail?.title).length > 10
+                                    {(detail?.title)?.length > 10
                                         ? (detail?.title).substring(0, 10) +
                                         '...'
                                         : detail?.title}
@@ -214,7 +198,7 @@ export const DetailsMovieComponent = ({
                                 {
                                     directorArray.find(
                                         item => item.job === 'Director',
-                                    ).name
+                                    )?.name
                                 }
                             </Text>
                         </Text>
@@ -227,7 +211,7 @@ export const DetailsMovieComponent = ({
 
                     <View style={styles.notesArea}>
                         <Text style={styles.textNote}>
-                            {(detail?.vote_average).toFixed(1)}/10
+                            {(detail?.vote_average)?.toFixed(1)}/10
                         </Text>
                         <View style={styles.bottomLike}>
                             <TouchableOpacity>
@@ -237,7 +221,7 @@ export const DetailsMovieComponent = ({
                                 {detail?.popularity > 1000
                                     ? Math.floor(detail?.popularity / 1000) +
                                     'K'
-                                    : (detail?.popularity).toFixed(0)}
+                                    : (detail?.popularity)?.toFixed(0)}
                             </Text>
                         </View>
                     </View>
@@ -246,10 +230,10 @@ export const DetailsMovieComponent = ({
             <View style={styles.areaDescription}>
                 <ScrollView style={styles.scrollDescription}>
                     <Text style={styles.tagline}>
-                        {(detail?.tagline).toUpperCase() || detail?.title}
+                        {(detail?.tagline)?.toUpperCase() || detail?.title}
                     </Text>
                     <Text style={styles.textDescription}>
-                        {(detail?.overview).toString() ||
+                        {(detail?.overview)?.toString() ||
                             'Descrição indisponível'}
                     </Text>
                 </ScrollView>

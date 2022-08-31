@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { View } from 'react-native';
-import { styles } from './style';
 import { CreditsComponent } from './components/Credits';
 import { DetailsMovieComponent } from './/components/DetailMovie';
-import { instance } from '../../services/api';
 import { LoginContext } from '../../contexts/loginContext';
 import { ListFilmsContext } from '../../contexts/listFilmsContext';
 import { LoadingScreensApis } from '../../components/LoadingScreensApis';
+import {getCast, getDetail, getStates} from './apis/GetMovieInformation';
 import * as Styled from './style';
 
 export const DetailsMovie = () => {
@@ -24,52 +22,32 @@ export const DetailsMovie = () => {
     const Navigation = useNavigation();
     const { idItens } = useRoute().params;
 
-    const getStates = async () => {
-        await instance
-            .get(`movie/${idItens}/account_states?&session_id=${sessionId}`)
-            .then(resp => {
+    const accountStatus = async () => {
+    let resp = await getStates(idItens, sessionId);
                 setMovieStates(resp?.data);
-            })
-            .catch(error => {
-                if (error.response) {
-                    console.log(error.response.data);
-                } else if (error.request) {
-                    console.log(error.request.data);
-                } else {
-                    console.log('Error', error.message);
-                }
-            });
     };
 
-    const getDetail = async () => {
-        await instance
-            .get(`movie/${idItens}?&language=pt-BR`)
-            .then(resp => {
-                setDetail(resp.data);
-            })
-            .catch(error => console.log(error));
+    const movieInformation = async () => {
+        let resp = await getDetail(idItens); 
+                setDetail(resp?.data);
     };
 
-    const getCast = async () => {
-        await instance
-            .get(`movie/${idItens}/credits?&language=pt-BR`)
-            .then(resp => {
-                setCast(resp.data.cast);
-                setCrew(resp.data.crew);
-            })
-            .catch(error => console.log(error));
+    const movieCastInformation = async () => {
+        let resp = await getCast(idItens);
+                setCast(resp?.data?.cast);
+                setCrew(resp?.data?.crew);
     };
 
     useEffect(() => {
-        getDetail();
-        getCast();
+        movieInformation();
+        movieCastInformation();
         setTimeout(() => {
             setLoading(true);
         }, 2000);
     }, []);
 
     useEffect(() => {
-        getStates();
+        accountStatus();
     }, [noteAvaliation, markFavorite]);
 
     return (
@@ -89,6 +67,8 @@ export const DetailsMovie = () => {
                         movieStates={movieStates}
                         markFavorite={markFavorite}
                         setMarkFavorite={setMarkFavorite}
+                        idItens={idItens}
+                        sessionId={sessionId}
                     />
                     <CreditsComponent cast={cast} />
                 </>

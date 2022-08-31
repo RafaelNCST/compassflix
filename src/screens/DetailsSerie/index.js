@@ -218,8 +218,8 @@ export const DetailsSerie = () => {
                                     {' '}
                                     {serieStates?.rated?.value
                                         ? 'Sua nota é: ' +
-                                          serieStates?.rated?.value +
-                                          '/10'
+                                        serieStates?.rated?.value +
+                                        '/10'
                                         : 'Avalie Agora'}{' '}
                                 </Text>
                             </TouchableOpacity>
@@ -248,9 +248,9 @@ export const DetailsSerie = () => {
                                         <Text style={styles.textTitle}>
                                             {detailSerie?.name?.length > 14
                                                 ? detailSerie?.name?.substring(
-                                                      0,
-                                                      14,
-                                                  ) + '...'
+                                                    0,
+                                                    14,
+                                                ) + '...'
                                                 : detailSerie?.name}
                                         </Text>
                                     </TouchableOpacity>
@@ -296,12 +296,12 @@ export const DetailsSerie = () => {
                                     <Text style={styles.likesQtd}>
                                         {detailSerie?.popularity > 1000
                                             ? Math.floor(
-                                                  detailSerie?.popularity /
-                                                      1000,
-                                              ) + 'K'
+                                                detailSerie?.popularity /
+                                                    1000,
+                                            ) + 'K'
                                             : parseFloat(
-                                                  detailSerie?.popularity,
-                                              ).toFixed(0)}
+                                                detailSerie?.popularity,
+                                            ).toFixed(0)}
                                     </Text>
                                 </View>
                             </View>
