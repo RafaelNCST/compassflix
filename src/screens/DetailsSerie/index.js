@@ -21,6 +21,8 @@ import { ExtraInformatinSerie } from './components/ExtraInformationSerie';
 import { EvaluationSerie } from './components/EvaluationSerie';
 import { ListSeason } from './components/ListSeason';
 import { LoadingScreensApis } from '../../components/LoadingScreensApis';
+import { getDetailSerie, getEpisode, getStatesSerie } from './apis/GetSerieInformation';
+import { postFavoriteSerie} from './apis/PostSendUserInformationSerie';
 
 export const DetailsSerie = () => {
     const [assessmentSerie, setAssessmentSerie] = useState(false);
@@ -29,7 +31,6 @@ export const DetailsSerie = () => {
     const [menssagErrorSerie, setMenssagErrorSerie] = useState('');
     const [detailSerie, setDetailSerie] = useState({});
     const [markFavoriteSerie, setMarkFavoriteSerie] = useState(false);
-    const [buttomEdit, setButtomEdit] = useState(false);
     const [extraInformation, setExtraInformation] = useState(false);
     const [director, setDirector] = useState([]);
     const [seasons, setSeasons] = useState([]);
@@ -41,50 +42,30 @@ export const DetailsSerie = () => {
     const { sessionId } = useContext(LoginContext);
     const { serieStates, setSerieStates } = useContext(ListSeriesContext);
 
-    const getDetailSerie = async () => {
-        await instance
-            .get(`tv/${idItens}?&language=pt-BR`)
-            .then(resp => {
-                setDetailSerie(resp.data);
-                setSeasons(resp?.data.seasons);
+    const serieInformation = async () => {
+        let resp = await getDetailSerie(idItens);
+                setDetailSerie(resp?.data);
+                setSeasons(resp?.data?.seasons);
                 setDirector(resp?.data?.created_by);
-            })
-            .catch(error => console.log(error));
+        };
+
+    const serieEpisode = async () => {
+        let resp =  await getEpisode(idItens);
+        setListEpisode(resp?.data?.episodes);    
     };
 
-    const getEpisode = async () => {
-        await instance
-            .get(`/tv/${idItens}/season/1?&language=pt-BR`)
-            .then(resp => {
-                setListEpisode(resp?.data?.episodes);
-            })
-            .catch(error => console.log(error));
-    };
-
-    const getStatesSerie = async () => {
-        await instance
-            .get(`tv/${idItens}/account_states?&session_id=${sessionId}`)
-            .then(resp => {
+    const statesSerie = async () => {
+        let resp = await getStatesSerie(idItens, sessionId);
                 setSerieStates(resp?.data);
-            })
-            .catch(error => console.log(error));
     };
 
-    const postFavoriteSerie = async () => {
-        await instance
-            .post(`account/${idItens}/favorite?&session_id=${sessionId}`, {
-                media_type: 'tv',
-                media_id: idItens,
-                favorite: markFavoriteSerie,
-            })
-            .then(resp => {
+    const favoriteSerie = async () => {
+        await postFavoriteSerie(idItens, sessionId, markFavoriteSerie);
                 setMarkFavoriteSerie(!markFavoriteSerie);
-            })
-            .catch(error => console.log(error));
     };
 
     const postRateSerie = async () => {
-        await instance
+            await instance
             .post(`tv/${idItens}/rating?&session_id=${sessionId}`, {
                 value: parseFloat(noteAvaliationSerie),
             })
@@ -116,15 +97,15 @@ export const DetailsSerie = () => {
     };
 
     useEffect(() => {
-        getDetailSerie();
-        getEpisode();
+        serieInformation();
+        serieEpisode();
         setTimeout(() => {
             setLoading(true);
         }, 2000);
     }, []);
 
     useEffect(() => {
-        getStatesSerie();
+        statesSerie();
     }, [markFavoriteSerie, noteAvaliationSerie]);
 
     const date = new Date(detailSerie?.first_air_date);
@@ -151,7 +132,7 @@ export const DetailsSerie = () => {
 
                     <TouchableOpacity
                         style={styles.favoriteButtom}
-                        onPress={() => postFavoriteSerie()}
+                        onPress={() => favoriteSerie()}
                     >
                         <Image
                             style={{ width: 23, height: 23 }}
@@ -260,14 +241,14 @@ export const DetailsSerie = () => {
                                 </View>
                             </View>
 
-                            {director.find(item => item.gender === 2) ? (
+                            {director?.find(item => item.gender === 2) ? (
                                 <Text style={styles.textDirector}>
                                     Direção por{' '}
                                     <Text style={styles.stroke}>
                                         {
-                                            director.find(
+                                            director?.find(
                                                 item => item.gender === 2,
-                                            ).name
+                                            )?.name
                                         }
                                     </Text>
                                 </Text>
@@ -310,11 +291,11 @@ export const DetailsSerie = () => {
                     <View style={styles.areaDescription}>
                         <ScrollView style={styles.scrollDescription}>
                             <Text style={styles.tagline}>
-                                {(detailSerie?.tagline).toUpperCase() ||
+                                {(detailSerie?.tagline)?.toUpperCase() ||
                                     detailSerie?.name}
                             </Text>
                             <Text style={styles.textDescription}>
-                                {(detailSerie?.overview).toString() ||
+                                {(detailSerie?.overview)?.toString() ||
                                     'Descrição indisponível'}
                             </Text>
                         </ScrollView>

@@ -9,7 +9,7 @@ import { instance } from '../../../services/api';
             });
             return resp;
         };
-    export const postRateMovie = async (idItens ,sessionId, noteAvaliation, setVerification, setNoteAvaliation, setMenssagError ) => {
+    export const postRateMovie = async (idItens ,sessionId, noteAvaliation ) => {
         let resp = instance
                 .post(`movie/${idItens}/rating?session_id=${sessionId}`, {
                     'value': parseFloat(noteAvaliation), 
