@@ -1,10 +1,10 @@
 import { Text, View, Animated, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import React, { useRef, useState } from 'react';
 import { FlatList } from 'react-native-gesture-handler';
-import { styles } from './styles';
+import React, { useRef, useState } from 'react';
+import {styles} from './styles';
 
-export const ListSeason = ({ season, episodes }) => {
+export const Episode = ({ season, episodes}) => {
     const [showContet, setShowConst] = useState(false);
     const flatListRef = useRef();
     const animationController = useRef(new Animated.Value(0)).current;
