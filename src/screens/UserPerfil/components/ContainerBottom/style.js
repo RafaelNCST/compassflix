@@ -43,22 +43,46 @@ export const ListData = styled.View`
     justify-content: center;
 `;
 
-export const ImageFavorites = styled.Image`
+export const ImageContainer = styled.View`
     width: 67px;
     height: 89px;
     margin: 8px;
     border-radius: 7px;
+    background-color: #8075ff;
 `;
 
-export const ImageAvaliation = styled.Image`
-    width: 58px;
-    height: 82px;
-    margin: 7px;
+export const ImageFavorites = styled.Image`
+    flex: 1;
     border-radius: 7px;
 `;
 
+export const ImageAvaliation = styled.Image`
+    flex: 1;
+    width: 58px;
+    height: 82px;
+    border-radius: 7px;
+    background-color: #8075ff;
+    border-radius: 7px;
+`;
+
+export const IconContainerFavorites = styled.TouchableOpacity`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const IconContainerAvaliation = styled.TouchableOpacity`
+    width: 58px;
+    height: 82px;
+    border-radius: 7px;
+    background-color: #8075ff;
+    align-items: center;
+    justify-content: center;
+`;
+
 export const ContainerAvaliationData = styled.View`
-    flex-direction: column;
+    margin: 7px;
+    width: 58px;
 `;
 
 export const ContainerInfosData = styled.View`
