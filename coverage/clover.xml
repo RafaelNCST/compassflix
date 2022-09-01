@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1661999060220" clover="3.2.0">
+  <project timestamp="1661999060220" name="All files">
+    <metrics statements="103" coveredstatements="97" conditionals="62" coveredconditionals="61" methods="39" coveredmethods="35" elements="204" coveredelements="193" complexity="0" loc="103" ncloc="103" packages="11" files="21" classes="21"/>
+    <package name="assets.Images">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="imagemAnonima.jpg" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\assets\Images\imagemAnonima.jpg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="moviesColored.png" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\assets\Images\moviesColored.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="moviesGray.png" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\assets\Images\moviesGray.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="seriesColored.png" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\assets\Images\seriesColored.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="seriesGray.png" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\assets\Images\seriesGray.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.SpinnerMultiColor">
+      <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="index.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\components\SpinnerMultiColor\index.js">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="12" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+      <file name="style.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\components\SpinnerMultiColor\style.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.SpinnerStick">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\components\SpinnerStick\index.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="39" type="stmt"/>
+      </file>
+      <file name="style.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\components\SpinnerStick\style.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.StyledComponents">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="GlobalStyleds.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\components\StyledComponents\GlobalStyleds.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="296" type="stmt"/>
+        <line num="11" count="296" type="stmt"/>
+      </file>
+    </package>
+    <package name="contexts">
+      <metrics statements="8" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="headerContext.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\contexts\headerContext.js">
+        <metrics statements="8" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="screens.UserPerfil.components.ContainerBottom">
+      <metrics statements="27" coveredstatements="27" conditionals="26" coveredconditionals="26" methods="10" coveredmethods="10"/>
+      <file name="index.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\screens\UserPerfil\components\ContainerBottom\index.js">
+        <metrics statements="11" coveredstatements="11" conditionals="26" coveredconditionals="26" methods="9" coveredmethods="9"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="33" count="29" type="stmt"/>
+        <line num="35" count="29" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="71" count="52" type="stmt"/>
+        <line num="73" count="52" type="stmt"/>
+        <line num="100" count="4" type="stmt"/>
+        <line num="129" count="2" type="stmt"/>
+        <line num="146" count="65" type="stmt"/>
+        <line num="148" count="65" type="stmt"/>
+        <line num="195" count="4" type="stmt"/>
+      </file>
+      <file name="style.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\screens\UserPerfil\components\ContainerBottom\style.js">
+        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="116" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="screens.UserPerfil.components.ContainerBottom.helpers">
+      <metrics statements="14" coveredstatements="14" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+      <file name="titles.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\screens\UserPerfil\components\ContainerBottom\helpers\titles.js">
+        <metrics statements="14" coveredstatements="14" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="screens.UserPerfil.components.ContainerMid">
+      <metrics statements="9" coveredstatements="9" conditionals="16" coveredconditionals="16" methods="5" coveredmethods="5"/>
+      <file name="index.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\screens\UserPerfil\components\ContainerMid\index.js">
+        <metrics statements="4" coveredstatements="4" conditionals="12" coveredconditionals="12" methods="3" coveredmethods="3"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+      </file>
+      <file name="style.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\screens\UserPerfil\components\ContainerMid\style.js">
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="23" count="36" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="36" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+    <package name="screens.UserPerfil.components.ContainerTop">
+      <metrics statements="11" coveredstatements="11" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
+      <file name="index.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\screens\UserPerfil\components\ContainerTop\index.js">
+        <metrics statements="2" coveredstatements="2" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="23" count="10" type="stmt"/>
+      </file>
+      <file name="style.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\screens\UserPerfil\components\ContainerTop\style.js">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="40" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="26" type="stmt"/>
+        <line num="29" count="26" type="stmt"/>
+        <line num="31" count="26" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="screens.UserPerfil.components.LogoutButton">
+      <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="9" coveredmethods="9"/>
+      <file name="index.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\screens\UserPerfil\components\LogoutButton\index.js">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="15" count="16" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+      </file>
+      <file name="style.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\screens\UserPerfil\components\LogoutButton\style.js">
+        <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="41" count="116" type="stmt"/>
+        <line num="42" count="116" type="stmt"/>
+        <line num="43" count="116" type="stmt"/>
+        <line num="47" count="116" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="61" count="56" type="stmt"/>
+      </file>
+    </package>
+    <package name="services">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="api.js" path="D:\Users\Rafaelnc\Documents\pastaComProjetos\compassflix\src\services\api.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
