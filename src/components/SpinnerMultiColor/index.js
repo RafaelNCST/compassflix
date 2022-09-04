@@ -12,7 +12,10 @@ export const SpinnerMultiColor = ({
     if (!Loadingstate) return null;
 
     return (
-        <View style={[styles.spinnerContainer, { flex: flexNumber }]}>
+        <View
+            style={[styles.spinnerContainer, { flex: flexNumber }]}
+            testID='SpinnerMulticolor'
+        >
             <ActivityIndicator size={size} color={color} />
         </View>
     );

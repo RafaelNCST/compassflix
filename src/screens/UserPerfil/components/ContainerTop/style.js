@@ -30,3 +30,7 @@ export const TextTitle = styled.Text`
     flex: 1;
     font-size: ${props => props.size}px;
 `;
+
+export const ContainerQuantityInfos = styled.View`
+    flex: 1;
+`;
