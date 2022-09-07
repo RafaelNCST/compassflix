@@ -1,10 +1,5 @@
-import React from 'react';
 import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
-    containerPrincipal: {
-        backgroundColor: '#000000',
-        flex: 1,
-    },
     subContainerAnimated: {
         backgroundColor: '#FFFFFF',
         width: 76,
@@ -27,21 +22,25 @@ const styles = StyleSheet.create({
     },
     textCenter: {
         alignItems: 'center',
-        marginTop: 122,
+        flex: 1,
     },
     textFilmes: {
         color: '#E9A6A6',
         fontSize: 20,
+        width: 250,
+        maxWidth: 350,
+        textAlign: 'center',
         fontFamily: 'OpenSans-Bold',
+        marginTop: 20,
+        marginBottom: 25,
     },
     textContent: {
-        marginTop: 25,
-        marginLeft: 16,
-        marginRight: 16,
-        textAlign: 'left',
         color: '#FFFFFF',
-        fontSize: 10.3,
+        fontSize: 11,
+        lineHeight: 15,
+        marginHorizontal: 15,
         textAlign: 'justify',
+        fontFamily: 'OpenSans-Regular',
     },
     modalScreens: {
         flex: 1,
@@ -99,15 +98,14 @@ const styles = StyleSheet.create({
         marginTop: 1,
     },
     containerFlastlistImage: {
-        paddingVertical: 7,
         marginHorizontal: 8,
-        marginLeft: 13.5,
+        marginBottom: 12,
+        marginTop: 5,
     },
     subContainerFlastlistImage: {
-        marginTop: 1,
-        borderRadius: 10,
-        height: 100,
-        width: 80,
+        borderRadius: 7,
+        width: 76,
+        height: 95,
     },
 });
 
