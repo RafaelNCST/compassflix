@@ -10,7 +10,12 @@ export const BackButton = () => {
 
     return (
         <Styled.BackButtonStyled onPress={() => Navigation.goBack()}>
-            <Icon name='arrow-back' size={20} color={'black'} />
+            <Icon
+                name='arrow-back'
+                size={20}
+                color={'black'}
+                testID='ArrowBack'
+            />
         </Styled.BackButtonStyled>
     );
 };
