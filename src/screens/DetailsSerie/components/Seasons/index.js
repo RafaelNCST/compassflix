@@ -8,6 +8,7 @@ export const Seasons  = ({seasons, listEpisode }) => {
         <View style={styles.areaDropDown}>
                         <FlatList
                             data={seasons}
+                            contentContainerStyle={{marginBottom:30}}
                             keyExtractor={(_, index) => index}
                             renderItem={({ item }) => {
                                 return (

@@ -16,7 +16,7 @@ export const Episode = ({ season, episodes}) => {
 
     const dropDow = () => {
         Animated.timing(areaEpisode, {
-            toValue: 180,
+            toValue: 190,
             duration: 1000,
             useNativeDriver: false,
         }).start();
@@ -85,6 +85,7 @@ export const Episode = ({ season, episodes}) => {
             <Animated.View style={{ overflow: 'hidden', height: areaEpisode }}>
                 <FlatList
                     ref={flatListRef}
+                    contentContainerStyle={{marginBottom:30}}
                     data={episodes}
                     keyExtractor={(_, index) => index}
                     renderItem={({ item }) => {

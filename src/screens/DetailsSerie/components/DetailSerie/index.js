@@ -138,7 +138,7 @@ export const DetailSerieComponent = ({
                                         ? 'Sua nota é: ' +
                                         serieStates?.rated?.value +
                                         '/10'
-                                        : '  Agora'}{' '}
+                                        : 'AVALIE AGORA'}{' '}
                                 </Text>
                             </TouchableOpacity>
                             {serieStates?.rated !== false ? (

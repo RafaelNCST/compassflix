@@ -130,7 +130,7 @@ export const DetailsMovieComponent = ({
                                 ? 'Sua nota é: ' +
                                 movieStates?.rated?.value +
                                 ' /10'
-                                : 'Avalie Agora'}{' '}
+                                : 'AVALIE AGORA'}{' '}
                         </Text>
                     </TouchableOpacity>
                     { movieStates?.rated !== false ? (
