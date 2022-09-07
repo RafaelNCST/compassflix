@@ -86,3 +86,4 @@ export const CancelText = styled.Text`
     font-size: 10px;
     color: #000;
 `;
+//.

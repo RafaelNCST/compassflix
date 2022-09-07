@@ -6,7 +6,7 @@ import { ButtonAdd } from './components/ButtonAdd';
 export const ListScreen = () => {
     return (
         <View>
-            <Text>alalalalal alalalalal</Text>
+            <Text>alal</Text>
             <ButtonAdd />
         </View>
     );
