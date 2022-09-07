@@ -12,8 +12,6 @@ import { SpinnerStick } from '../../../../components/SpinnerStick';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
-    OpenPageAvaliation,
-    OpenPageFavorites,
     Title1Movies,
     Title2Movies,
     Title1Series,
@@ -28,6 +26,9 @@ export const ContainerBottom = ({
     dataFavoritesSeries,
     loading,
     Navigation,
+    NavigationBlankData,
+    OpenPageAvaliation,
+    OpenPageFavorites,
 }) => {
     const { userInfos } = useContext(HeaderContext);
 
@@ -38,12 +39,17 @@ export const ContainerBottom = ({
                     <TextInfos
                         color={'#FFFFFF'}
                         fontFamily={'OpenSans-SemiBold'}
-                        testID='TitleText'
                     >
                         {activeButton === 0 ? Title2Movies : Title2Series}
-                        {userInfos?.name || userInfos?.username}
+                        <TextInfos
+                            color={'#FFFFFF'}
+                            fontFamily={'OpenSans-SemiBold'}
+                        >
+                            {userInfos?.name || userInfos?.username}
+                        </TextInfos>
                     </TextInfos>
                     <TouchableOpacity
+                        accessibilityHint='botão ver mais favoritos'
                         onPress={() =>
                             OpenPageFavorites(activeButton, Navigation)
                         }
@@ -60,32 +66,50 @@ export const ContainerBottom = ({
                     <SpinnerStick />
                 ) : (
                     <Styled.ListData>
-                        {(activeButton === 0
-                            ? dataFavoritesMovies
-                            : dataFavoritesSeries) == false ? (
-                            <Styled.Message>
-                                <Styled.MessageText>
-                                    sem favoritos no momento!
-                                </Styled.MessageText>
-                            </Styled.Message>
-                        ) : (
-                            <>
-                                {(activeButton === 0
-                                    ? dataFavoritesMovies
-                                    : dataFavoritesSeries
-                                ).map((item, index) => {
-                                    if (index > 3) return null;
-                                    return (
-                                        <Styled.ImageFavorites
-                                            key={index}
-                                            source={{
-                                                uri: `https://image.tmdb.org/t/p/original${item.poster_path}`,
-                                            }}
-                                        />
-                                    );
-                                })}
-                            </>
-                        )}
+                        {Array(4)
+                            .fill()
+                            .map((_, index) => index + 1)
+                            .map((_, index) => {
+                                return (
+                                    <Styled.ImageContainer key={index}>
+                                        {(
+                                            activeButton === 0
+                                                ? dataFavoritesMovies[index]
+                                                      ?.poster_path
+                                                : dataFavoritesSeries[index]
+                                                      ?.poster_path
+                                        ) ? (
+                                            <Styled.ImageFavorites
+                                                accessibilityHint='Imagem Favorito'
+                                                source={{
+                                                    uri: `https://image.tmdb.org/t/p/original${
+                                                        activeButton === 0
+                                                            ? dataFavoritesMovies[
+                                                                  index
+                                                              ]?.poster_path
+                                                            : dataFavoritesSeries[
+                                                                  index
+                                                              ]?.poster_path
+                                                    }`,
+                                                }}
+                                            />
+                                        ) : (
+                                            <Styled.IconContainerFavorites
+                                                testID='ButtonAddFavorites'
+                                                onPress={() =>
+                                                    NavigationBlankData()
+                                                }
+                                            >
+                                                <Icon
+                                                    name='add-box'
+                                                    size={40}
+                                                    color='#FFFFFF'
+                                                />
+                                            </Styled.IconContainerFavorites>
+                                        )}
+                                    </Styled.ImageContainer>
+                                );
+                            })}
                     </Styled.ListData>
                 )}
             </Styled.ContainerData>
@@ -100,6 +124,7 @@ export const ContainerBottom = ({
                         {userInfos?.name || userInfos?.username}
                     </TextInfos>
                     <TouchableOpacity
+                        accessibilityHint='botão ver mais avaliados'
                         onPress={() =>
                             OpenPageAvaliation(activeButton, Navigation)
                         }
@@ -116,45 +141,70 @@ export const ContainerBottom = ({
                     <SpinnerStick />
                 ) : (
                     <Styled.ListData>
-                        {(activeButton === 0
-                            ? dataAvaliationFilms
-                            : dataAvaliationSeries) == false ? (
-                            <Styled.Message>
-                                <Styled.MessageText>
-                                    Sem Avalições No momento!
-                                </Styled.MessageText>
-                            </Styled.Message>
-                        ) : (
-                            <>
-                                {(activeButton === 0
-                                    ? dataAvaliationFilms
-                                    : dataAvaliationSeries
-                                ).map((item, index) => {
-                                    if (index > 4) return null;
-                                    return (
-                                        <Styled.ContainerAvaliationData
-                                            key={index}
-                                        >
-                                            <Styled.ImageAvaliation
-                                                source={{
-                                                    uri: `https://image.tmdb.org/t/p/original${item.poster_path}`,
-                                                }}
-                                            />
-                                            <Styled.ContainerInfosData>
-                                                <Icon
-                                                    color={'#ec2626'}
-                                                    name='star'
-                                                    size={13.5}
+                        {Array(5)
+                            .fill()
+                            .map((_, index) => index + 1)
+                            .map((_, index) => {
+                                return (
+                                    <Styled.ContainerAvaliationData key={index}>
+                                        {(
+                                            activeButton === 0
+                                                ? dataAvaliationFilms[index]
+                                                      ?.poster_path
+                                                : dataAvaliationSeries[index]
+                                                      ?.poster_path
+                                        ) ? (
+                                            <>
+                                                <Styled.ImageAvaliation
+                                                    accessibilityHint='Imagem Avaliado'
+                                                    source={{
+                                                        uri: `https://image.tmdb.org/t/p/original${
+                                                            activeButton === 0
+                                                                ? dataAvaliationFilms[
+                                                                      index
+                                                                  ]?.poster_path
+                                                                : dataAvaliationSeries[
+                                                                      index
+                                                                  ]?.poster_path
+                                                        }`,
+                                                    }}
                                                 />
-                                                <Styled.ContainerInfosDataText>
-                                                    {item.rating}/10
-                                                </Styled.ContainerInfosDataText>
-                                            </Styled.ContainerInfosData>
-                                        </Styled.ContainerAvaliationData>
-                                    );
-                                })}
-                            </>
-                        )}
+                                                <Styled.ContainerInfosData>
+                                                    <Icon
+                                                        accessibilityHint='Icone Estrela'
+                                                        color={'#ec2626'}
+                                                        name='star'
+                                                        size={13.5}
+                                                    />
+                                                    <Styled.ContainerInfosDataText>
+                                                        {activeButton === 0
+                                                            ? dataAvaliationFilms[
+                                                                  index
+                                                              ]?.rating
+                                                            : dataAvaliationSeries[
+                                                                  index
+                                                              ]?.rating}
+                                                        /10
+                                                    </Styled.ContainerInfosDataText>
+                                                </Styled.ContainerInfosData>
+                                            </>
+                                        ) : (
+                                            <Styled.IconContainerAvaliation
+                                                testID='buttonAddAvaliation'
+                                                onPress={() =>
+                                                    NavigationBlankData()
+                                                }
+                                            >
+                                                <Icon
+                                                    name='add-box'
+                                                    size={40}
+                                                    color='#FFFFFF'
+                                                />
+                                            </Styled.IconContainerAvaliation>
+                                        )}
+                                    </Styled.ContainerAvaliationData>
+                                );
+                            })}
                     </Styled.ListData>
                 )}
             </Styled.ContainerData>

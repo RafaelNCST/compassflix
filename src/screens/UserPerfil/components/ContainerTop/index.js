@@ -17,11 +17,19 @@ export const ContainerTop = ({
     activeButton,
     loading,
     logoutApi,
+    visible,
+    setVisible,
+    logoutLoading,
 }) => {
     const Navigation = useNavigation();
     return (
         <Styled.ContainerTop>
-            <LogoutButton logoutApi={logoutApi} />
+            <LogoutButton
+                logoutApi={logoutApi}
+                visible={visible}
+                setVisible={setVisible}
+                logoutLoading={logoutLoading}
+            />
             <Styled.ContainerUser heightContainer={110}>
                 <Styled.ImageUser
                     accessibilityHint='Imagem de Usuário'
@@ -46,7 +54,7 @@ export const ContainerTop = ({
                 {loading ? (
                     <SpinnerStick />
                 ) : (
-                    <>
+                    <Styled.ContainerQuantityInfos>
                         <Styled.TextTitle
                             paddingTop={5}
                             size={30}
@@ -62,7 +70,7 @@ export const ContainerTop = ({
                         >
                             Avaliações
                         </TextInfos>
-                    </>
+                    </Styled.ContainerQuantityInfos>
                 )}
             </Styled.ContainerUser>
         </Styled.ContainerTop>

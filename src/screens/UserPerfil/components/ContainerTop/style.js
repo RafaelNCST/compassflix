@@ -31,6 +31,7 @@ export const TextTitle = styled.Text`
     flex: 1;
     font-size: ${props => props.size}px;
 `;
+<<<<<<< HEAD
 export const ListButton = styled.TouchableOpacity`
     border-width: 1px;
     border-radius: 5px;
@@ -40,4 +41,9 @@ export const ListButton = styled.TouchableOpacity`
     height: 30px;
     justify-content: center;
     align-items: center;
+=======
+
+export const ContainerQuantityInfos = styled.View`
+    flex: 1;
+>>>>>>> f01c68fefdde823f9e3f7a89d59250be95c74353
 `;

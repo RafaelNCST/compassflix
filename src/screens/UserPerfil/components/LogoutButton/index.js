@@ -1,35 +1,29 @@
-import React, { useState, useContext } from 'react';
-import { LoginContext } from '../../../../contexts/loginContext';
-
+import React from 'react';
 import * as Styled from './style';
 import { Modal } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { SpinnerMultiColor } from '../../../../components/SpinnerMultiColor';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const LogoutButton = ({ logoutApi }) => {
-    const [visible, setVisible] = useState(false);
-    const [logoutLoading, setLogouLoading] = useState(false);
-    const { sessionId, changeSessionID } = useContext(LoginContext);
-
-    const LogoutFn = async () => {
-        setLogouLoading(true);
-        let resp = await logoutApi(sessionId);
-        if (resp.data.success) {
-            await AsyncStorage.removeItem('sessionId');
-            changeSessionID(false, null);
-        }
-    };
-
+export const LogoutButton = ({
+    logoutApi,
+    visible,
+    setVisible,
+    logoutLoading,
+}) => {
     return (
         <>
             <Styled.ButtonStyled onPress={() => setVisible(true)}>
                 <Icon name='logout' size={11} color='#000000' />
                 <Styled.ButtonText>Sair</Styled.ButtonText>
             </Styled.ButtonStyled>
-            <Modal visible={visible} animationType='fade' transparent={true}>
+            <Modal
+                testID='ModalLogout'
+                visible={visible}
+                animationType='fade'
+                transparent={true}
+            >
                 <Styled.BodyModal>
                     <Styled.ModalContainer>
                         <Styled.TextModal
@@ -68,11 +62,11 @@ export const LogoutButton = ({ logoutApi }) => {
                                             color={'#FFFFFF'}
                                             margin={0}
                                         >
-                                            Cancelar
+                                            cancelar
                                         </Styled.TextModal>
                                     </Styled.Button>
                                     <Styled.Button
-                                        onPress={() => LogoutFn()}
+                                        onPress={() => logoutApi()}
                                         backColor={'#FFFFFF'}
                                     >
                                         <Styled.TextModal
@@ -81,7 +75,7 @@ export const LogoutButton = ({ logoutApi }) => {
                                             color={'#000000'}
                                             margin={0}
                                         >
-                                            Sair
+                                            sair
                                         </Styled.TextModal>
                                     </Styled.Button>
                                 </>
