@@ -61,7 +61,7 @@ export const ImageAvaliation = styled.Image`
     width: 58px;
     height: 82px;
     border-radius: 7px;
-    background-color: #8075ff;
+    background-color: #8f9afc;
     border-radius: 7px;
 `;
 
@@ -75,7 +75,7 @@ export const IconContainerAvaliation = styled.TouchableOpacity`
     width: 58px;
     height: 82px;
     border-radius: 7px;
-    background-color: #8075ff;
+    background-color: #8f9afc;
     align-items: center;
     justify-content: center;
 `;

@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { HeaderContext } from '../../contexts/headerContext';
 import { LoginContext } from '../../contexts/loginContext';
 import { ListSeeMoreContext } from '../../contexts/listsSeeMoreContext';
+import { ListFilmsContext } from '../../contexts/listFilmsContext';
+import { ListSeriesContext } from '../../contexts/listSeriesContext';
 
 import * as Styled from './style';
 
@@ -32,6 +34,9 @@ export const PageSeeMore = () => {
         loadingPage,
     } = useContext(ListSeeMoreContext);
 
+    const { movieStates } = useContext(ListFilmsContext);
+    const { serieStates } = useContext(ListSeriesContext);
+
     const { Title, TypeButton } = useRoute()?.params;
 
     const checkNavigation = () => {
@@ -42,7 +47,7 @@ export const PageSeeMore = () => {
         }
     };
 
-    useEffect(() => {
+    const handlerTypeShowApi = () => {
         if (TypeButton === 0) {
             setType('rated');
             setProgram('movies');
@@ -60,7 +65,11 @@ export const PageSeeMore = () => {
             setProgram('series');
             firstRunRequest(userInfos?.id, sessionId, 'favorite', 'tv');
         }
-    }, []);
+    };
+
+    useEffect(() => {
+        handlerTypeShowApi();
+    }, [movieStates, serieStates]);
 
     useEffect(() => {
         if (type && program && loadingScroll) {
