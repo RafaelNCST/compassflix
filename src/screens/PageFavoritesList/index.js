@@ -17,12 +17,21 @@ import { BackButton } from '../../components/StyledComponents/BackButton';
 import { BlankList } from '../../components/BlankList';
 import { instance } from '../../services/api';
 
+import { useRoute, useNavigation } from '@react-navigation/native';
+import { SpinnerMultiColor } from '../../components/SpinnerMultiColor';
+
 export const PageFavoritesList = () => {
     const [visibleModal, setVisibleModal] = useState(false);
     const [position, setPosition] = useState(true);
 
+    const [loading, setLoading] = useState(true);
+
     const [dataFilmsList, setDataFilmsList] = useState([]);
     const [infosList, setInfosList] = useState({});
+
+    const Navigation = useNavigation();
+
+    const Route = useRoute();
 
     const [pos] = useState(new Animated.ValueXY({ x: 0, y: 0 }));
     function toggle() {
@@ -37,11 +46,12 @@ export const PageFavoritesList = () => {
 
     const handleGetFilmListDetails = async () => {
         const result = await instance
-            .get('list/8216268?language=pt-BR')
+            .get(`list/${Route?.params?.ID}?language=pt-BR`)
             .catch(error => console.log(error));
 
         setDataFilmsList(result?.data?.items);
         setInfosList(result?.data);
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -96,7 +106,9 @@ export const PageFavoritesList = () => {
 
             <View style={styles.textCenter}>
                 <Text style={styles.textFilmes}>{infosList?.name}</Text>
-                <Text style={styles.textContent}>{infosList?.description}</Text>
+                <Text style={styles.textContent}>
+                    {infosList?.description || 'Descrição indisponível'}
+                </Text>
             </View>
             <Modal
                 visible={visibleModal}
@@ -130,54 +142,69 @@ export const PageFavoritesList = () => {
                     width: '100%',
                 }}
             >
-                <FlatList
-                    data={dataFilmsList}
-                    keyExtractor={(_, index) => index}
-                    ListEmptyComponent={
-                        <BlankList BlankText='Não há filmes nessa lista ainda :(' />
-                    }
-                    numColumns={4}
-                    renderItem={({ item }) => {
-                        return (
-                            <TouchableOpacity
-                                style={styles.containerFlastlistImage}
-                                onPress={
-                                    position
-                                        ? null
-                                        : () => setVisibleModal(true)
-                                }
-                            >
-                                <View
-                                    style={{
-                                        backgroundColor: 'white',
-                                        borderRadius: 30,
-                                        width: 18,
-                                        height: 18,
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        position: 'absolute',
-                                        zIndex: 1,
-                                        top: -5,
-                                        right: -5,
-                                        display: position ? 'none' : 'flex',
-                                    }}
+                {loading ? (
+                    <SpinnerMultiColor
+                        flexNumber={1}
+                        size={20}
+                        color='#FFFFFF'
+                        Loadingstate={loading}
+                    />
+                ) : (
+                    <FlatList
+                        data={dataFilmsList}
+                        keyExtractor={(_, index) => index}
+                        ListEmptyComponent={
+                            <BlankList BlankText='Não há filmes nessa lista ainda :(' />
+                        }
+                        numColumns={4}
+                        renderItem={({ item }) => {
+                            return (
+                                <TouchableOpacity
+                                    style={styles.containerFlastlistImage}
+                                    onPress={
+                                        position
+                                            ? () =>
+                                                  Navigation.navigate(
+                                                      'DetailUserMovie',
+                                                      { idItens: item.id },
+                                                  )
+                                            : () => setVisibleModal(true)
+                                    }
                                 >
-                                    <Icon
-                                        name='remove'
-                                        color='rgba(236, 38, 38, 1)'
-                                        size={13}
-                                    />
-                                </View>
-                                <Image
-                                    style={styles.subContainerFlastlistImage}
-                                    source={{
-                                        uri: `https://image.tmdb.org/t/p/original${item?.poster_path}`,
-                                    }}
-                                ></Image>
-                            </TouchableOpacity>
-                        );
-                    }}
-                />
+                                    <View
+                                        style={{
+                                            backgroundColor: 'white',
+                                            borderRadius: 30,
+                                            width: 18,
+                                            height: 18,
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            position: 'absolute',
+                                            zIndex: 1,
+                                            top: -5,
+                                            right: -5,
+                                            display: position ? 'none' : 'flex',
+                                        }}
+                                    >
+                                        <Icon
+                                            name='remove'
+                                            color='rgba(236, 38, 38, 1)'
+                                            size={13}
+                                        />
+                                    </View>
+                                    <Image
+                                        style={
+                                            styles.subContainerFlastlistImage
+                                        }
+                                        source={{
+                                            uri: `https://image.tmdb.org/t/p/original${item?.poster_path}`,
+                                        }}
+                                    ></Image>
+                                </TouchableOpacity>
+                            );
+                        }}
+                    />
+                )}
             </View>
         </BodyScreen>
     );

@@ -9,10 +9,10 @@ export const ListsContextProvider = ({ children }) => {
     const [createLists, setCreateLists] = useState([]);
     const [loadingScroll, setLoadingScroll] = useState(true);
     const [totalPages, setTotalPages] = useState(0);
+    const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
 
     const getLists = async (idUser, sessionID) => {
-        setLoadingScroll(true);
         await instance
             .get(
                 `account/${idUser}/lists?session_id=${sessionID}&language=pt-BR&page=${page}`,
@@ -20,6 +20,7 @@ export const ListsContextProvider = ({ children }) => {
             .then(resp => {
                 setCreateLists(resp?.data?.results);
                 setTotalPages(resp?.data?.total_pages);
+                setLoading(false);
             })
             .finally(() => setLoadingScroll(false));
     };
@@ -32,6 +33,7 @@ export const ListsContextProvider = ({ children }) => {
     };
 
     const handlerInfiniteScroll = () => {
+        setLoadingScroll(true);
         setPage(prev => prev + 1);
     };
 
@@ -47,6 +49,7 @@ export const ListsContextProvider = ({ children }) => {
                 totalPages,
                 deleteList,
                 setListState,
+                loading,
             }}
         >
             {children}

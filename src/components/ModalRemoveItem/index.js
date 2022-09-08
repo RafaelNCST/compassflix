@@ -58,7 +58,7 @@ export const ModalRemoveItem = ({
                                 color={'#000000'}
                                 margin={0}
                             >
-                                sair
+                                excluir
                             </Styled.TextModal>
                         </Styled.Button>
                     </Styled.ButtonContainer>
