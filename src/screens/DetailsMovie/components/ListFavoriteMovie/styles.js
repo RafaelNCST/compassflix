@@ -40,7 +40,8 @@ export const styles = StyleSheet.create({
         borderWidth:1
     },
     textListFavorite:{
-        color:'black'
+        color:'black',
+        margin:5
     },
     buttonSave:{
         borderRadius:5, 

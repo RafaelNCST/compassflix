@@ -35,8 +35,13 @@ export const DetailsMovieComponent = ({
     setMenssagError,
     buttonListFavorite,
     setButtonListFavorite,
-    buttonMarkFavorite,
-    setButtonMarkFavorite
+    listFilmesFavorite,
+    postAddFavoriteMovie,
+    addListMovie,
+    markMovieFavorite,
+    menssageSucess,
+    setMarkMovieFavorite,
+    setMenssageSucess
 }) => {
 
     const validationNote = () => {
@@ -111,10 +116,16 @@ export const DetailsMovieComponent = ({
             <Modal Modal animationType='fade' visible={buttonListFavorite} transparent={true}>
                 <ListFavoriteMovie
                 setButtonListFavorite={setButtonListFavorite}
-                setButtonMarkFavorite={setButtonMarkFavorite}
-                buttonMarkFavorite={buttonMarkFavorite}
+                postAddFavoriteMovie={postAddFavoriteMovie}
+                listFilmesFavorite={listFilmesFavorite?.results}
+                addListMovie={addListMovie}
+                markMovieFavorite={markMovieFavorite}
+                menssageSucess={ menssageSucess}
+                setMarkMovieFavorite={setMarkMovieFavorite}
+                setMenssageSucess={setMenssageSucess}
                 />
             </Modal>
+            
             <View style={styles.perfilArea}>
                 <View style={{ width: 132 }}>
                     <TouchableOpacity onPress={() => setVisible(true)}>
@@ -152,14 +163,6 @@ export const DetailsMovieComponent = ({
                         </TouchableOpacity>
                     </View>
                     ) : (null) }
-                    <TouchableOpacity style={styles.buttonFavorite} onPress={() => setButtonListFavorite(true) }>
-                        <View style={styles.iconFavorite}>
-                            <Icon name='add' size={15} color={'black'}/>
-                        </View>
-                        <View style={styles.areaTextFavorite}>
-                            <Text style={styles.textFavorite}>Adicionar a uma lista</Text>
-                        </View>
-                    </TouchableOpacity>
                 </View>
                 <View style={styles.infoArea}>
                     <View style={styles.titleArea}>
@@ -216,6 +219,14 @@ export const DetailsMovieComponent = ({
                     </View>
                 </View>
             </View>
+            <TouchableOpacity style={styles.buttonFavorite} onPress={() => setButtonListFavorite(true) }>
+                        <View style={styles.iconFavorite}>
+                            <Icon name='add' size={15} color={'black'}/>
+                        </View>
+                        <View style={styles.areaTextFavorite}>
+                            <Text style={styles.textFavorite}>Adicionar a uma lista</Text>
+                        </View>
+            </TouchableOpacity>
             <View style={styles.areaDescription}>
                 <ScrollView style={styles.scrollDescription}>
                     <Text style={styles.tagline}>

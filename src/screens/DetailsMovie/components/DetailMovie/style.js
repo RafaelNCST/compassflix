@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
         height: 170,
         alignSelf: 'flex-end',
         flexDirection: 'row',
+        
     },
     imagePerfil: {
         width: 116,
@@ -53,6 +54,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'baseline',
         justifyContent: 'space-between',
+        
     },
     textTitle: {
         color: 'white',
@@ -95,6 +97,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        
 
     },
     textNote: {
@@ -154,8 +157,8 @@ export const styles = StyleSheet.create({
         bottom:31
     },
     buttonFavorite:{
-        left:155,
-        bottom:42,
+        left:15,
+        bottom:30,
         width: 115,
         height: 21,
         backgroundColor:'#C4C4C4',

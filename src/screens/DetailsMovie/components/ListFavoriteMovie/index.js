@@ -6,11 +6,16 @@ import {
     ScrollView,
     
 } from 'react-native';
-import { listFavorite } from '../../../../helpers/Moks/listFavorite';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {styles} from './styles';
 
-export const ListFavoriteMovie = ({setButtonListFavorite, buttonMarkFavorite, setButtonMarkFavorite}) => {
+export const ListFavoriteMovie = ({setButtonListFavorite, postAddFavoriteMovie, markMovieFavorite, listFilmesFavorite, 
+    menssageSucess, setMarkMovieFavorite, setMenssageSucess}) => {
+    
+    const markFilme = () => {
+        
+    };  
+
     return(
         <View style={styles.screenMovieFavorite}>
             <View style={styles.areaMovieFavorite}>
@@ -23,10 +28,12 @@ export const ListFavoriteMovie = ({setButtonListFavorite, buttonMarkFavorite, se
             <View style={styles.headLine}/>
             <View style={styles.headerListMovie}>
             <ScrollView>
-                {listFavorite.map((item, index)=> (
+                {listFilmesFavorite?.map((item, index)=> (
                     <View key={index} style={styles.areaListMovie}>
-                        <TouchableOpacity style={[styles.buttonMarkFavorite, {backgroundColor: !buttonMarkFavorite ?  'white' : 'black' }]} onPress={() => setButtonMarkFavorite(true)}/>
-                        <Text style={styles.textListFavorite}>{(item.name).toUpperCase()}</Text>
+                        <TouchableOpacity style={[styles.buttonMarkFavorite, 
+                        {backgroundColor: markMovieFavorite === true ?  'black' : 'white'  }]} 
+                        onPress={() => postAddFavoriteMovie()}/>
+                        <Text style={styles.textListFavorite}>{(item?.name).toUpperCase()}</Text>
                     </View>
                 ))}
                 </ScrollView>

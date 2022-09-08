@@ -18,3 +18,9 @@ export const getCast = async (idItens) => {
     );
     return resp;
 };
+
+export const getNameListMovie = async (sessionId) => {
+    let resp = await instance.get(`account/13749934/lists?&session_id=${sessionId}`
+    );
+    return resp;
+};
