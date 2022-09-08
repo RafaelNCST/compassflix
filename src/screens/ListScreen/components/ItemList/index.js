@@ -14,10 +14,15 @@ export const ItemList = ({
     setVisible,
     activeModalDeleteItem,
     itemID,
+    Navigation,
 }) => {
     return (
         <Styled.ContainerCard>
-            <Styled.ButtonDetailList>
+            <Styled.ButtonDetailList
+                onPress={() =>
+                    Navigation.navigate('DetailListScreen', { ID: item.id })
+                }
+            >
                 <Styled.ContainerInfos>
                     <TextSubTitle size={12} color='#FFFFFF'>
                         {item?.name}

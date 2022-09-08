@@ -10,6 +10,10 @@ import { ListsContext } from '../../contexts/listsContext';
 import { LoginContext } from '../../contexts/loginContext';
 import { useState } from 'react';
 
+import { postAPIAddList } from './api/addList';
+
+import { useNavigation } from '@react-navigation/native';
+
 export const ListScreen = () => {
     const { userInfos } = useContext(HeaderContext);
     const {
@@ -22,10 +26,24 @@ export const ListScreen = () => {
         deleteList,
         listState,
         setListState,
+        loading,
     } = useContext(ListsContext);
     const { sessionId } = useContext(LoginContext);
     const [visible, setVisible] = useState(false);
     const [itemID, setItemID] = useState(0);
+
+    const [nameList, setNameList] = useState(null);
+    const [descList, setDescList] = useState(null);
+
+    const [visibleAdd, setVisibleAdd] = useState(false);
+
+    const Navigation = useNavigation();
+
+    const handleAddList = () => {
+        postAPIAddList(sessionId, nameList, descList);
+        setListState(!listState);
+        setVisibleAdd(false);
+    };
 
     const handleDeleteList = ListId => {
         deleteList(ListId, sessionId);
@@ -57,8 +75,16 @@ export const ListScreen = () => {
                 setVisible={setVisible}
                 activeModalDeleteItem={activeModalDeleteItem}
                 itemID={itemID}
+                loading={loading}
+                Navigation={Navigation}
             />
-            <ButtonAdd />
+            <ButtonAdd
+                handleAddList={handleAddList}
+                setNameList={setNameList}
+                setDescList={setDescList}
+                visibleAdd={visibleAdd}
+                setVisibleAdd={setVisibleAdd}
+            />
         </BodyScreen>
     );
 };
