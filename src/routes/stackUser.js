@@ -7,7 +7,7 @@ import { UserPerfil } from '../screens/UserPerfil';
 import { PageSeeMore } from '../screens/PageSeeMore';
 import { DetailsMovie } from '../screens/DetailsMovie';
 import { DetailsSerie } from '../screens/DetailsSerie';
-import { StackListRoutes } from './listButton';
+import { StackListRoutes } from './stackList';
 
 import { ListSeeMoreContextProvider } from '../contexts/listsSeeMoreContext';
 

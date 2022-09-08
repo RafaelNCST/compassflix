@@ -31,7 +31,7 @@ export const TextTitle = styled.Text`
     flex: 1;
     font-size: ${props => props.size}px;
 `;
-export const ListButton = styled.TouchableOpacity`
+export const ButtonList = styled.TouchableOpacity`
     border-width: 1px;
     border-radius: 5px;
     background-color: #6c7bfc;

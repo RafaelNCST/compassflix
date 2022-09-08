@@ -5,13 +5,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Modal } from 'react-native';
 
 export const ButtonAdd = () => {
-    const [visible, setVisible] = useState(false);
+    const [visibleAdd, setVisibleAdd] = useState(false);
     return (
         <Styled.ScreenView>
-            <Styled.AddButtonList onPress={() => setVisible(true)}>
+            <Styled.AddButtonList onPress={() => setVisibleAdd(true)}>
                 <Icon name='add' color='#000' size={40} />
             </Styled.AddButtonList>
-            <Modal animationType='fade' transparent={true} visible={visible}>
+            <Modal animationType='fade' transparent={true} visible={visibleAdd}>
                 <Styled.ListBodyModal>
                     <Styled.ListContainerModal>
                         <Styled.TextListModal>Nova lista</Styled.TextListModal>
@@ -24,7 +24,7 @@ export const ButtonAdd = () => {
                         <Styled.BottomView>
                             <Styled.ButtonModal>
                                 <Styled.CancelText
-                                    onPress={() => setVisible(false)}
+                                    onPress={() => setVisibleAdd(false)}
                                 >
                                     CANCELAR
                                 </Styled.CancelText>

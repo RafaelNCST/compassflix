@@ -45,11 +45,11 @@ export const ContainerTop = ({
                     {userInfos?.name || userInfos?.username}
                 </Styled.TextTitle>
             </Styled.ContainerUser>
-            <Styled.ListButton
+            <Styled.ButtonList
                 onPress={() => Navigation.navigate('StackListRoutes')}
             >
                 <Styled.TextFilms> Ver lista de filmes </Styled.TextFilms>
-            </Styled.ListButton>
+            </Styled.ButtonList>
             <Styled.ContainerUser heightContainer={50}>
                 {loading ? (
                     <SpinnerStick />
