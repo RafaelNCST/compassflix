@@ -1,10 +1,5 @@
 import styled from 'styled-components/native';
 
-export const ScreenView = styled.View`
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-`;
 export const AddButtonList = styled.TouchableOpacity`
     border-radius: 30px;
     background-color: #e9a6a6;
@@ -13,8 +8,8 @@ export const AddButtonList = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 650px;
-    right: 50px;
+    bottom: 30px;
+    right: 30px;
 `;
 export const ListBodyModal = styled.View`
     background-color: rgba(0, 0, 0, 0.8);
@@ -49,12 +44,14 @@ export const BottomInputModal = styled.TextInput`
     margin-top: 5px;
     background-color: rgba(196, 196, 196, 0.35);
     width: 290px;
+    max-width: 290px;
     height: 55px;
     color: #8e8e8e;
     border-radius: 7px;
     font-size: 13px;
     padding-horizontal: 15px;
     padding-bottom: 30px;
+    flex-wrap: wrap;
 `;
 export const ButtonModal = styled.TouchableOpacity`
     align-items: center;
@@ -86,4 +83,3 @@ export const CancelText = styled.Text`
     font-size: 10px;
     color: #000;
 `;
-//.

@@ -12,6 +12,11 @@ import {
 import { ContainerTop } from '../../src/screens/UserPerfil/components/ContainerTop';
 
 let wrapper = null;
+let mockedNavigate = jest.fn();
+
+jest.mock('@react-navigation/native', () => ({
+    useNavigation: () => ({ navigate: mockedNavigate }),
+}));
 
 describe('When render Top Container', () => {
     afterEach(cleanup);
