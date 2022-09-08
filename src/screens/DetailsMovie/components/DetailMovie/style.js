@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     posterArea: {
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
         paddingLeft: 10,
     },
     perfilArea: {
-        width: "100%",
+        width: '100%',
         height: 170,
         alignSelf: 'flex-end',
         flexDirection: 'row',
@@ -110,7 +110,7 @@ export const styles = StyleSheet.create({
     },
     areaDescription: {
         top:16,
-        width: "90%",
+        width: '90%',
         height: 95,
     },
     scrollDescription: {
@@ -118,7 +118,6 @@ export const styles = StyleSheet.create({
     },
     tagline: {
         color: 'white',
-        fontSize: 12,
         lineHeight: 16,
         textAlign: 'justify',
         fontSize: 14,
@@ -126,7 +125,6 @@ export const styles = StyleSheet.create({
     },
     textDescription: {
         color: 'white',
-        fontSize: 12,
         lineHeight: 20,
         textAlign: 'justify',
         fontSize: 14,
@@ -142,7 +140,6 @@ export const styles = StyleSheet.create({
         borderBottomLeftRadius:5,  
         borderBottomRightRadius:5,
         flexDirection:'row-reverse',
-        alignItems:'center',
         justifyContent:'center',
         bottom:5
     },
@@ -152,10 +149,38 @@ export const styles = StyleSheet.create({
         borderRadius: 10, 
         width: 15, 
         height: 15, 
-        backgroundColor: '#C4C4C4',
-        bottom:11, 
+        backgroundColor: '#C4C4C4', 
         left:125,
         bottom:31
+    },
+    buttonFavorite:{
+        left:155,
+        bottom:42,
+        width: 115,
+        height: 21,
+        backgroundColor:'#C4C4C4',
+        borderBottomRightRadius:20, 
+        borderTopRightRadius:20, 
+        flexDirection:'row'
+    },
+    iconFavorite:{
+        alignItems:'center', 
+        backgroundColor:'white', 
+        alignSelf:'center', 
+        borderRadius:30, 
+        right:10, 
+        width:22, 
+        height:22, 
+        justifyContent:'center'
+    },
+    areaTextFavorite:{
+        alignSelf:'center', 
+        right:8
+    },
+    textFavorite:{
+        fontSize:10, 
+        color:'black',
+        fontWeight:'bold'
     },
     textAvaliation:{
         fontWeight:'bold',
@@ -170,5 +195,4 @@ export const styles = StyleSheet.create({
         borderColor:'rede'
 
     },
-   
-})
+});

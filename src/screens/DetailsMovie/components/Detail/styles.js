@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet} from 'react-native';
 
 export const ModalScreens = styled.View`
     flex: 1;

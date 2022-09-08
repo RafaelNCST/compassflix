@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style';
 import { Detail } from '../Detail';
 import { Evaluation } from '../Evaluation';
+import { ListFavoriteMovie } from '../ListFavoriteMovie';
 import StarActice from '../../../../assets/Images/StarActice.png';
 import StarInative from '../../../../assets/Images/StarInative.png';
 
@@ -31,7 +32,11 @@ export const DetailsMovieComponent = ({
     verification,
     setVerification,
     menssagError,
-    setMenssagError
+    setMenssagError,
+    buttonListFavorite,
+    setButtonListFavorite,
+    buttonMarkFavorite,
+    setButtonMarkFavorite
 }) => {
 
     const validationNote = () => {
@@ -103,6 +108,13 @@ export const DetailsMovieComponent = ({
                 />
             </Modal>
 
+            <Modal Modal animationType='fade' visible={buttonListFavorite} transparent={true}>
+                <ListFavoriteMovie
+                setButtonListFavorite={setButtonListFavorite}
+                setButtonMarkFavorite={setButtonMarkFavorite}
+                buttonMarkFavorite={buttonMarkFavorite}
+                />
+            </Modal>
             <View style={styles.perfilArea}>
                 <View style={{ width: 132 }}>
                     <TouchableOpacity onPress={() => setVisible(true)}>
@@ -140,8 +152,15 @@ export const DetailsMovieComponent = ({
                         </TouchableOpacity>
                     </View>
                     ) : (null) }
+                    <TouchableOpacity style={styles.buttonFavorite} onPress={() => setButtonListFavorite(true) }>
+                        <View style={styles.iconFavorite}>
+                            <Icon name='add' size={15} color={'black'}/>
+                        </View>
+                        <View style={styles.areaTextFavorite}>
+                            <Text style={styles.textFavorite}>Adicionar a uma lista</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
-
                 <View style={styles.infoArea}>
                     <View style={styles.titleArea}>
                         <View style={styles.containerNameAndYear}>
@@ -161,7 +180,6 @@ export const DetailsMovieComponent = ({
                             {detail?.runtime}min
                         </Text>
                     </View>
-
                     {directorArray.find(item => item.job === 'Director') ? (
                         <Text style={styles.textDirector}>
                             Direção por{' '}

@@ -23,6 +23,8 @@ export const DetailsMovie = () => {
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [note, setNote] = useState(false);
+    const [buttonListFavorite, setButtonListFavorite] = useState(false);
+    const [buttonMarkFavorite, setButtonMarkFavorite] = useState(false);
     const Navigation = useNavigation();
     const {idItens} = useRoute().params;
 
@@ -77,7 +79,7 @@ const RateMovie = async () => {
 
     useEffect(() => {
         accountStatus();
-    }, [noteAvaliation, markFavorite]);
+    }, [noteAvaliation, markFavorite, buttonMarkFavorite]);
 
     return (
         <Styled.BodyScreen>
@@ -104,8 +106,10 @@ const RateMovie = async () => {
                         setVerification={setVerification}
                         menssagError={menssagError}
                         setMenssagError={setMenssagError}
-
-
+                        buttonListFavorite={buttonListFavorite}
+                        setButtonListFavorite={setButtonListFavorite}
+                        buttonMarkFavorite={buttonMarkFavorite}
+                        setButtonMarkFavorite={setButtonMarkFavorite}
                     />
                     <CreditsComponent cast={cast} />
                 </>
