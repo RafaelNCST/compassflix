@@ -19,6 +19,7 @@ export const ContainerTop = ({
     visible,
     setVisible,
     logoutLoading,
+    Navigation,
 }) => {
     return (
         <Styled.ContainerTop>
@@ -43,13 +44,18 @@ export const ContainerTop = ({
                     {userInfos?.name || userInfos?.username}
                 </Styled.TextTitle>
             </Styled.ContainerUser>
+            <Styled.ButtonList
+                onPress={() => Navigation.navigate('StackListRoutes')}
+            >
+                <Styled.TextFilms> Ver lista de filmes </Styled.TextFilms>
+            </Styled.ButtonList>
             <Styled.ContainerUser heightContainer={50}>
                 {loading ? (
                     <SpinnerStick />
                 ) : (
                     <Styled.ContainerQuantityInfos>
                         <Styled.TextTitle
-                            paddingTop={15}
+                            paddingTop={5}
                             size={30}
                             color={'#9C4A8B'}
                         >

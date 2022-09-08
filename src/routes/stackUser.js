@@ -7,6 +7,7 @@ import { UserPerfil } from '../screens/UserPerfil';
 import { PageSeeMore } from '../screens/PageSeeMore';
 import { DetailsMovie } from '../screens/DetailsMovie';
 import { DetailsSerie } from '../screens/DetailsSerie';
+import { StackListRoutes } from './stackList';
 
 import { ListSeeMoreContextProvider } from '../contexts/listsSeeMoreContext';
 
@@ -28,6 +29,10 @@ export const StackUserRoutes = () => {
                 <StackUser.Screen
                     name='DetailUserSerie'
                     component={DetailsSerie}
+                />
+                <StackUser.Screen
+                    name='StackListRoutes'
+                    component={StackListRoutes}
                 />
             </StackUser.Navigator>
         </ListSeeMoreContextProvider>

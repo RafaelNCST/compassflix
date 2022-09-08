@@ -7,16 +7,16 @@ export const ContainerImageUser = styled.TouchableOpacity`
 `;
 
 export const ImageUser = styled.Image`
-    height: 44px;
-    width: 44px;
-    border-radius: 50px;
+    height: 45px;
+    width: 45px;
+    border-radius: 60px;
 `;
 
 export const BodyScreenName = styled.Text`
     color: #ffffff;
     font-size: 18px;
     margin-left: 14px;
-    margin-top: 40px;
+    margin-top: 50px;
     font-family: 'OpenSans-Bold';
 `;
 
