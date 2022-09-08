@@ -4,17 +4,15 @@ import {
     Text,
     TouchableOpacity,
     ScrollView,
+    Modal,
     
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { MenssageSuccess } from '../MenssageSuccess';
 import {styles} from './styles';
 
-export const ListFavoriteMovie = ({setButtonListFavorite, postAddFavoriteMovie, markMovieFavorite, listFilmesFavorite, 
-    menssageSucess, setMarkMovieFavorite, setMenssageSucess}) => {
+export const ListFavoriteMovie = ({setButtonListFavorite, postAddFavoriteMovie, markMovieFavorite, listFilmesFavorite, confirmingList, setConfirmingList}) => {
     
-    const markFilme = () => {
-        
-    };  
 
     return(
         <View style={styles.screenMovieFavorite}>
@@ -38,9 +36,15 @@ export const ListFavoriteMovie = ({setButtonListFavorite, postAddFavoriteMovie, 
                 ))}
                 </ScrollView>
             </View>
-            <TouchableOpacity style={styles.buttonSave} onPress={() => setButtonListFavorite(false)}>
+            <Modal animationType='fade' visible={confirmingList} transparent={true}>
+                <MenssageSuccess
+                    setButtonListFavorite={setButtonListFavorite}
+                />
+            </Modal>
+            <TouchableOpacity style={styles.buttonSave} onPress={() => setConfirmingList(true)}>
                 <Text style={styles.textButtonSave}> Salvar </Text>
             </TouchableOpacity>
             </View>
         </View>
-    )}
+    );
+};

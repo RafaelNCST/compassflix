@@ -26,6 +26,7 @@ export const DetailsMovie = () => {
     const [markMovieFavorite, setMarkMovieFavorite] = useState(false);
     const [listFilmesFavorite, setListFilmesFavorite] = useState({});
     const [menssageSucess, setMenssageSucess] = useState('');
+    const [confirmingList, setConfirmingList] = useState(false);
     const {sessionId} = useContext(LoginContext);
     const {movieStates, setMovieStates} = useContext(ListFilmsContext);
     const Navigation = useNavigation();
@@ -63,7 +64,7 @@ export const DetailsMovie = () => {
                 setMenssageSucess('Lista atualizada com sucesso!');
             }
         })
-        .catch(error => {console.log(error)});
+        .catch(error => console.log(error));
     };
     const FavoriteMovie = async () => {
         await postFavoriteMovie(idItens,sessionId, markFavorite);
@@ -138,6 +139,9 @@ const RateMovie = async () => {
                         setMarkMovieFavorite={setMarkMovieFavorite}
                         setMenssageSucess={setMenssageSucess}
                         menssageSucess={menssageSucess}
+                        confirmingList={confirmingList}
+                        setConfirmingList={setConfirmingList}
+
                     />
                     <CreditsComponent cast={cast} />
                 </>

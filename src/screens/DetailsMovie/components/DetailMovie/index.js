@@ -41,7 +41,9 @@ export const DetailsMovieComponent = ({
     markMovieFavorite,
     menssageSucess,
     setMarkMovieFavorite,
-    setMenssageSucess
+    setMenssageSucess,
+    confirmingList,
+    setConfirmingList
 }) => {
 
     const validationNote = () => {
@@ -113,7 +115,7 @@ export const DetailsMovieComponent = ({
                 />
             </Modal>
 
-            <Modal Modal animationType='fade' visible={buttonListFavorite} transparent={true}>
+            <Modal animationType='fade' visible={buttonListFavorite} transparent={true}>
                 <ListFavoriteMovie
                 setButtonListFavorite={setButtonListFavorite}
                 postAddFavoriteMovie={postAddFavoriteMovie}
@@ -123,8 +125,11 @@ export const DetailsMovieComponent = ({
                 menssageSucess={ menssageSucess}
                 setMarkMovieFavorite={setMarkMovieFavorite}
                 setMenssageSucess={setMenssageSucess}
+                confirmingList={confirmingList}
+                setConfirmingList={setConfirmingList}
                 />
             </Modal>
+
             
             <View style={styles.perfilArea}>
                 <View style={{ width: 132 }}>
