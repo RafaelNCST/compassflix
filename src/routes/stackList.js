@@ -5,12 +5,24 @@ import { ListScreen } from '../screens/ListScreen';
 
 import { StackOptions } from './options/stackOptions';
 
+import { ListsContextProvider } from '../contexts/listsContext';
+import { PageFavoritesList } from '../screens/PageFavoritesList';
+
 export const StackListRoutes = () => {
     const StackUserLists = createStackNavigator();
     return (
-        <StackUserLists.Navigator screenOptions={StackOptions}>
-            <StackUserLists.Screen name='ListScreen' component={ListScreen} />
-        </StackUserLists.Navigator>
+        <ListsContextProvider>
+            <StackUserLists.Navigator screenOptions={StackOptions}>
+                <StackUserLists.Screen
+                    name='ListScreen'
+                    component={ListScreen}
+                />
+                <StackUserLists.Screen
+                    name='DetailListScreen'
+                    component={PageFavoritesList}
+                />
+            </StackUserLists.Navigator>
+        </ListsContextProvider>
     );
 };
 //.
