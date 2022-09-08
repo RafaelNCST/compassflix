@@ -41,3 +41,7 @@ export const ButtonList = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
 `;
+
+export const ContainerQuantityInfos = styled.View`
+    flex: 1;
+`;

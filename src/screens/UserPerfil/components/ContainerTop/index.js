@@ -6,7 +6,6 @@ import anonimo from '../../../../assets/Images/imagemAnonima.jpg';
 
 import { TextInfos } from '../../../../components/StyledComponents/GlobalStyleds';
 import { LogoutButton } from '../LogoutButton';
-import { useNavigation } from '@react-navigation/native';
 
 import { SpinnerStick } from '../../../../components/SpinnerStick';
 
@@ -20,8 +19,8 @@ export const ContainerTop = ({
     visible,
     setVisible,
     logoutLoading,
+    Navigation,
 }) => {
-    const Navigation = useNavigation();
     return (
         <Styled.ContainerTop>
             <LogoutButton

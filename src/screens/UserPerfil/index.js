@@ -10,6 +10,7 @@ import { BodyScreen } from '../../components/StyledComponents/GlobalStyleds';
 import { ContainerTop } from './components/ContainerTop';
 import { ContainerMid } from './components/ContainerMid';
 import { ContainerBottom } from './components/ContainerBottom';
+
 import { requestMoviesRated } from './apis/moviesRequest';
 import { requestMoviesFavorite } from './apis/moviesRequest';
 import { requestSeriesRated } from './apis/seriesRequest';
@@ -110,6 +111,7 @@ export const UserPerfil = () => {
                 visible={visible}
                 setVisible={setVisible}
                 logoutLoading={logoutLoading}
+                Navigation={Navigation}
             />
             <ContainerMid
                 activeButton={activeButton}
