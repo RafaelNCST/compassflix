@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    screen:{
-        flex:1,
-        backgroundColor:'black'
+    areaDropDown:{
+        top:40, 
+        height:270
     }
+
 });

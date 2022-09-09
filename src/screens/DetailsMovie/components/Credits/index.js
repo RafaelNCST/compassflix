@@ -19,7 +19,7 @@ export const CreditsComponent = ({ cast }) => {
                 <FlatList
                     data={cast}
                     contentContainerStyle={styles.listCredits}
-                    keyExtractor={(item, index) => index}
+                    keyExtractor={(_, index) => index}
                     renderItem={({ item }) => {
                         return (
                             <View style={styles.areaItens}>

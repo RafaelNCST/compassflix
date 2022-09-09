@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import {
     View,
     Text,
@@ -12,17 +12,15 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from './style';
 import { Detail } from '../Detail';
 import { Evaluation } from '../Evaluation';
-import { instance } from '../../../../services/api';
-import { LoginContext } from '../../../../contexts/loginContext';
-import { useRoute } from '@react-navigation/native';
+import { ListFavoriteMovie } from '../ListFavoriteMovie';
 import StarActice from '../../../../assets/Images/StarActice.png';
 import StarInative from '../../../../assets/Images/StarInative.png';
 
+import { MenssageSuccess } from '../MenssageSuccess';
+
 export const DetailsMovieComponent = ({
-    markFavorite,
     noteAvaliation,
     movieStates,
-    setMarkFavorite,
     setNoteAvaliation,
     Navigation,
     note,
@@ -31,53 +29,24 @@ export const DetailsMovieComponent = ({
     visible,
     setVisible,
     directorArray,
+    FavoriteMovie,
+    RateMovie,
+    verification,
+    setVerification,
+    menssagError,
+    setMenssagError,
+    buttonListFavorite,
+    setButtonListFavorite,
+    postAddFavoriteMovie,
+    addListMovie,
+    markMovieFavorite,
+    menssageSucess,
+    setMarkMovieFavorite,
+    setMenssageSucess,
+    filterListFilms,
+    loadingLists,
+    handleModalsOnCheckedApi,
 }) => {
-    const { sessionId } = useContext(LoginContext);
-    const { idItens } = useRoute().params;
-    const [verification, setVerification] = useState(false);
-    const [menssagError, setMenssagError] = useState('');
-
-    const postFavoriteMovie = async () => {
-        await instance
-            .post(`account/${idItens}/favorite?&session_id=${sessionId}`, {
-                'media_type': 'movie',
-                'media_id': idItens,
-                'favorite': markFavorite,
-            })
-            .then(resp => {
-                setMarkFavorite(!markFavorite)}
-                
-                )
-            .catch(error => {
-                if (error.response) {
-                    console.log(error.response.data);
-                } else if (error.request) {
-                    console.log(error.request.data);
-                } else {
-                    console.log('Error', error.message);
-                }
-            });
-    };
-
-    const PostRateMovie = async () => {
-        await instance
-            .post(`movie/${idItens}/rating?session_id=${sessionId}`, {
-                value: parseFloat(noteAvaliation),
-            })
-            .then(resp => {
-                setVerification(false);
-                setNoteAvaliation(resp?.value);
-                setNote(false);
-            })
-            .catch(error => {
-                setVerification(true);
-                setNoteAvaliation('');
-                if (error?.response?.status === 400) {
-                    setMenssagError('A nota deve ser de 0,50 a 10');
-                }
-            });
-    };
-
     const validationNote = () => {
         setVerification(false);
         if (noteAvaliation === 0 && noteAvaliation > 10) {
@@ -87,7 +56,7 @@ export const DetailsMovieComponent = ({
             setVerification(true);
             setMenssagError('Por favor digite sua nota');
         } else {
-            PostRateMovie();
+            RateMovie();
         }
     };
 
@@ -114,7 +83,7 @@ export const DetailsMovieComponent = ({
 
             <TouchableOpacity
                 style={styles.favoriteButtom}
-                onPress={() => postFavoriteMovie()}
+                onPress={() => FavoriteMovie()}
             >
                 <Image
                     style={{ width: 23, height: 23 }}
@@ -140,11 +109,38 @@ export const DetailsMovieComponent = ({
                     setNote={setNote}
                     setNoteAvaliation={setNoteAvaliation}
                     noteAvaliation={noteAvaliation}
-                    PostRateMovie={PostRateMovie}
                     validationNote={validationNote}
                     menssagError={menssagError}
                     verification={verification}
                     setVerification={setVerification}
+                />
+            </Modal>
+
+            <Modal
+                Modal
+                animationType='slip'
+                visible={buttonListFavorite}
+                transparent={true}
+            >
+                <ListFavoriteMovie
+                    setButtonListFavorite={setButtonListFavorite}
+                    postAddFavoriteMovie={postAddFavoriteMovie}
+                    addListMovie={addListMovie}
+                    markMovieFavorite={markMovieFavorite}
+                    setMarkMovieFavorite={setMarkMovieFavorite}
+                    setMenssageSucess={setMenssageSucess}
+                    filterListFilms={filterListFilms}
+                    loadingLists={loadingLists}
+                />
+            </Modal>
+
+            <Modal
+                visible={menssageSucess}
+                transparent={true}
+                animationType='fade'
+            >
+                <MenssageSuccess
+                    handleModalsOnCheckedApi={handleModalsOnCheckedApi}
                 />
             </Modal>
 
@@ -173,28 +169,27 @@ export const DetailsMovieComponent = ({
                             {' '}
                             {movieStates?.rated?.value
                                 ? 'Sua nota é: ' +
-                                movieStates?.rated?.value +
-                                ' /10'
-                                : 'Avalie Agora'}{' '}
+                                  movieStates?.rated?.value +
+                                  ' /10'
+                                : 'AVALIE AGORA'}{' '}
                         </Text>
                     </TouchableOpacity>
-                    { movieStates?.rated !== false ? (
-                    <View style={styles.buttonEdit}>
-                        <TouchableOpacity onPress={() => setNote(true)}>
-                            <Icon name='edit' size={10} color={'#000000'} />
-                        </TouchableOpacity>
-                    </View>
-                    ) : (null) }
+                    {movieStates?.rated !== false ? (
+                        <View style={styles.buttonEdit}>
+                            <TouchableOpacity onPress={() => setNote(true)}>
+                                <Icon name='edit' size={10} color={'#000000'} />
+                            </TouchableOpacity>
+                        </View>
+                    ) : null}
                 </View>
-
                 <View style={styles.infoArea}>
                     <View style={styles.titleArea}>
                         <View style={styles.containerNameAndYear}>
                             <TouchableOpacity onPress={() => setVisible(true)}>
                                 <Text style={styles.textTitle}>
-                                    {(detail?.title).length > 10
+                                    {detail?.title?.length > 10
                                         ? (detail?.title).substring(0, 10) +
-                                        '...'
+                                          '...'
                                         : detail?.title}
                                 </Text>
                             </TouchableOpacity>
@@ -206,7 +201,6 @@ export const DetailsMovieComponent = ({
                             {detail?.runtime}min
                         </Text>
                     </View>
-
                     {directorArray.find(item => item.job === 'Director') ? (
                         <Text style={styles.textDirector}>
                             Direção por{' '}
@@ -214,7 +208,7 @@ export const DetailsMovieComponent = ({
                                 {
                                     directorArray.find(
                                         item => item.job === 'Director',
-                                    ).name
+                                    )?.name
                                 }
                             </Text>
                         </Text>
@@ -227,7 +221,7 @@ export const DetailsMovieComponent = ({
 
                     <View style={styles.notesArea}>
                         <Text style={styles.textNote}>
-                            {(detail?.vote_average).toFixed(1)}/10
+                            {detail?.vote_average?.toFixed(1)}/10
                         </Text>
                         <View style={styles.bottomLike}>
                             <TouchableOpacity>
@@ -236,20 +230,33 @@ export const DetailsMovieComponent = ({
                             <Text style={styles.likesQtd}>
                                 {detail?.popularity > 1000
                                     ? Math.floor(detail?.popularity / 1000) +
-                                    'K'
-                                    : (detail?.popularity).toFixed(0)}
+                                      'K'
+                                    : detail?.popularity?.toFixed(0)}
                             </Text>
                         </View>
                     </View>
                 </View>
             </View>
+            <TouchableOpacity
+                style={styles.buttonFavorite}
+                onPress={() => setButtonListFavorite(true)}
+            >
+                <View style={styles.iconFavorite}>
+                    <Icon name='add' size={15} color={'black'} />
+                </View>
+                <View style={styles.areaTextFavorite}>
+                    <Text style={styles.textFavorite}>
+                        Adicionar a uma lista
+                    </Text>
+                </View>
+            </TouchableOpacity>
             <View style={styles.areaDescription}>
                 <ScrollView style={styles.scrollDescription}>
                     <Text style={styles.tagline}>
-                        {(detail?.tagline).toUpperCase() || detail?.title}
+                        {detail?.tagline?.toUpperCase() || detail?.title}
                     </Text>
                     <Text style={styles.textDescription}>
-                        {(detail?.overview).toString() ||
+                        {detail?.overview?.toString() ||
                             'Descrição indisponível'}
                     </Text>
                 </ScrollView>
