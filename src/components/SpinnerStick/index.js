@@ -6,7 +6,7 @@ import Lottie from 'lottie-react-native';
 
 export const SpinnerStick = () => {
     return (
-        <Styled.LottieView>
+        <Styled.LottieView testID='Spinner'>
             <Lottie
                 source={require('../../assets/lottie/spinnerStick.json')}
                 resizeMode='contain'

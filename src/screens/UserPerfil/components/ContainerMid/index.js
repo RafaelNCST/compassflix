@@ -17,6 +17,7 @@ export const ContainerMid = ({ activeButton, onPress }) => {
                 sizeRight={activeButton === 0 ? 1 : 0}
             >
                 <Styled.ImageButton
+                    accessibilityHint='Imagens do botão Filmes'
                     source={activeButton === 0 ? activeMovies : inactiveMovies}
                 />
             </Styled.ButtonMenu>
@@ -27,6 +28,7 @@ export const ContainerMid = ({ activeButton, onPress }) => {
                 sizeLeft={activeButton === 1 ? 1 : 0}
             >
                 <Styled.ImageButton
+                    accessibilityHint='Imagens do botão Series'
                     source={activeButton === 1 ? activeSeries : inactiveSeries}
                 />
             </Styled.ButtonMenu>

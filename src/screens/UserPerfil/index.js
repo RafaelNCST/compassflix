@@ -10,14 +10,22 @@ import { BodyScreen } from '../../components/StyledComponents/GlobalStyleds';
 import { ContainerTop } from './components/ContainerTop';
 import { ContainerMid } from './components/ContainerMid';
 import { ContainerBottom } from './components/ContainerBottom';
+
 import { requestMoviesRated } from './apis/moviesRequest';
 import { requestMoviesFavorite } from './apis/moviesRequest';
 import { requestSeriesRated } from './apis/seriesRequest';
 import { requestSeriesFavorite } from './apis/seriesRequest';
 
+import {
+    OpenPageAvaliation,
+    OpenPageFavorites,
+} from './components/ContainerBottom/helpers/titles';
+
 import { useNavigation } from '@react-navigation/native';
 
 import { logoutRequest } from './apis/logoutRequest';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const UserPerfil = () => {
     const [activeButton, setActiveButton] = useState(0);
@@ -30,10 +38,13 @@ export const UserPerfil = () => {
     const [dataAvaliationSeries, setDataAvaliationSeries] = useState([]);
     const [dataFavoritesMovies, setDataFavoritesMovies] = useState([]);
 
+    const [visible, setVisible] = useState(false);
+    const [logoutLoading, setLogouLoading] = useState(false);
+
     const Navigation = useNavigation();
 
     const { userInfos } = useContext(HeaderContext);
-    const { sessionId } = useContext(LoginContext);
+    const { sessionId, changeSessionID } = useContext(LoginContext);
     const { movieStates } = useContext(ListFilmsContext);
     const { serieStates } = useContext(ListSeriesContext);
 
@@ -63,6 +74,23 @@ export const UserPerfil = () => {
         setDataAvaliationSeries(resp?.data?.results);
     };
 
+    const LogoutResponse = async () => {
+        setLogouLoading(true);
+        let resp = await logoutRequest(sessionId);
+        if (resp.data.success) {
+            await AsyncStorage.removeItem('sessionId');
+            changeSessionID(false, null);
+        }
+    };
+
+    const NavigationBlankData = () => {
+        if (activeButton === 0) {
+            Navigation.navigate('StackFilms');
+        } else {
+            Navigation.navigate('StackSeries');
+        }
+    };
+
     useEffect(() => {
         requestMoviesRatedFn();
         requestSeriesRatedFn();
@@ -79,7 +107,11 @@ export const UserPerfil = () => {
                 rateQuantitySeries={rateQuantitySeries}
                 activeButton={activeButton}
                 loading={loading}
-                logoutApi={logoutRequest}
+                logoutApi={LogoutResponse}
+                visible={visible}
+                setVisible={setVisible}
+                logoutLoading={logoutLoading}
+                Navigation={Navigation}
             />
             <ContainerMid
                 activeButton={activeButton}
@@ -93,6 +125,9 @@ export const UserPerfil = () => {
                 dataFavoritesMovies={dataFavoritesMovies}
                 loading={loading}
                 Navigation={Navigation}
+                NavigationBlankData={NavigationBlankData}
+                OpenPageAvaliation={OpenPageAvaliation}
+                OpenPageFavorites={OpenPageFavorites}
             />
         </BodyScreen>
     );

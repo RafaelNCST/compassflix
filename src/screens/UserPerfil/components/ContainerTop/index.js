@@ -16,10 +16,19 @@ export const ContainerTop = ({
     activeButton,
     loading,
     logoutApi,
+    visible,
+    setVisible,
+    logoutLoading,
+    Navigation,
 }) => {
     return (
         <Styled.ContainerTop>
-            <LogoutButton logoutApi={logoutApi} />
+            <LogoutButton
+                logoutApi={logoutApi}
+                visible={visible}
+                setVisible={setVisible}
+                logoutLoading={logoutLoading}
+            />
             <Styled.ContainerUser heightContainer={110}>
                 <Styled.ImageUser
                     accessibilityHint='Imagem de Usuário'
@@ -35,13 +44,18 @@ export const ContainerTop = ({
                     {userInfos?.name || userInfos?.username}
                 </Styled.TextTitle>
             </Styled.ContainerUser>
+            <Styled.ButtonList
+                onPress={() => Navigation.navigate('StackListRoutes')}
+            >
+                <Styled.TextFilms> Ver lista de filmes </Styled.TextFilms>
+            </Styled.ButtonList>
             <Styled.ContainerUser heightContainer={50}>
                 {loading ? (
                     <SpinnerStick />
                 ) : (
-                    <>
+                    <Styled.ContainerQuantityInfos>
                         <Styled.TextTitle
-                            paddingTop={15}
+                            paddingTop={5}
                             size={30}
                             color={'#9C4A8B'}
                         >
@@ -55,7 +69,7 @@ export const ContainerTop = ({
                         >
                             Avaliações
                         </TextInfos>
-                    </>
+                    </Styled.ContainerQuantityInfos>
                 )}
             </Styled.ContainerUser>
         </Styled.ContainerTop>
