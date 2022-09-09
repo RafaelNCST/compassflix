@@ -54,7 +54,6 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         width: 82,
         height: 20,
-        backgroundColor: 'black',
     },
     textButtonSave: {
         color: 'white',
