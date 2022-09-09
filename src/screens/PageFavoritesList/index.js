@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import {
     View,
@@ -17,6 +17,8 @@ import { BackButton } from '../../components/StyledComponents/BackButton';
 import { BlankList } from '../../components/BlankList';
 import { instance } from '../../services/api';
 
+import { LoginContext } from '../../contexts/loginContext';
+
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { SpinnerMultiColor } from '../../components/SpinnerMultiColor';
 
@@ -28,6 +30,9 @@ export const PageFavoritesList = () => {
 
     const [dataFilmsList, setDataFilmsList] = useState([]);
     const [infosList, setInfosList] = useState({});
+    const [idFilmDelete, setIdFilmDelete] = useState(null);
+
+    const { sessionId } = useContext(LoginContext);
 
     const Navigation = useNavigation();
 
@@ -44,6 +49,11 @@ export const PageFavoritesList = () => {
         }).start();
     }
 
+    const handleOpenModal = id => {
+        setVisibleModal(true);
+        setIdFilmDelete(id);
+    };
+
     const handleGetFilmListDetails = async () => {
         const result = await instance
             .get(`list/${Route?.params?.ID}?language=pt-BR`)
@@ -54,9 +64,23 @@ export const PageFavoritesList = () => {
         setLoading(false);
     };
 
+    const handleDeleteFilm = async () => {
+        await instance
+            .post(
+                `list/${Route?.params?.ID}/remove_item?session_id=${sessionId}`,
+                {
+                    media_id: idFilmDelete,
+                },
+            )
+            .then(() => {
+                setVisibleModal(false);
+            })
+            .catch(error => console.log(error));
+    };
+
     useEffect(() => {
         handleGetFilmListDetails();
-    }, []);
+    }, [dataFilmsList]);
 
     return (
         <BodyScreen>
@@ -129,7 +153,10 @@ export const PageFavoritesList = () => {
                         >
                             <Text style={styles.modalBottonsTextOne}>Não</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.modalBottonsTwo}>
+                        <TouchableOpacity
+                            style={styles.modalBottonsTwo}
+                            onPress={() => handleDeleteFilm()}
+                        >
                             <Text style={styles.modalBottonsTextTwo}>Sim</Text>
                         </TouchableOpacity>
                     </View>
@@ -168,7 +195,7 @@ export const PageFavoritesList = () => {
                                                       'DetailUserMovie',
                                                       { idItens: item.id },
                                                   )
-                                            : () => setVisibleModal(true)
+                                            : () => handleOpenModal(item.id)
                                     }
                                 >
                                     <View

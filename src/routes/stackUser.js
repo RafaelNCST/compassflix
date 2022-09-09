@@ -16,7 +16,10 @@ export const StackUserRoutes = () => {
 
     return (
         <ListSeeMoreContextProvider>
-            <StackUser.Navigator screenOptions={StackOptions}>
+            <StackUser.Navigator
+                screenOptions={StackOptions}
+                initialRouteName='UserScreen'
+            >
                 <StackUser.Screen name='UserScreen' component={UserPerfil} />
                 <StackUser.Screen
                     name='PageSeeMoreScreen'

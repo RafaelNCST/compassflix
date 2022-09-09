@@ -83,6 +83,7 @@ export const IconContainerAvaliation = styled.TouchableOpacity`
 export const ContainerAvaliationData = styled.View`
     margin: 7px;
     width: 58px;
+    height: 100px;
 `;
 
 export const ContainerInfosData = styled.View`

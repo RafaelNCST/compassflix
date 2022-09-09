@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 
 import { BodyScreen } from '../../components/StyledComponents/GlobalStyleds';
 
+import { ListFilmsContext } from '../../contexts/listFilmsContext';
+
 import { ContainerTop } from './components/ContainerTop';
 import { CardsList } from './components/CardsList';
 import { ButtonAdd } from './components/ButtonAdd';
@@ -28,6 +30,9 @@ export const ListScreen = () => {
         setListState,
         loading,
     } = useContext(ListsContext);
+
+    const { filterListFilms } = useContext(ListFilmsContext);
+
     const { sessionId } = useContext(LoginContext);
     const [visible, setVisible] = useState(false);
     const [itemID, setItemID] = useState(0);
@@ -58,7 +63,7 @@ export const ListScreen = () => {
 
     useEffect(() => {
         getLists(userInfos?.id, sessionId);
-    }, [page, listState]);
+    }, [page, listState, filterListFilms]);
 
     return (
         <BodyScreen>
