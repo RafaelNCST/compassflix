@@ -30,10 +30,10 @@ export const DetailsMovie = () => {
     const [addListMovie, setAddListMovie] = useState(false);
     const [markMovieFavorite, setMarkMovieFavorite] = useState(null);
     const [menssageSucess, setMenssageSucess] = useState(false);
-    const [filterListFilms, setFilterListFilms] = useState([]);
     const [loadingLists, setLoadingLists] = useState(false);
     const { sessionId } = useContext(LoginContext);
-    const { movieStates, setMovieStates } = useContext(ListFilmsContext);
+    const { movieStates, setMovieStates, filterListFilms, setFilterListFilms } =
+        useContext(ListFilmsContext);
     const Navigation = useNavigation();
     const { idItens } = useRoute().params;
 

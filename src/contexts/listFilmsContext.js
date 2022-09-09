@@ -10,6 +10,8 @@ export const ListFilmsContextProvider = ({ children }) => {
     const [lastPageFilm, setLastPageFilm] = useState(1);
     const [movieStates, setMovieStates] = useState({});
 
+    const [filterListFilms, setFilterListFilms] = useState([]);
+
     const requestMovieListFilms = async () => {
         await instance
             .get(`movie/popular?&language=pt-BR&page=${lastPageFilm}`)
@@ -37,6 +39,8 @@ export const ListFilmsContextProvider = ({ children }) => {
                 filmeList,
                 movieStates,
                 setMovieStates,
+                filterListFilms,
+                setFilterListFilms,
             }}
         >
             {children}
