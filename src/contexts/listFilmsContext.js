@@ -9,8 +9,7 @@ export const ListFilmsContextProvider = ({ children }) => {
     const [loadingScrollFilm, setLoadingScrollFilm] = useState(false);
     const [lastPageFilm, setLastPageFilm] = useState(1);
     const [movieStates, setMovieStates] = useState({});
-
-    const [filterListFilms, setFilterListFilms] = useState([]);
+    const [stateFilteredList, setStateFilteredList] = useState(false);
 
     const requestMovieListFilms = async () => {
         await instance
@@ -39,8 +38,8 @@ export const ListFilmsContextProvider = ({ children }) => {
                 filmeList,
                 movieStates,
                 setMovieStates,
-                filterListFilms,
-                setFilterListFilms,
+                stateFilteredList,
+                setStateFilteredList,
             }}
         >
             {children}

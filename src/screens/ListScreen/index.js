@@ -31,7 +31,7 @@ export const ListScreen = () => {
         loading,
     } = useContext(ListsContext);
 
-    const { filterListFilms } = useContext(ListFilmsContext);
+    const { stateFilteredList } = useContext(ListFilmsContext);
 
     const { sessionId } = useContext(LoginContext);
 
@@ -66,7 +66,7 @@ export const ListScreen = () => {
 
     useEffect(() => {
         getLists(userInfos?.id, sessionId);
-    }, [page, listState, filterListFilms, dataFilmsList]);
+    }, [page, listState, stateFilteredList, dataFilmsList]);
 
     return (
         <BodyScreen>
