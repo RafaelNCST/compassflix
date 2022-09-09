@@ -12,6 +12,8 @@ export const ListsContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
 
+    const [dataFilmsList, setDataFilmsList] = useState([]);
+
     const getLists = async (idUser, sessionID) => {
         await instance
             .get(
@@ -50,6 +52,8 @@ export const ListsContextProvider = ({ children }) => {
                 deleteList,
                 setListState,
                 loading,
+                dataFilmsList,
+                setDataFilmsList,
             }}
         >
             {children}

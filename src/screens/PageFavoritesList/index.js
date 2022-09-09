@@ -18,6 +18,7 @@ import { BlankList } from '../../components/BlankList';
 import { instance } from '../../services/api';
 
 import { LoginContext } from '../../contexts/loginContext';
+import { ListsContext } from '../../contexts/listsContext';
 
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { SpinnerMultiColor } from '../../components/SpinnerMultiColor';
@@ -28,11 +29,11 @@ export const PageFavoritesList = () => {
 
     const [loading, setLoading] = useState(true);
 
-    const [dataFilmsList, setDataFilmsList] = useState([]);
     const [infosList, setInfosList] = useState({});
     const [idFilmDelete, setIdFilmDelete] = useState(null);
 
     const { sessionId } = useContext(LoginContext);
+    const { dataFilmsList, setDataFilmsList } = useContext(ListsContext);
 
     const Navigation = useNavigation();
 
