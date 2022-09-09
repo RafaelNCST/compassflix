@@ -48,7 +48,7 @@ describe('When Button Sair is Pressed', () => {
         wrapper = render(
             <ModalRemoveItem handleDeleteList={handleDeleteList} />,
         );
-        const button = wrapper.getByText('sair');
+        const button = wrapper.getByText('excluir');
         fireEvent.press(button);
         expect(handleDeleteList).toBeCalled();
     });

@@ -31,9 +31,15 @@ export const DetailsMovie = () => {
     const [markMovieFavorite, setMarkMovieFavorite] = useState(null);
     const [menssageSucess, setMenssageSucess] = useState(false);
     const [loadingLists, setLoadingLists] = useState(false);
+    const [filterListFilms, setFilterListFilms] = useState([]);
     const { sessionId } = useContext(LoginContext);
-    const { movieStates, setMovieStates, filterListFilms, setFilterListFilms } =
-        useContext(ListFilmsContext);
+
+    const {
+        movieStates,
+        setMovieStates,
+        stateFilteredList,
+        setStateFilteredList,
+    } = useContext(ListFilmsContext);
     const Navigation = useNavigation();
     const { idItens } = useRoute().params;
 
@@ -55,6 +61,7 @@ export const DetailsMovie = () => {
 
     const NameListMovie = async () => {
         setLoadingLists(false);
+        setStateFilteredList(!stateFilteredList);
         await getNameListMovie(sessionId).then(resp => {
             (resp?.data?.results).map(list => {
                 instance.get(`list/${list?.id}?language=pt-BR`).then(resp => {
