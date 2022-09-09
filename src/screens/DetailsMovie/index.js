@@ -5,8 +5,13 @@ import { DetailsMovieComponent } from './/components/DetailMovie';
 import { LoginContext } from '../../contexts/loginContext';
 import { ListFilmsContext } from '../../contexts/listFilmsContext';
 import { LoadingScreensApis } from '../../components/LoadingScreensApis';
-import {getCast, getDetail, getStates, getNameListMovie} from './apis/GetMovieInformation';
-import {postFavoriteMovie} from './apis/PostSendUserInformationMovie';
+import {
+    getCast,
+    getDetail,
+    getStates,
+    getNameListMovie,
+} from './apis/GetMovieInformation';
+import { postFavoriteMovie } from './apis/PostSendUserInformationMovie';
 import { instance } from '../../services/api';
 import * as Styled from './style';
 
@@ -23,81 +28,108 @@ export const DetailsMovie = () => {
     const [note, setNote] = useState(false);
     const [buttonListFavorite, setButtonListFavorite] = useState(false);
     const [addListMovie, setAddListMovie] = useState(false);
-    const [markMovieFavorite, setMarkMovieFavorite] = useState(false);
-    const [listFilmesFavorite, setListFilmesFavorite] = useState({});
-    const [menssageSucess, setMenssageSucess] = useState('');
-    const {sessionId} = useContext(LoginContext);
-    const {movieStates, setMovieStates} = useContext(ListFilmsContext);
+    const [markMovieFavorite, setMarkMovieFavorite] = useState(null);
+    const [menssageSucess, setMenssageSucess] = useState(false);
+    const [filterListFilms, setFilterListFilms] = useState([]);
+    const [loadingLists, setLoadingLists] = useState(false);
+    const { sessionId } = useContext(LoginContext);
+    const { movieStates, setMovieStates } = useContext(ListFilmsContext);
     const Navigation = useNavigation();
-    const {idItens} = useRoute().params;
+    const { idItens } = useRoute().params;
 
     const accountStatus = async () => {
-    let resp = await getStates(idItens, sessionId);
-                setMovieStates(resp?.data);
+        let resp = await getStates(idItens, sessionId);
+        setMovieStates(resp?.data);
     };
 
     const movieInformation = async () => {
-        let resp = await getDetail(idItens); 
-                setDetail(resp?.data);
+        let resp = await getDetail(idItens);
+        setDetail(resp?.data);
     };
 
     const movieCastInformation = async () => {
         let resp = await getCast(idItens);
-                setCast(resp?.data?.cast);
-                setCrew(resp?.data?.crew);
+        setCast(resp?.data?.cast);
+        setCrew(resp?.data?.crew);
     };
 
     const NameListMovie = async () => {
-        let resp = await getNameListMovie(sessionId);
-            setListFilmesFavorite(resp?.data);
+        setLoadingLists(false);
+        await getNameListMovie(sessionId).then(resp => {
+            (resp?.data?.results).map(list => {
+                instance.get(`list/${list?.id}?language=pt-BR`).then(resp => {
+                    if (resp?.data?.items == false) {
+                        filterListFilms.push(list);
+                    } else {
+                        const isExist = (resp?.data?.items).filter(
+                            item => item?.id == idItens,
+                        );
+
+                        if (isExist == false) filterListFilms.push(list);
+                    }
+                });
+            });
+            setLoadingLists(true);
+        });
     };
+
     const postAddFavoriteMovie = async () => {
         await instance
-        .post(`list/8216364/add_item?&session_id=${sessionId}`,{
-            'media_id':idItens
-        })
-        .then(resp => {
-            setAddListMovie(!addListMovie);
-            setMarkMovieFavorite(true);
-            if(resp?.response?.status === 201){
-                setMenssageSucess('Lista atualizada com sucesso!');
-            }
-        })
-        .catch(error => {console.log(error)});
+            .post(
+                `list/${markMovieFavorite}/add_item?&session_id=${sessionId}`,
+                {
+                    media_id: idItens,
+                },
+            )
+            .then(() => {
+                setMenssageSucess(true);
+                setButtonListFavorite(false);
+                setFilterListFilms([]);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
+
+    const handleModalsOnCheckedApi = () => {
+        setMenssageSucess(false);
+    };
+
     const FavoriteMovie = async () => {
-        await postFavoriteMovie(idItens,sessionId, markFavorite);
+        await postFavoriteMovie(idItens, sessionId, markFavorite);
         setMarkFavorite(!markFavorite);
     };
 
-const RateMovie = async () => {
-    await instance
-    .post(`movie/${idItens}/rating?session_id=${sessionId}`, {
-        value: parseFloat(noteAvaliation)
-    })
-    .then(resp => {
-        setVerification(false);
-        setNoteAvaliation(resp?.value);
-        setNote(false);
-    })
-    .catch(error => {
-        setVerification(true);
-        setNoteAvaliation('');
-        if (error?.response?.status === 400) {
-            setMenssagError('A nota deve ser de 0,50 a 10');
-        }
-    });
-};
-
+    const RateMovie = async () => {
+        await instance
+            .post(`movie/${idItens}/rating?session_id=${sessionId}`, {
+                value: parseFloat(noteAvaliation),
+            })
+            .then(resp => {
+                setVerification(false);
+                setNoteAvaliation(resp?.value);
+                setNote(false);
+            })
+            .catch(error => {
+                setVerification(true);
+                setNoteAvaliation('');
+                if (error?.response?.status === 400) {
+                    setMenssagError('A nota deve ser de 0,50 a 10');
+                }
+            });
+    };
 
     useEffect(() => {
         movieInformation();
         movieCastInformation();
-        NameListMovie();
         setTimeout(() => {
             setLoading(true);
         }, 2000);
     }, []);
+
+    useEffect(() => {
+        NameListMovie();
+    }, [filterListFilms]);
 
     useEffect(() => {
         accountStatus();
@@ -133,11 +165,13 @@ const RateMovie = async () => {
                         setAddListMovie={setAddListMovie}
                         addListMovie={addListMovie}
                         postAddFavoriteMovie={postAddFavoriteMovie}
-                        listFilmesFavorite={listFilmesFavorite}
                         markMovieFavorite={markMovieFavorite}
                         setMarkMovieFavorite={setMarkMovieFavorite}
                         setMenssageSucess={setMenssageSucess}
                         menssageSucess={menssageSucess}
+                        filterListFilms={filterListFilms}
+                        loadingLists={loadingLists}
+                        handleModalsOnCheckedApi={handleModalsOnCheckedApi}
                     />
                     <CreditsComponent cast={cast} />
                 </>

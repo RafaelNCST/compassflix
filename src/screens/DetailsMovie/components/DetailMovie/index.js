@@ -16,6 +16,8 @@ import { ListFavoriteMovie } from '../ListFavoriteMovie';
 import StarActice from '../../../../assets/Images/StarActice.png';
 import StarInative from '../../../../assets/Images/StarInative.png';
 
+import { MenssageSuccess } from '../MenssageSuccess';
+
 export const DetailsMovieComponent = ({
     noteAvaliation,
     movieStates,
@@ -35,15 +37,16 @@ export const DetailsMovieComponent = ({
     setMenssagError,
     buttonListFavorite,
     setButtonListFavorite,
-    listFilmesFavorite,
     postAddFavoriteMovie,
     addListMovie,
     markMovieFavorite,
     menssageSucess,
     setMarkMovieFavorite,
-    setMenssageSucess
+    setMenssageSucess,
+    filterListFilms,
+    loadingLists,
+    handleModalsOnCheckedApi,
 }) => {
-
     const validationNote = () => {
         setVerification(false);
         if (noteAvaliation === 0 && noteAvaliation > 10) {
@@ -113,19 +116,34 @@ export const DetailsMovieComponent = ({
                 />
             </Modal>
 
-            <Modal Modal animationType='fade' visible={buttonListFavorite} transparent={true}>
+            <Modal
+                Modal
+                animationType='slip'
+                visible={buttonListFavorite}
+                transparent={true}
+            >
                 <ListFavoriteMovie
-                setButtonListFavorite={setButtonListFavorite}
-                postAddFavoriteMovie={postAddFavoriteMovie}
-                listFilmesFavorite={listFilmesFavorite?.results}
-                addListMovie={addListMovie}
-                markMovieFavorite={markMovieFavorite}
-                menssageSucess={ menssageSucess}
-                setMarkMovieFavorite={setMarkMovieFavorite}
-                setMenssageSucess={setMenssageSucess}
+                    setButtonListFavorite={setButtonListFavorite}
+                    postAddFavoriteMovie={postAddFavoriteMovie}
+                    addListMovie={addListMovie}
+                    markMovieFavorite={markMovieFavorite}
+                    setMarkMovieFavorite={setMarkMovieFavorite}
+                    setMenssageSucess={setMenssageSucess}
+                    filterListFilms={filterListFilms}
+                    loadingLists={loadingLists}
                 />
             </Modal>
-            
+
+            <Modal
+                visible={menssageSucess}
+                transparent={true}
+                animationType='fade'
+            >
+                <MenssageSuccess
+                    handleModalsOnCheckedApi={handleModalsOnCheckedApi}
+                />
+            </Modal>
+
             <View style={styles.perfilArea}>
                 <View style={{ width: 132 }}>
                     <TouchableOpacity onPress={() => setVisible(true)}>
@@ -151,27 +169,27 @@ export const DetailsMovieComponent = ({
                             {' '}
                             {movieStates?.rated?.value
                                 ? 'Sua nota é: ' +
-                                movieStates?.rated?.value +
-                                ' /10'
+                                  movieStates?.rated?.value +
+                                  ' /10'
                                 : 'AVALIE AGORA'}{' '}
                         </Text>
                     </TouchableOpacity>
-                    { movieStates?.rated !== false ? (
-                    <View style={styles.buttonEdit}>
-                        <TouchableOpacity onPress={() => setNote(true)}>
-                            <Icon name='edit' size={10} color={'#000000'} />
-                        </TouchableOpacity>
-                    </View>
-                    ) : (null) }
+                    {movieStates?.rated !== false ? (
+                        <View style={styles.buttonEdit}>
+                            <TouchableOpacity onPress={() => setNote(true)}>
+                                <Icon name='edit' size={10} color={'#000000'} />
+                            </TouchableOpacity>
+                        </View>
+                    ) : null}
                 </View>
                 <View style={styles.infoArea}>
                     <View style={styles.titleArea}>
                         <View style={styles.containerNameAndYear}>
                             <TouchableOpacity onPress={() => setVisible(true)}>
                                 <Text style={styles.textTitle}>
-                                    {(detail?.title)?.length > 10
+                                    {detail?.title?.length > 10
                                         ? (detail?.title).substring(0, 10) +
-                                        '...'
+                                          '...'
                                         : detail?.title}
                                 </Text>
                             </TouchableOpacity>
@@ -203,7 +221,7 @@ export const DetailsMovieComponent = ({
 
                     <View style={styles.notesArea}>
                         <Text style={styles.textNote}>
-                            {(detail?.vote_average)?.toFixed(1)}/10
+                            {detail?.vote_average?.toFixed(1)}/10
                         </Text>
                         <View style={styles.bottomLike}>
                             <TouchableOpacity>
@@ -212,28 +230,33 @@ export const DetailsMovieComponent = ({
                             <Text style={styles.likesQtd}>
                                 {detail?.popularity > 1000
                                     ? Math.floor(detail?.popularity / 1000) +
-                                    'K'
-                                    : (detail?.popularity)?.toFixed(0)}
+                                      'K'
+                                    : detail?.popularity?.toFixed(0)}
                             </Text>
                         </View>
                     </View>
                 </View>
             </View>
-            <TouchableOpacity style={styles.buttonFavorite} onPress={() => setButtonListFavorite(true) }>
-                        <View style={styles.iconFavorite}>
-                            <Icon name='add' size={15} color={'black'}/>
-                        </View>
-                        <View style={styles.areaTextFavorite}>
-                            <Text style={styles.textFavorite}>Adicionar a uma lista</Text>
-                        </View>
+            <TouchableOpacity
+                style={styles.buttonFavorite}
+                onPress={() => setButtonListFavorite(true)}
+            >
+                <View style={styles.iconFavorite}>
+                    <Icon name='add' size={15} color={'black'} />
+                </View>
+                <View style={styles.areaTextFavorite}>
+                    <Text style={styles.textFavorite}>
+                        Adicionar a uma lista
+                    </Text>
+                </View>
             </TouchableOpacity>
             <View style={styles.areaDescription}>
                 <ScrollView style={styles.scrollDescription}>
                     <Text style={styles.tagline}>
-                        {(detail?.tagline)?.toUpperCase() || detail?.title}
+                        {detail?.tagline?.toUpperCase() || detail?.title}
                     </Text>
                     <Text style={styles.textDescription}>
-                        {(detail?.overview)?.toString() ||
+                        {detail?.overview?.toString() ||
                             'Descrição indisponível'}
                     </Text>
                 </ScrollView>
